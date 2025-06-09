@@ -1,0 +1,26 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBCeSBncm91cCAoYmFzZSBSKVxuYnkoQ08yJHVwdGFrZSxcbiAgIENPMiRUcmVhdG1lbnQsXG4gICBzdW0pXG4jIENhbGN1bGF0ZSBzdW0gKGRwbHlyKVxuQ08yICU+JSBcbiAgIGdyb3VwX2J5KFRyZWF0bWVudCkgJT4lIFxuICAgc3VtbWFyaXNlKCBteV9zdW0gPSBzdW0odXB0YWtlKSApXG5gYGAifQ== -->
+
+```r
+# By group (base R)
+by(CO2$uptake,
+   CO2$Treatment,
+   sum)
+# Calculate sum (dplyr)
+CO2 %>% 
+   group_by(Treatment) %>% 
+   summarise( my_sum = sum(uptake) )
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+# By group (base R)
+by(CO2$uptake,
+   CO2$Treatment,
+   sum)
+# Calculate sum (dplyr)
+CO2 %>% 
+   group_by(Treatment) %>% 
+   summarise( my_sum = sum(uptake) )
+```"

@@ -1,0 +1,18 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI09yLCBpbnN0YWxsIHRoZSBsYXRlc3QgdmVyc2lvbiBmcm9tIEdpdEh1YiBhcyBmb2xsb3c6XG4jIEluc3RhbGxcbmlmKCFyZXF1aXJlKGRldnRvb2xzKSkgaW5zdGFsbC5wYWNrYWdlcyhcImRldnRvb2xzXCIpXG5kZXZ0b29sczo6aW5zdGFsbF9naXRodWIoXCJrYXNzYW1iYXJhL2dncHViclwiKVxuYGBgIn0= -->
+
+```r
+#Or, install the latest version from GitHub as follow:
+# Install
+if(!require(devtools)) install.packages(\"devtools\")
+devtools::install_github(\"kassambara/ggpubr\")
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+#Or, install the latest version from GitHub as follow:
+# Install
+if(!require(devtools)) install.packages(\"devtools\")
+devtools::install_github(\"kassambara/ggpubr\")
+```"

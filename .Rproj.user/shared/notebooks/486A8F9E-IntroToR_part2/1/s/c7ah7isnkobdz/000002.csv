@@ -1,0 +1,18 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0luc3RhbGwgZnJvbSBDUkFOIGFzIGZvbGxvdzpcbmluc3RhbGwucGFja2FnZXMoXCJtYWdyaXR0clwiKVxuaW5zdGFsbC5wYWNrYWdlcyhcImRwbHlyXCIpXG5pbnN0YWxsLnBhY2thZ2VzKFwiZ2dwbG90MlwiKSBcbmBgYCJ9 -->
+
+```r
+#Install from CRAN as follow:
+install.packages(\"magrittr\")
+install.packages(\"dplyr\")
+install.packages(\"ggplot2\") 
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+#Install from CRAN as follow:
+install.packages(\"magrittr\")
+install.packages(\"dplyr\")
+install.packages(\"ggplot2\") 
+```"

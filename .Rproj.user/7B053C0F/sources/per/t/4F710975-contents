@@ -1,0 +1,101 @@
+/*-- scss:defaults --*/
+
+// Import font
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap');
+
+// Color palette inspired by logos
+$primary-color: #1A1A1A;     // dark blue (University)
+$secondary-color: #C8102E;   // vivid red (IRB)
+$accent-color: #FF5E6C;      // coral (Kuzman Consulting)
+$background-color: #FFFFFF;
+$text-color: #1A1A1A;
+$gray-light: #F5F5F5;
+
+// Base document colors
+$navbar-bg: $primary-color;
+$navbar-fg: $background-color;
+$navbar-hl: $accent-color;
+$body-bg: $background-color;
+$body-color: $text-color;
+$footer-bg: $primary-color;
+$link-color: $secondary-color;
+
+// Inline code
+$code-bg: #F8F9FA;
+$code-color: $accent-color;
+
+/*-- scss:rules --*/
+
+// Navbar logo size
+.navbar-brand img {
+  max-height: 45px;
+  width: auto;
+}
+
+// Navbar text
+.navbar-brand,
+.navbar-nav .nav-link {
+  font-weight: 700;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  font-weight: 800;
+  color: $accent-color !important;
+}
+
+// Sidebar ToC items
+.tocify-item,
+.tocify-subheader {
+  font-weight: 600;
+}
+
+// Headers
+h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: $primary-color;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: $secondary-color;
+  border-bottom: 3px solid lighten($secondary-color, 25%);
+  padding-bottom: 5px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: $accent-color;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Kuzman Consulting highlight block */
+.kuzman {
+  background-color: $accent-color;
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border-left: 6px solid darken($accent-color, 20%);
+  border-radius: 4px;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.kuzman-title {
+  color: $accent-color;
+  font-weight: 800;
+  font-size: 1.4rem;
+  border-bottom: 3px solid lighten($accent-color, 15%);
+  display: inline-block;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}

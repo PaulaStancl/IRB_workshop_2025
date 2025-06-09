@@ -1,0 +1,347 @@
+---
+title: "Introduction to R (part 2): R packages"
+author: "Paula Stancl"
+output: html_notebook
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# R packages
+
+## Install a package
+
+### CRAN
+
+```{r}
+#Install from CRAN as follow:
+install.packages("magrittr")
+install.packages("dplyr")
+install.packages("ggplot2") 
+```
+
+### Github
+
+```{r}
+#Or, install the latest version from GitHub as follow:
+# Install
+if(!require(devtools)) install.packages("devtools")
+devtools::install_github("kassambara/ggpubr")
+```
+
+### Bioconductor
+
+```{r}
+## Bioconductor
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("airway")
+```
+
+## Load the packages
+
+```{r}
+library("magrittr")
+library("dplyr")
+library("ggpubr")
+library("airway")
+```
+
+## Pipes ( **%\>%** )
+
+Package magrittr provides a new "pipe"-like operator, `%>%`. The pipe
+operator allows you to pipe a value forward into a function. For example
+you can write `vec %>% sum` instead of `sum(vec).` It makes your code
+more intuitive to read and write especially when "pipping/chaining"
+multiple arguments. Fill in the example below:
+
+```{r}
+sample(x = 1:1000, size = 40) %>% 
+   # Call function sum on the whole vector
+
+   # Select only minimal and maximum  value
+
+```
+
+## Package for advanced manipulation of tables (**dplyr**)
+
+## Tables (data.frame)
+
+A data.frame is a 2D table-like structure where columns can hold
+different data types. data.table is an enhanced version of data.frame
+that provides faster and more memory-efficient operations.
+
+```         
+ What does the `CO2` database holds?
+  
+```
+
+```{r}
+# Call the table
+CO2
+# Help
+?CO2
+```
+
+### Import different type of data
+
+-   basic R import function:
+
+    Example for .csv, .tsv and other tabular files.
+
+    `df <- read.csv()` `df <- read.tsv()` `df <- read.table()`
+
+-   using specialized funcions from R packages to import files such as
+    Excel, SPSS
+
+    `df <- read_excel()` `df <- read.spss()` `...` \#### Import a file
+
+Import a file from this link:
+<https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/hospitalizations/covid-hospitalizations.csv>
+
+```{r}
+
+```
+
+## Row subsetting
+
+### Syntax comparison
+
+| Operation                        | *data.frame*      | *dplyr*                 |
+|-------------------|-------------------|---------------------------|
+| Subseting rows                   | `df[1:20, ]`      | `df %>% slice(1:20)`    |
+| Subseting rows based on criteria | `df[df$id < 4, ]` | `df %>% filter(id < 4)` |
+
+Subsetting by rows (*slice*) Subset from 5th to 10th position
+
+```{r}
+# Base R
+
+# dyplr
+
+```
+
+Filtering (*filter*) Select only Mississippi and chilled plants
+
+```{r}
+# Base R
+
+# dyplr
+
+```
+
+## Column subsetting
+
+### Syntax comparison
+
+| Operation                           | *data.frame*    | *dplyr*                 |
+|-------------------|-------------------|---------------------------|
+| Subseting columns                   | `df[, c(1,5)]`  | `df %>% select(c(1,5))` |
+| Subseting columns based on colnames | `df[, c("id")]` | `df %>% select(id)`     |
+
+Subsetting by column (*select*)
+
+```{r}
+# Base R
+CO2[, c(1,5)]
+CO2[, c("Treatment", "uptake")]
+# Select columns by name
+CO2 %>% select(Treatment, uptake)
+CO2 %>% select(c(1,5))
+# Select all columns between hair_color and eye_color (inclusive)
+CO2 %>% select(Treatment:uptake)
+```
+
+## Operation on columns
+
+### Syntax comparison
+
+| Operation                | *data.frame*                   | *dplyr*                                               |
+|------------------|---------------------|-----------------------|
+| Calculate sum            | `sum(df$id)`                   | `df %>%` `summarize(sum(id))`                         |
+| Calculate sum by group   | `by(df$id,` `df$group,` `sum)` | `df %>%` `group_by(group) %>%` `summarize( sum(id) )` |
+| Calling column as vector | `df$id`                        | `df$id`                                               |
+
+### Calculate sum
+
+Calculate the sum of uptake
+
+```{r}
+# Base R
+
+# dplyr
+
+# dplyr with adding a meaningful name to the new column 
+
+```
+
+### Calculate sum by group
+
+```{r}
+# By group (base R)
+by(CO2$uptake,
+   CO2$Treatment,
+   sum)
+# Calculate sum (dplyr)
+CO2 %>% 
+   group_by(Treatment) %>% 
+   summarise( my_sum = sum(uptake) )
+```
+
+### Adding new permanent columns
+
+Add new columns with mutate()
+
+### Syntax comparison
+
+| Operation           | *data.frame*       | *dplyr*                 |
+|---------------------|--------------------|-------------------------|
+| Adding a new column | `df$id <- "first"` | `df %>% mutate("first)` |
+
+Adding a new column
+
+```{r}
+# Base R
+
+# dplyr
+
+### What is the difference?
+
+```
+
+# Removing a new column
+
+```{r}
+# Base R
+#CO2$id <- NULL
+# Negative subsetting in dyplr
+# CO2  %>% 
+#    # Adding a column (in case you have removed it in the previous step)
+#    mutate( id = "test") %>% 
+#    # Removing the column
+#    select(., -c("id"))
+```
+
+## Package usage for vizualization (**ggpubr**)
+
+Density plot with mean lines of uptake value. Color the outline and fill
+colors by groups ("Type").
+
+```{r}
+?ggdensity
+
+```
+
+Histogram plot with mean lines and horizontal orientation. Use custom
+color palette ("forestgreen", "mistyrose3")
+
+```{r}
+##
+?gghistogram
+
+```
+
+```{r}
+# Box plots with jittered points where concetration is on x axis and uptake on y axis. Color by concentration. 
+# :::::::::::::::::::::::::::::::::::::::::::::::::::
+p <- ggboxplot(CO2, x = "conc", y = "uptake",
+                color = "conc", 
+                add = "jitter")
+p 
+```
+
+# Statistics in R
+
+```{r}
+?aov
+aov(uptake ~ conc, data = CO2)
+?kruskal.test
+kruskal.test(uptake ~ conc, data = CO2)
+```
+
+Easy way to compute some statistics and visualize it on a figure is to
+use `ggpubr` package. Add `stat_compare_means` function to your plot
+**p**. Here we will use the `+` sign as a pipe operator which is used
+only for adding additional layers (elements of analysis) to your
+existing figure. R package `ggplot2` is the most common used package for
+visualizing results and it heavily uses the `+` operator.
+
+```{r}
+p
+?stat_compare_means
+p + stat_compare_means()  # Add p-values comparing groups
+
+## Pairwise comparison
+list_pair <- list( c("95", "250"), c("95", "675") )
+p + stat_compare_means(comparisons = list_pair)
+```
+
+# Introduction to Bioconductor
+
+Bioconductor is a collection of more than 1,500 packages for the
+statistical analysis and comprehension of high-throughput genomic data.
+Originally developed for microarrays, Bioconductor packages are now used
+in a wide range of analyses, including bulk and single-cell RNA-seq,
+ChIP seq, copy number analysis, microarray methylation and classic
+expression analysis, flow cytometry, and many other domains.
+
+### Bioconductor package ***airway***
+
+This package provides a RangedSummarizedExperiment object of read counts
+in genes for an RNA-Seq experiment on four human airway smooth muscle
+cell lines treated with dexamethasone. Details on the gene model and
+read counting procedure are provided in the package vignette.
+
+```{r}
+library(airway)
+data("airway")
+airway
+```
+
+The RangedSummarizedExperiment class is a matrix-like container where
+rows represent ranges of interest (as a GRanges or GRangesList object)
+and columns represent samples (with sample data summarized as a
+DataFrame). A RangedSummarizedExperiment contains one or more assays,
+each represented by a matrix-like object of numeric or other mode.
+
+![Example of SummarizedExperiment object. Image taken from
+<https://compgenomr.github.io/book/>](https://compgenomr.github.io/book/images/Summarized.Experiment.png)
+
+SummarizedExperiment is a very typical object used in analysis of
+genomics data especially with specilized packages for the analysis of
+RNA-seq data. Here we will examine what does this object contain and how
+we can access certain information within it.
+
+Accessing metadata which contains general information about the data and
+in which paper was it published. Note that metadata can be anything the
+author of the RangedSummarizedObject chooses.
+
+```{r}
+airway@metadata
+metadata(airway)
+```
+
+Get information about the samples in colData.
+
+```{r}
+airway@colData
+colData(airway)
+```
+
+Get the count matrix ussing the `assay` function.
+
+```{r}
+assay(airway) %>% 
+  # Use function head to show only the first 6 rows of the matrix
+  head()
+```
+
+GRanges is a vector of genomic locations and associated annotations.
+Each element in the vector is comprised of a sequence name, an interval,
+a strand, and optional metadata columns (e.g. score, GC content, etc.).
+
+```{r}
+airway@rowRanges
+rowRanges(airway) %>% unlist
+```

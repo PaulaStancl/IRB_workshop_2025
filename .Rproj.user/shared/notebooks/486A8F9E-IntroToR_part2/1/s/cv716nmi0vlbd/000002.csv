@@ -1,0 +1,20 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyMgQmlvY29uZHVjdG9yXG5pZiAoIXJlcXVpcmUoXCJCaW9jTWFuYWdlclwiLCBxdWlldGx5ID0gVFJVRSkpXG4gICAgaW5zdGFsbC5wYWNrYWdlcyhcIkJpb2NNYW5hZ2VyXCIpXG5cbkJpb2NNYW5hZ2VyOjppbnN0YWxsKFwiYWlyd2F5XCIpXG5gYGAifQ== -->
+
+```r
+## Bioconductor
+if (!require(\"BiocManager\", quietly = TRUE))
+    install.packages(\"BiocManager\")
+
+BiocManager::install(\"airway\")
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+## Bioconductor
+if (!require(\"BiocManager\", quietly = TRUE))
+    install.packages(\"BiocManager\")
+
+BiocManager::install(\"airway\")
+```"

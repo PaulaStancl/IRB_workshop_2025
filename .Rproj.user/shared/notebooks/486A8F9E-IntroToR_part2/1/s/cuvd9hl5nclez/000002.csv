@@ -1,0 +1,26 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBCYXNlIFJcbiNDTzIkaWQgPC0gTlVMTFxuIyBOZWdhdGl2ZSBzdWJzZXR0aW5nIGluIGR5cGxyXG4jIENPMiAgJT4lIFxuIyAgICAjIEFkZGluZyBhIGNvbHVtbiAoaW4gY2FzZSB5b3UgaGF2ZSByZW1vdmVkIGl0IGluIHRoZSBwcmV2aW91cyBzdGVwKVxuIyAgICBtdXRhdGUoIGlkID0gXCJ0ZXN0XCIpICU+JSBcbiMgICAgIyBSZW1vdmluZyB0aGUgY29sdW1uXG4jICAgIHNlbGVjdCguLCAtYyhcImlkXCIpKVxuYGBgIn0= -->
+
+```r
+# Base R
+#CO2$id <- NULL
+# Negative subsetting in dyplr
+# CO2  %>% 
+#    # Adding a column (in case you have removed it in the previous step)
+#    mutate( id = \"test\") %>% 
+#    # Removing the column
+#    select(., -c(\"id\"))
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+# Base R
+#CO2$id <- NULL
+# Negative subsetting in dyplr
+# CO2  %>% 
+#    # Adding a column (in case you have removed it in the previous step)
+#    mutate( id = \"test\") %>% 
+#    # Removing the column
+#    select(., -c(\"id\"))
+```"

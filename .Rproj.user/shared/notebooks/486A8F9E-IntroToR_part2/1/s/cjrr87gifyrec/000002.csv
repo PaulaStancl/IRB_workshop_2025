@@ -1,0 +1,26 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBCYXNlIFJcbkNPMlssIGMoMSw1KV1cbkNPMlssIGMoXCJUcmVhdG1lbnRcIiwgXCJ1cHRha2VcIildXG4jIFNlbGVjdCBjb2x1bW5zIGJ5IG5hbWVcbkNPMiAlPiUgc2VsZWN0KFRyZWF0bWVudCwgdXB0YWtlKVxuQ08yICU+JSBzZWxlY3QoYygxLDUpKVxuIyBTZWxlY3QgYWxsIGNvbHVtbnMgYmV0d2VlbiBoYWlyX2NvbG9yIGFuZCBleWVfY29sb3IgKGluY2x1c2l2ZSlcbkNPMiAlPiUgc2VsZWN0KFRyZWF0bWVudDp1cHRha2UpXG5gYGAifQ== -->
+
+```r
+# Base R
+CO2[, c(1,5)]
+CO2[, c(\"Treatment\", \"uptake\")]
+# Select columns by name
+CO2 %>% select(Treatment, uptake)
+CO2 %>% select(c(1,5))
+# Select all columns between hair_color and eye_color (inclusive)
+CO2 %>% select(Treatment:uptake)
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+# Base R
+CO2[, c(1,5)]
+CO2[, c(\"Treatment\", \"uptake\")]
+# Select columns by name
+CO2 %>% select(Treatment, uptake)
+CO2 %>% select(c(1,5))
+# Select all columns between hair_color and eye_color (inclusive)
+CO2 %>% select(Treatment:uptake)
+```"

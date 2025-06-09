@@ -1,0 +1,20 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2FtcGxlKHggPSAxOjEwMDAsIHNpemUgPSA0MCkgJT4lIFxuICAgIyBDYWxsIGZ1bmN0aW9uIHN1bSBvbiB0aGUgd2hvbGUgdmVjdG9yXG5cbiAgICMgU2VsZWN0IG9ubHkgbWluaW1hbCBhbmQgbWF4aW11bSAgdmFsdWVcblxuYGBgIn0= -->
+
+```r
+sample(x = 1:1000, size = 40) %>% 
+   # Call function sum on the whole vector
+
+   # Select only minimal and maximum  value
+
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+sample(x = 1:1000, size = 40) %>% 
+   # Call function sum on the whole vector
+
+   # Select only minimal and maximum  value
+
+```"

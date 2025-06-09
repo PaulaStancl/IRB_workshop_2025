@@ -1,0 +1,325 @@
+---
+title: "Functions and conditions"
+author: 
+  - name: "dr.sc. Paula Štancl"
+    affiliation: "Kuzman Consulting d.o.o"
+  - name: "dr.sc. Andrea Gelemanović"
+    affiliation: "MedILS, UNIST"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 5
+    code-fold: false
+    fig-align: center
+    df-print: paged
+    code-summary: "Show code"
+    code-line-numbers: false
+    code-tools: true
+    
+execute:
+  echo: true
+  warning: false
+  message: false
+  collapse: true
+---
+
+# What are functions?
+
+Functions are **reusable blocks of code** designed to perform specific tasks. They can take inputs (called **arguments**), perform operations, and return results. Functions help you write cleaner, more efficient, and more modular code.
+
+You can use built-in R functions like `mean()`, `sum()`, or `length()`, or you can create your **own custom functions** using the `function()` keyword.
+
+## Function skeleton
+
+In R, you can define your own functions using the `function()` keyword.\
+A function takes **input(s)**, performs some **operations**, and usually **returns a result** which **is automatically the last line** in the function.
+
+::: callout-tip
+## Basic function structure
+
+```{r}
+function_name <- function(argument1, argument2 = default_value) {
+  # Code block that does something with the arguments
+  
+  result <- ...  # Some calculation or value
+  return(result) # Optional: explicitly return the result
+}
+```
+:::
+
+### Task example:
+
+Let's look at a simple example of how to write and use a custom function in R.
+
+```{r}
+my_function <- function(x) {
+  res <- x*2 - 4
+  return(res)
+}
+```
+
+Let's use the custom function:
+
+```{r}
+# Add two numbers
+my_function(5)
+# Add two vectors
+my_function(c(1, 2, 3))
+```
+
+### Task example: Defining a function for cell division
+
+A scientist has **48** stem cells. Each one divides into **2** daughter cells.
+
+-   How many cells will there be after division?
+-   How many full groups of **10 cells** can you make?
+-   How many cells will be left over?
+
+We'll write a custom function that **simulates 1 round of cell division** to solve this:
+
+```{r}
+# Define a function that takes the number of starting cells and returns division results
+cell_division_summary <- function(initial_cells, 
+                                  group_size = 10 # default setting of an argument
+                                  ) {
+  
+  # total number of cells after 1 division
+  total_cells <- initial_cells * 2
+  # how many groups of cells are after 1 division
+  full_groups <- total_cells %/% group_size
+  # how many are leftover
+  leftover_cells <- total_cells %% group_size
+  
+  # Return a list with results since we can only return one line as an result
+  list(
+    total_cells = total_cells,
+    full_groups = full_groups,
+    leftover_cells = leftover_cells
+  )
+}
+
+# Call the function with 48 cells
+cell_division_summary(48)
+```
+
+##### Task
+
+Modify the `cell_division_summary` function so that it supports **multiple rounds of cell division**.
+
+Each cycle should double the total number of cells.
+
+You should add an additional argument called `n_cycles`, which:
+
+-   represents the number of division cycles (default should be 1)
+
+-   adjusts the total number of cells to be: `initial_cells * 2^n_cycles`
+
+```{r}
+# Write the solution here
+```
+
+# Conditions
+
+Conditions in R allow you to **make decisions** in your code. They are typically used with **`if`**, **`else if`**, and **`else`** statements.
+
+These control structures let your code behave differently depending on whether certain **logical conditions** are `TRUE` or `FALSE`. 
+
+For example, you might want to check if a number is positive, negative, or zero, and respond differently in each case. Conditions are essential when building functions, loops, and any logic that depends on the data. 
+
+::: callout-tip
+## Basic conditional structure
+
+**Simple `if` condition**
+```{r, eval=FALSE}
+if (condition) {
+  # Code to run if condition is TRUE
+}
+```
+
+**Advance multiple conditions**
+```{r, eval=FALSE}
+if (condition) {
+  # Code to run if condition is TRUE
+} else if (another_condition) { # else if as many times as needed in the conditions
+  # Code to run if the first condition is FALSE, but this one is TRUE
+} else {
+  # Code to run if none of the above conditions are TRUE
+}
+```
+:::
+
+Example of this structure
+
+```{r}
+# define a vector
+x <- -3
+
+# write a message
+if (x > 0) {
+  print("Positive number")
+} else if (x == 0) {
+  print("Zero")
+} else {
+  print("Negative number")
+}
+```
+
+Another example
+```{r}
+# Define a single age
+age <- 25
+
+# Use one if statement
+if (age < 30) {
+  my_age <- c("young")
+} else {
+  my_age <- c("old")
+}
+
+# write a sentance about my age
+print(paste0("I feel very ", my_age, "!"))
+```
+
+
+
+These tools allow you to build logic into your code so that it can react to different values or situations. Use `if`/`else` for single conditions, and `ifelse()` when working with vectors.
+
+::: callout-tip
+## Vectorized conditions with `ifelse()`
+
+The `ifelse()` function is used to apply a condition across a **vector**. It checks each element and returns one value if the condition is `TRUE`, and another if it is `FALSE`.
+```{r}
+# Example vector of temperatures
+temps <- c(18, 22, 30, 15)
+
+# Label each temperature as "Warm" or "Cool"
+ifelse(temps >= 20, "Warm", "Cool")
+```
+:::
+
+
+### Summary of conditional statements
+
+| Syntax                 | Description                                        | Example                              |
+|------------------------|----------------------------------------------------|--------------------------------------|
+| `if (condition)`       | Executes code only if the condition is `TRUE`      | `if (x > 0) print("Positive")`       |
+| `else`                 | Executes code if the previous `if` was `FALSE`     | `else print("Not positive")`         |
+| `else if (condition)`  | Checks another condition if the first `if` fails   | `else if (x == 0) print("Zero")`     |
+| `ifelse(cond, a, b)`   | Vectorized `if`, returns `a` if `cond` is `TRUE`, else `b` | `ifelse(x > 0, "Yes", "No")` |
+
+---
+
+##### Task : Practice condition statments
+
+A bacterial culture is being observed. You are given the number of bacteria after 1 hour.
+
+- If the number of bacteria is greater than 1000, print `"Rapid growth"`.
+- If the number is between 500 and 1000 (inclusive), print `"Moderate growth"`.
+- If the number is below 500, print `"Slow growth"`.
+
+Write an `if`/`else if`/`else` statement to classify the growth.
+
+```{r}
+# Write the solution here
+# TODO: Define a vector containing any number of bacteria
+
+# TODO: Add your conditional statements and print the growth classification
+
+```
+
+##### Taks :  Add growth classification to a `cell_division_summary` function
+
+You are given a function that calculates the number of cells after one division and groups them based on a specified group size.
+
+Your task is to **modify the function** to also classify the **growth level** as a new element of the list called `growth_classification` based on the number of cells after division:
+
+- If the number is **greater than 2000**, print `"Extreme growth"`
+- If the number is **between 1001 and 2000**, print `"Rapid growth"`
+- If the number is **between 501 and 1000**, print `"Moderate growth"`
+- If the number is **500 or less**, print `"Slow growth"`
+
+This classification should be added **using conditional statements** (`if`, `else if`, `else`) inside the function.
+
+```{r}
+# Write the solution here
+cell_division_summary <- function(initial_cells, group_size = 10) {
+  
+  # Calculate total number of cells after 1 division
+  total_cells <- initial_cells * 2
+  
+  # TODO: Add your conditional statements here to define a variable called 'growth_classification'
+  
+  
+  # Calculate number of full groups
+  full_groups <- total_cells %/% group_size
+  
+  # Calculate number of leftover cells
+  leftover_cells <- total_cells %% group_size
+  
+  # TODO: return ALL values in a list
+  list(
+    total_cells = total_cells,
+    full_groups = full_groups,
+    leftover_cells = leftover_cells
+  )
+}
+
+# TODO: Run your function on some example
+```
+
+::: callout-important
+## Messages, Warnings, and Errors in functions
+
+When writing your own functions, it's useful to give feedback to the user using different types of messages:
+
+- **`message()`** – Informational messages. These are shown but do not interrupt execution.
+
+```{r, eval=FALSE}
+message("Calculation complete.")
+```
+
+- **`warning()`** – Alerts the user that something may be wrong, but the function continues running.
+
+```{r, eval=FALSE}
+if (x < 0) warning("Negative value detected.")
+```
+
+- **`stop()`** – Stops the function and throws an error. Use this to prevent further execution if input is invalid.
+```{r, eval=FALSE}
+if (!is.numeric(x)) stop("Input must be numeric.")
+```
+
+:::
+
+#### Task example
+
+Try to make the example so all three message are shown
+```{r}
+my_function <- function(x) {
+  
+  # Show a message when the function starts
+  message("Starting calculation...")
+  
+  # Stop the function if x is not numeric
+  if (!is.numeric(x)) {
+    stop("Input must be numeric.")
+  }
+  
+  # Perform the calculation
+  res <- x * 2 - 4
+  
+  # Warn the user if the result is negative
+  if (res < 0) {
+    warning("The result is negative.")
+  }
+  
+  return(res)
+}
+
+# TODO: Write 3 test example that shows:
+# - the message
+# - the warning
+# - and the error
+```
+

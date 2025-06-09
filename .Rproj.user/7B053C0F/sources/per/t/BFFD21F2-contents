@@ -1,0 +1,360 @@
+---
+title: "Introduction to R"
+author: 
+  - name: "dr.sc. Paula Štancl"
+    affiliation: "Kuzman Consulting d.o.o"
+  - name: "dr.sc. Andrea Gelemanović"
+    affiliation: "MedILS, UNIST"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 4
+    code-fold: false
+    fig-align: center
+    df-print: paged
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+Hello everyone to your first session "Introduction to R" in the Institute Ruder Boskovic (IRB) workshop. During this session, you will learn the basics to R programming and working environment.
+
+::: callout-tip
+# How to quickly code a chunk
+
+**Ctrl + Alt + I**
+:::
+
+# R as calculator
+
+R can be used as a basic calculator to perform arithmetic operations like addition, subtraction, multiplication, and division.
+
+```{r}
+(9+2)*(3-1)
+sqrt(2)^2
+5/2
+5%/%2 
+5%%2
+```
+
+# R objects
+
+## Variable
+
+#### Creating a variable
+
+To create a certain object, you need to give it a name followed by the assignment operator **\<-** and the value you want to store it. To see the stored value in a variable, you can call it using *parentheses* or *by typing the object name*.
+
+```{r}
+vec <- 5
+# Print
+vec
+# Print
+(vec2 <- 10)
+```
+
+#### Naming a variable
+
+When naming the variables, they mustn't be too short or too long. Avoid meaningless variable names and name them logically ( example: **`mRNA_human`** ) R is case sensitive ( example: **`vec`** is different to **`Vec`** ). Some names cannot be used because they are the names of fundamental functions in R (e.g., **`if`**, **`else`**, **`for`**...). In general, even if it's allowed, it's best to not use other function names (e.g., **`c`**, **`t`**, **`mean`**, **`data`**, **`df`**). Furthermore, avoid using dots (**`.`**) within a variable name, such as in `my.mRNA`. A lot of functions in R have dots in their name for historical reasons and dots have special meaning in R so it is best to avoid them.
+
+### Functions and useful tricks
+
+Functions are "conserved scripts" that automate more complicated sets of commands including operations assignments, etc. Many functions are predefined, or can be made available by importing R packages (more on that later). A function usually gets one or more inputs called arguments. Functions often (but not always) return a value. Adding `?` in front of any function opens a help, description and usage of the function. A typical example function is `sum`.
+
+::: callout-tip
+## Help with functions
+
+What does the function sum do?
+
+(Hint: ?sum)
+:::
+
+```{r, eval=FALSE}
+?sum
+```
+
+## Vectors
+
+A vector is the most common and basic data type in R. A vector is composed by a series of values. V ectors can be composed of integer/numeric, logical or character values. Using the **`c()`**function you can assign a series of values to a vector. The simplest way to create a sequence of numbers in R is by using the **`:`** operator.
+
+Examples of defining vectors
+
+```{r}
+( first_vec_num <- c(1,2,5) )
+#The simplest way to create a sequence of numbers in R is by using the : operator. 
+( second_vec_num <- 1:30 )
+( first_vec_character <- c("human", "mouse", "dog", "cat") )
+( first_vec_logic <- c(TRUE, FALSE, TRUE) )
+##
+(mix_vec <-c(1, "sea", TRUE))
+```
+
+### Different types and classes
+
+-   ::: callout-note
+    ## Types
+
+    -   character
+
+    -   double (for double precision floating point numbers)
+
+    -   integer
+    :::
+
+```{r}
+# double/numeric
+typeof(first_vec_num)
+# character
+typeof(first_vec_character)
+
+# To character
+first_vec_num
+as.character(first_vec_num)
+
+# To numeric
+first_vec_character
+as.numeric(first_vec_character)
+as.numeric(mix_vec)
+```
+
+#### Calculation with vectors
+
+```{r}
+first_vec_num + vec 
+
+first_vec_num + second_vec_num
+
+first_vec_num * second_vec_num
+```
+
+#### Adding and replacing elements
+
+```{r}
+# Add
+second_vec_num <- c(second_vec_num, 1, 30, 30, 30, 1, 1)
+second_vec_num
+
+# Replace
+second_vec_num[1] <- 10000
+second_vec_num
+```
+
+### Subsetting vectors
+
+Subsetting is a useful indexing feature for accessing certain object elements. When you want to extract one or several values, you have to provide indices in *square brackets*. For example:
+
+```{r}
+# Selecting second element
+first_vec_num[2]
+# Not selecting the second element
+first_vec_num[-2]
+# Selecting first and third elements 
+first_vec_num[c(1,3)]
+```
+
+Moreover, selection can be done using other vectors, such as logical and numeric.
+
+**What happened when you used a logical vector for subsetting?**
+
+```{r}
+first_vec_num[first_vec_logic]
+
+first_vec_num[first_vec_num]
+```
+
+#### Boolean Operators
+
+| Operator | Description              | Example    | Result  |
+|----------|--------------------------|------------|---------|
+| `>`      | Greater than             | `5 > 6`    | `FALSE` |
+| `<`      | Less than                | `5 < 6`    | `TRUE`  |
+| `==`     | Equals to                | `10 == 10` | `TRUE`  |
+| `!=`     | Not equal to             | `10 != 10` | `FALSE` |
+| `>=`     | Greater than or equal to | `5 >= 6`   | `FALSE` |
+| `<=`     | Less than or equal to    | `6 <= 6`   | `TRUE`  |
+
+```{r}
+2 != 2
+first_vec_num == 2
+first_vec_num == first_vec_character
+```
+
+In the second example, we got a warning message ***longer object length is not a multiple of shorter object length*** and an output **FALSE FALSE FALSE FALSE**. *What happened here?*
+
+##### Boolean with logical operators
+
+::: callout-important
+## There are three types of logical operators in R
+
+AND operator **`&`**
+
+OR operator **`|`**
+
+NOT operator **`!`**
+:::
+
+Explain the examples below:
+
+```{r}
+first_vec_num[first_vec_num == 5 & first_vec_num == 2]
+first_vec_num[first_vec_num == 5 | first_vec_num == 2]
+```
+
+### Examples of useful function
+
+::: callout-tip
+## **Basic descriptive statistics**
+
+-   **`summary()`**\
+    Provides a quick overview of an object. For numeric vectors or data frames, it returns the minimum, 1st quartile, median, mean, 3rd quartile, and maximum.
+
+-   **`mean()`**\
+    Calculates the arithmetic average of a numeric vector.
+
+-   **`sum()`**\
+    Adds all elements of a numeric vector together.
+
+-   **`sd()`**\
+    Computes the standard deviation, which measures the amount of variation or dispersion in the data.
+
+-   **`table()`**\
+    Creates a frequency table showing how often each value appears in a vector or factor.
+:::
+
+Example
+
+```{r}
+sum(c(10,10))
+# Summary statistics
+sum(second_vec_num)
+summary(second_vec_num)
+# Count table
+table( second_vec_num )
+```
+
+::: callout-tip
+## **Vector inspection**
+
+-   **`length()`**\
+    Returns the number of elements in a vector.
+
+-   **`unique()`**\
+    Extracts the distinct (non-duplicate) values from a vector.
+
+-   **`anyNA()`**\
+    Checks if there are any missing (`NA`) values in a vector and returns `TRUE` or `FALSE`.
+
+-   **`is.na()`**\
+    Returns a logical vector indicating which elements are `NA`.
+
+-   **`sort()`**\
+    Arranges the elements of a vector in ascending (default) or descending order.
+:::
+
+```{r}
+# Order a vector
+sort_second_vec <- sort(second_vec_num, 
+                          decreasing = FALSE)
+second_vec_num; sort_second_vec
+```
+
+```{r}
+# Count table
+sort( second_vec_num )
+# is there NA
+is.na( second_vec_num ) 
+anyNA( second_vec_num )
+```
+
+## Matrix
+
+Matrix is a two dimensional data structure in R programming. It is similar to vector but additionally contains the dimension attribute. You define a matrix using the `matrix` function which takes data as vector, number of columns and/or rows to create a matrix. Argument `byrow` when FALSE is filling the matrix by columns.
+
+```{r}
+first_mat <- matrix(1:20, nrow=5)
+first_mat
+# filling by columns
+second_mat <- matrix(1:20, nrow=5,
+                        byrow=TRUE)
+second_mat
+```
+
+### Subsetting a matrix
+
+Since matrices are two dimensional, you have to subset in both dimensions. Subsetting is done by opening square brackets with supplied index for each dimension separated by a comma. Blank subsetting is useful because you keep all rows or all columns.
+
+```{r}
+first_mat
+first_mat[1, 3:4]
+first_mat[1:2, 3:4]
+```
+
+### Replacing elements in a matrix
+
+You can replace individual elements in a matrix using indexing. Here's an example:
+
+```{r}
+# Access the element in the first row, first column
+first_mat[1,1]
+# Replace that element with the character "a"
+first_mat[1,1] <- "a"
+# View the matrix
+first_mat
+```
+
+## List
+
+List is an object containing elements of various types -- like strings, numbers, matrices, vectors, functions and another list inside it. The list is created using the `list()` function in R.
+
+```{r}
+first_list <- list(first = c(7,5,24,88),
+                   second = c("abc", 3))
+
+first_list
+```
+
+### Accessing elements of a list
+
+If the elements have names, we can call the name to access its values. Here we have names the first stored element as first "first" and therefore we can call it.
+
+```{r}
+first_list$first
+```
+
+Use square brackets to select an element of a list. Be careful because using single square brackets, you are still getting a list, while using the double square brackets, you are obtaining the actual stored element in a list.
+
+```{r}
+first_list[1]
+first_list[[1]]
+```
+
+### Replacing and adding elements
+
+You can both replace and add values within elements of a list using double brackets **`[[ ]]`** and indexing.
+
+```{r}
+# Replace the first value in the first element of the list
+first_list[[1]][1] <- "A"
+```
+
+Add a new value to a list element
+
+```{r}
+# Add a new (5th) value to the first element of the list
+first_list[[1]][5] <- "x" 
+```
+
+View the result
+
+```{r}
+first_list
+```
+
+### List to vector
+
+```{r}
+unlist(first_list)
+first_list
+```

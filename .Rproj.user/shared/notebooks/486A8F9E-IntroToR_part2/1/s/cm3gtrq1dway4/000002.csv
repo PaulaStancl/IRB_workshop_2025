@@ -1,0 +1,22 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBCb3ggcGxvdHMgd2l0aCBqaXR0ZXJlZCBwb2ludHMgd2hlcmUgY29uY2V0cmF0aW9uIGlzIG9uIHggYXhpcyBhbmQgdXB0YWtlIG9uIHkgYXhpcy4gQ29sb3IgYnkgY29uY2VudHJhdGlvbi4gXG4jIDo6Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6OlxucCA8LSBnZ2JveHBsb3QoQ08yLCB4ID0gXCJjb25jXCIsIHkgPSBcInVwdGFrZVwiLFxuICAgICAgICAgICAgICAgIGNvbG9yID0gXCJjb25jXCIsIFxuICAgICAgICAgICAgICAgIGFkZCA9IFwiaml0dGVyXCIpXG5wIFxuYGBgIn0= -->
+
+```r
+# Box plots with jittered points where concetration is on x axis and uptake on y axis. Color by concentration. 
+# :::::::::::::::::::::::::::::::::::::::::::::::::::
+p <- ggboxplot(CO2, x = \"conc\", y = \"uptake\",
+                color = \"conc\", 
+                add = \"jitter\")
+p 
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+# Box plots with jittered points where concetration is on x axis and uptake on y axis. Color by concentration. 
+# :::::::::::::::::::::::::::::::::::::::::::::::::::
+p <- ggboxplot(CO2, x = \"conc\", y = \"uptake\",
+                color = \"conc\", 
+                add = \"jitter\")
+p 
+```"
