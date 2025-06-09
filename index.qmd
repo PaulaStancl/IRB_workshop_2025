@@ -1,7 +1,7 @@
 ---
-title: "WEB_IRB25"
+title: ""
 ---
 
-This is a Quarto website.
+# 👋 Welcome to the IRB Workshop 2025 Website
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+This website hosts the material for the **IRB Workshop 2025**. You'll find R code examples, tasks, and explanations for each session.

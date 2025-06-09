@@ -5,3 +5,5 @@
 *.Rproj
 Day2_IRB25_part1.qmd
 .Rproj.user/
+
+/.quarto/
