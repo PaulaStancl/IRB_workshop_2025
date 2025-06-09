@@ -1,0 +1,6 @@
+# R and RStudio files
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+Day2_IRB25_part1.qmd
