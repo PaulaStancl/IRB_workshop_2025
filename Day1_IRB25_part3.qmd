@@ -1,0 +1,121 @@
+---
+title: "Basic regular expressions"
+author: 
+  - name: "dr.sc. Paula Štancl"
+    affiliation: "Kuzman Consulting d.o.o"
+  - name: "dr.sc. Andrea Gelemanović"
+    affiliation: "MedILS, UNIST"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 5
+    code-fold: false
+    fig-align: center
+    df-print: paged
+    code-summary: "Show code"
+    code-line-numbers: false
+    code-tools: true
+    
+execute:
+  echo: true
+  message: false
+  collapse: true
+---
+
+## What are regular expressions?
+
+![](https://preview.redd.it/mzgi8nrgjqd21.jpg?auto=webp&s=9703c43f933a585e71c0d582297bfd2cd4afebff){fig-align="center"}
+
+**Regular expressions (regex)** are compact patterns used to search, match, and manipulate text in a flexible way.
+
+A regex is simply a string made up of **special characters** that define a **text pattern**.
+
+## What can regex represent?
+
+Regex patterns can describe:
+
+-   **Wildcards** --- match any single character using `.`\
+-   **Quantifiers** --- specify how many times a character or group appears (`*`, `+`, `{n}`)\
+-   **Grouping** --- combine parts of patterns using parentheses `( )`\
+-   **Boolean OR** --- match one pattern **or** another using `|`\
+-   **Anchors** --- specify where in the string to match (`^` = start, `$` = end)\
+-   **Character Sets** --- match specific characters using square brackets `[abc]`
+
+## `grep()` -- Pattern matching with regex in R
+
+The `grep()` function is one of the most common ways to use **regular expressions** in base R.
+
+`g/re/p` stands for:
+
+**Global search for Regular Expression and Print matching lines**
+
+::: callout-tip
+## Basic grep syntax
+
+```{r, eval=FALSE}
+grep("pattern", your_vector)
+```
+
+-   By default, it returns **the positions** of matching elements.
+
+-   To return the **matching values**, use: `value = TRUE`
+
+-   To return the indices or values that **do not match**, use: `invert = TRUE`
+:::
+
+![](https://hypebright.nl/wp-content/uploads/2020/05/Cheatsheet-RegEx-2024-1086x1536.png){fig-align="center"}
+
+### Example how to use grep
+
+Let's define a new character vector with a mix of names, codes, and text snippets:
+
+```{r}
+my_strings <- c(
+  "apple123", "banana", "cat!", "dog99", "zebra_2", 
+  "Xray", "alpha-beta", "beta.alpha", "code42", "hello world!",
+  "abAB12", "123abc", "abc!", "end.", "Begin!", "test_case?",
+  "no_numbers", "DATA2025", "regex_fun", "start_end"
+)
+```
+
+Find strings that **contain numbers**
+
+```{r}
+grep("\\d", my_strings, value = TRUE)
+```
+
+Find strings that **contain underscores**
+
+```{r}
+grep("_", my_strings, value = TRUE)
+```
+
+Find strings that **start with a lowercase letter**
+
+```{r}
+grep("^[a-z]", my_strings, value = TRUE)
+```
+
+#### How to find special characters?
+
+Sometimes you want to match characters that are **"special" in regex**, like `.`, `*`, `?`, `(`, `)`, etc.  
+To do this, you must **escape them** using a **double backslash** (`\\`) in R.
+
+Let’s say we want to find strings that contain a question mark:
+```{r}
+grep("\\?", my_strings, value = TRUE)
+```
+
+##### Tasks
+
+1. Find strings that **end with number**
+```{r}
+# Write the solution here
+```
+
+2. Find strings that do **not start with capital letters**
+```{r}
+# Write the solution here
+```
+

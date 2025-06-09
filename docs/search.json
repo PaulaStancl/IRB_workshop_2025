@@ -103,5 +103,40 @@
     "title": "R packages and advance table manipulation",
     "section": "Pipes ( %>% )",
     "text": "Pipes ( %>% )\nPackage magrittr provides a new “pipe”-like operator, %>%. The pipe operator allows you to pipe a value forward into a function. For example you can write vec %>% sum instead of sum(vec) . It makes your code more intuitive to read and write especially when “pipping/chaining” multiple arguments. Fill in the example below:\n\nsample(x = 1:1000, size = 40) %>% \n   # Call function sum on the whole vector\n\n   # Select only minimal and maximum  value"
+  },
+  {
+    "objectID": "Day1_IRB25_part3.html",
+    "href": "Day1_IRB25_part3.html",
+    "title": "Basic regular expressions",
+    "section": "",
+    "text": "Regular expressions (regex) are compact patterns used to search, match, and manipulate text in a flexible way.\nA regex is simply a string made up of special characters that define a text pattern."
+  },
+  {
+    "objectID": "Day1_IRB25_part3.html#what-are-regular-expressions",
+    "href": "Day1_IRB25_part3.html#what-are-regular-expressions",
+    "title": "Short introduction to regular expressions",
+    "section": "What are Regular Expressions?",
+    "text": "What are Regular Expressions?\nRegular expressions (regex) are compact patterns used to search, match, and manipulate text in a flexible way.\nA regex is simply a string made up of special characters that define a text pattern."
+  },
+  {
+    "objectID": "Day1_IRB25_part3.html#what-can-regex-represent",
+    "href": "Day1_IRB25_part3.html#what-can-regex-represent",
+    "title": "Basic regular expressions",
+    "section": "What can regex represent?",
+    "text": "What can regex represent?\nRegex patterns can describe:\n\nWildcards — match any single character using .\n\nQuantifiers — specify how many times a character or group appears (*, +, {n})\n\nGrouping — combine parts of patterns using parentheses ( )\n\nBoolean OR — match one pattern or another using |\n\nAnchors — specify where in the string to match (^ = start, $ = end)\n\nCharacter Sets — match specific characters using square brackets [abc]"
+  },
+  {
+    "objectID": "Day1_IRB25_part3.html#example-in-r",
+    "href": "Day1_IRB25_part3.html#example-in-r",
+    "title": "Short introduction to regular expressions",
+    "section": "Example in R",
+    "text": "Example in R\n\n# Match words that start with \"c\" and end with \"t\"\nwords <- c(\"cat\", \"coat\", \"cut\", \"bat\")\ngrep(\"^c.*t$\", words, value = TRUE)\n\n[1] \"cat\"  \"coat\" \"cut\""
+  },
+  {
+    "objectID": "Day1_IRB25_part3.html#grep-pattern-matching-with-regex-in-r",
+    "href": "Day1_IRB25_part3.html#grep-pattern-matching-with-regex-in-r",
+    "title": "Basic regular expressions",
+    "section": "grep() – Pattern matching with regex in R",
+    "text": "grep() – Pattern matching with regex in R\nThe grep() function is one of the most common ways to use regular expressions in base R.\ng/re/p stands for:\nGlobal search for Regular Expression and Print matching lines\n\n\n\n\n\n\nBasic grep syntax\n\n\n\n\ngrep(\"pattern\", your_vector)\n\n\nBy default, it returns the positions of matching elements.\nTo return the matching values, use: value = TRUE\nTo return the indices or values that do not match, use: invert = TRUE\n\n\n\n\n\n\n\n\n\nExample how to use grep\nLet’s define a new character vector with a mix of names, codes, and text snippets:\n\nmy_strings <- c(\n  \"apple123\", \"banana\", \"cat!\", \"dog99\", \"zebra_2\", \n  \"Xray\", \"alpha-beta\", \"beta.alpha\", \"code42\", \"hello world!\",\n  \"abAB12\", \"123abc\", \"abc!\", \"end.\", \"Begin!\", \"test_case?\",\n  \"no_numbers\", \"DATA2025\", \"regex_fun\", \"start_end\"\n)\n\nFind strings that contain numbers\n\ngrep(\"\\\\d\", my_strings, value = TRUE)\n\n[1] \"apple123\" \"dog99\"    \"zebra_2\"  \"code42\"   \"abAB12\"   \"123abc\"   \"DATA2025\"\n\n\nFind strings that contain underscores\n\ngrep(\"_\", my_strings, value = TRUE)\n\n[1] \"zebra_2\"    \"test_case?\" \"no_numbers\" \"regex_fun\"  \"start_end\" \n\n\nFind strings that start with a lowercase letter\n\ngrep(\"^[a-z]\", my_strings, value = TRUE)\n\n [1] \"apple123\"     \"banana\"       \"cat!\"         \"dog99\"        \"zebra_2\"     \n [6] \"alpha-beta\"   \"beta.alpha\"   \"code42\"       \"hello world!\" \"abAB12\"      \n[11] \"abc!\"         \"end.\"         \"test_case?\"   \"no_numbers\"   \"regex_fun\"   \n[16] \"start_end\"   \n\n\n\nHow to find special characters?\nSometimes you want to match characters that are “special” in regex, like ., *, ?, (, ), etc.\nTo do this, you must escape them using a double backslash (\\\\) in R.\nLet’s say we want to find strings that contain a question mark:\n\ngrep(\"\\\\?\", my_strings, value = TRUE)\n\n[1] \"test_case?\"\n\n\n\nTasks\n\nFind strings that end with number\n\n\n# Write the solution here\n\n\nFind strings that do not start with capital letters\n\n\n# Write the solution here"
   }
 ]
