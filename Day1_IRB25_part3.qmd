@@ -66,7 +66,7 @@ grep("pattern", your_vector)
 
 ![](https://hypebright.nl/wp-content/uploads/2020/05/Cheatsheet-RegEx-2024-1086x1536.png){fig-align="center"}
 
-### Example how to use grep
+### Example : How to use grep?
 
 Let's define a new character vector with a mix of names, codes, and text snippets:
 
