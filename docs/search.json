@@ -170,8 +170,15 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "IRB workshop 2025",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "👋 Welcome to the IRB Workshop 2025 Website\nThis website hosts the material for the IRB Workshop 2025. You’ll find R code examples, tasks, and explanations for each session."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "IRB workshop 2025",
+    "section": "",
+    "text": "👋 Welcome to the IRB Workshop 2025 Website\nThis website hosts the material for the IRB Workshop 2025. You’ll find R code examples, tasks, and explanations for each session."
   }
 ]
