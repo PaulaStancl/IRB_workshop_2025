@@ -43,25 +43,16 @@ Let's examine the first six rows of the table!
 head(iris)
 ```
 
-+----------------+--------------------------------+-------------------------------------+
 | Feature        | `data.frame`                   | `data.table`                        |
-+================+================================+=====================================+
+|----------------|--------------------------------|-------------------------------------|
 | Base structure | Base R object                  | Extension of `data.frame`           |
-+----------------+--------------------------------+-------------------------------------+
 | Speed          | Moderate                       | Very fast, optimized for large data |
-+----------------+--------------------------------+-------------------------------------+
 | Syntax         | Verbose                        | Concise and powerful                |
-+----------------+--------------------------------+-------------------------------------+
 | Rownames       | Supported                      | Discouraged / ignored               |
-+----------------+--------------------------------+-------------------------------------+
 | Memory usage   | Standard                       | More memory-efficient               |
-+----------------+--------------------------------+-------------------------------------+
 | Grouping       | Uses `aggregate()` or `dplyr`  | Built-in with `by=`                 |
-+----------------+--------------------------------+-------------------------------------+
 | Joining        | Uses `merge()`                 | Fast joins with keys (`setkey()`)   |
-+----------------+--------------------------------+-------------------------------------+
 | Learning curve | Low (familiar to most R users) | Medium (different syntax)           |
-+----------------+--------------------------------+-------------------------------------+
 
 ### Import different type of data
 
@@ -92,10 +83,10 @@ head(iris)
 # Data.table
 
 To use `data.table`, load the package:
+
 ```{r}
 library(data.table)
 ```
-
 
 ![](http://ryo-n7.github.io/assets/2019-07-21-user2019-reflections_files/datatableFORM.PNG){fig-align="center"}
 
@@ -167,15 +158,15 @@ iris_dt <- as.data.table(iris)
 
 ### Syntax comparison
 
-+----------------------------------+-------------------+----------------+
-| Operation                        | *data.frame*      | ```            |
-|                                  |                   | _data.table_   |
-|                                  |                   | ```            |
-+==================================+===================+================+
-| Subseting rows                   | `df[1:20, ]`      | `df[1:20]`     |
-+----------------------------------+-------------------+----------------+
-| Subseting rows based on criteria | `df[df$id < 4, ]` | `df[id < 4]`   |
-+----------------------------------+-------------------+----------------+
++----------------------------------+-------------------+--------------+
+| Operation                        | *data.frame*      | ```          |
+|                                  |                   | _data.table_ |
+|                                  |                   | ```          |
++==================================+===================+==============+
+| Subseting rows                   | `df[1:20, ]`      | `df[1:20]`   |
++----------------------------------+-------------------+--------------+
+| Subseting rows based on criteria | `df[df$id < 4, ]` | `df[id < 4]` |
++----------------------------------+-------------------+--------------+
 
 ##### Task
 
@@ -261,15 +252,11 @@ Select all rows in **iris_dt** with Sepal.Width equal to **3.0**, but show only 
 
 ### Syntax comparison
 
-+--------------------------------+--------------------------------+---------------------------+
 | Operation                      | *data.frame*                   | *data.table*              |
-+================================+================================+===========================+
+|--------------------------------|--------------------------------|---------------------------|
 | Calculate sum                  | `sum(df$id)`                   | `df[, sum(id)]`           |
-+--------------------------------+--------------------------------+---------------------------+
 | Calculate sum by group         | `by(df$id,` `df$group,` `sum)` | `df[, sum(id), by=group]` |
-+--------------------------------+--------------------------------+---------------------------+
 | Calling column out as a vector | `df$id`                        | `df[, id]`                |
-+--------------------------------+--------------------------------+---------------------------+
 
 Calculate mean of Sepal.Width for all species.
 
@@ -533,13 +520,11 @@ names(dt_cancer)[1] <- "id"
 dt_cancer
 ```
 
- 
 ::: callout-tip
-You can rename columns using  data.table: `setnames`
+You can rename columns using data.table: `setnames`
 
 `setnames(dt_cancer, "old_names", "new_names")`
 :::
-
 
 ```{r}
 names(dt_cancer)
@@ -557,7 +542,7 @@ Subseting
 dt_cancer[,.(gender, sampleID)]
 ```
 
- data.table: setcolorder()
+data.table: setcolorder()
 
 `setcolorder(dt_cancer, neworder)`
 
@@ -567,13 +552,12 @@ setcolorder(dt_cancer, c("gender","sampleID"))
 dt_cancer
 ```
 
-
-
 ## Reshaping the table
 
 You can create a modified version of an existing `data.table` by using `copy()` to avoid changing the original data. Then, use `:=` to add or modify columns by reference.
 
 In the example below, we create two new columns (`BRCA2` and `ATM`) filled with random values between 40 and 6000 for 6 rows:
+
 ```{r}
 tb.shape <- copy(tb1)
 tb.shape[, ":=" (
@@ -583,16 +567,17 @@ tb.shape[, ":=" (
 tb.shape
 ```
 
-
-
-**`melt (wide to long)`** 
+**`melt (wide to long)`**
 
 Convert DT to long form where money is a separate observation. **measure.vars** specify the set of columns we would like to collapse (or combine) together.
+
 ```{r}
 melt(tb.shape, id.vars = c("sampleID", "cancer"),
                 measure.vars = c("BRCA2", "ATM"))
 ```
+
 We can also specify column indices instead of names.
+
 ```{r}
 (tb1.m1  <- melt(tb.shape, 
                  measure.vars = c("BRCA2", "ATM"),
@@ -600,7 +585,6 @@ We can also specify column indices instead of names.
                  value.name = "n_mutations")  
  )
 ```
-
 
 **`dcast (long to wide)`**
 
@@ -615,7 +599,5 @@ dcast(tb1.m1, sampleID + cancer ~ genes, value.var = "n_mutations")
 The `fwrite()` function from the `data.table` package is a fast and efficient way to write data tables to disk.
 
 ::: callout-tip
-fwrite(dt, 
-       file = "results/iris_summary.csv")
+fwrite(dt, file = "results/iris_summary.csv")
 :::
-

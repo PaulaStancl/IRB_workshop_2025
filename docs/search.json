@@ -166,5 +166,12 @@
     "title": "R packages",
     "section": "Load the packages",
     "text": "Load the packages\nWhen you install a package in R (using install.packages() or similar), you’re downloading it and saving it to your computer. This only needs to be done once (per R environment).\nHowever, to use the functions or data from a package in your current R session, you must load the package with library() or require().\n\nlibrary(\"magrittr\")\nlibrary(\"data.table\")\nlibrary(\"ggpubr\")"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
   }
 ]
