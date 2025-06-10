@@ -19,5 +19,20 @@
   },
   "Day1_IRB25_part3.qmd": {
     "Day1_IRB25_part3.html": "1cf35c58"
+  },
+  "scripts/day1/Day1_irb25_part1.qmd": {
+    "Day1_irb25_part1.html": "f654425b"
+  },
+  "scripts/day1/Day2_irb25_part2.qmd": {
+    "Day2_irb25_part2.html": "4c2ad0e3"
+  },
+  "scripts/test_scripts/first_notebook.Rmd": {
+    "first_notebook.html": "e8de1e04"
+  },
+  "Day2_IRB25_part0.qmd": {
+    "Day2_IRB25_part0.html": "740ae056"
+  },
+  "Day2_IRB25_plots.qmd": {
+    "Day2_IRB25_plots.html": "b033d4be"
   }
 }

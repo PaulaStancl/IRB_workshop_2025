@@ -123,14 +123,15 @@ You should add an additional argument called `n_cycles`, which:
 
 Conditions in R allow you to **make decisions** in your code. They are typically used with **`if`**, **`else if`**, and **`else`** statements.
 
-These control structures let your code behave differently depending on whether certain **logical conditions** are `TRUE` or `FALSE`. 
+These control structures let your code behave differently depending on whether certain **logical conditions** are `TRUE` or `FALSE`.
 
-For example, you might want to check if a number is positive, negative, or zero, and respond differently in each case. Conditions are essential when building functions, loops, and any logic that depends on the data. 
+For example, you might want to check if a number is positive, negative, or zero, and respond differently in each case. Conditions are essential when building functions, loops, and any logic that depends on the data.
 
 ::: callout-tip
 ## Basic conditional structure
 
 **Simple `if` condition**
+
 ```{r, eval=FALSE}
 if (condition) {
   # Code to run if condition is TRUE
@@ -138,6 +139,7 @@ if (condition) {
 ```
 
 **Advance multiple conditions**
+
 ```{r, eval=FALSE}
 if (condition) {
   # Code to run if condition is TRUE
@@ -166,6 +168,7 @@ if (x > 0) {
 ```
 
 Another example
+
 ```{r}
 # Define a single age
 age <- 25
@@ -181,14 +184,13 @@ if (age < 30) {
 print(paste0("I feel very ", my_age, "!"))
 ```
 
-
-
 These tools allow you to build logic into your code so that it can react to different values or situations. Use `if`/`else` for single conditions, and `ifelse()` when working with vectors.
 
 ::: callout-tip
 ## Vectorized conditions with `ifelse()`
 
 The `ifelse()` function is used to apply a condition across a **vector**. It checks each element and returns one value if the condition is `TRUE`, and another if it is `FALSE`.
+
 ```{r}
 # Example vector of temperatures
 temps <- c(18, 22, 30, 15)
@@ -198,25 +200,24 @@ ifelse(temps >= 20, "Warm", "Cool")
 ```
 :::
 
-
 ### Summary of conditional statements
 
-| Syntax                 | Description                                        | Example                              |
-|------------------------|----------------------------------------------------|--------------------------------------|
-| `if (condition)`       | Executes code only if the condition is `TRUE`      | `if (x > 0) print("Positive")`       |
-| `else`                 | Executes code if the previous `if` was `FALSE`     | `else print("Not positive")`         |
-| `else if (condition)`  | Checks another condition if the first `if` fails   | `else if (x == 0) print("Zero")`     |
-| `ifelse(cond, a, b)`   | Vectorized `if`, returns `a` if `cond` is `TRUE`, else `b` | `ifelse(x > 0, "Yes", "No")` |
+| Syntax                | Description                                                | Example                          |
+|------------------|--------------------------------|-----------------------|
+| `if (condition)`      | Executes code only if the condition is `TRUE`              | `if (x > 0) print("Positive")`   |
+| `else`                | Executes code if the previous `if` was `FALSE`             | `else print("Not positive")`     |
+| `else if (condition)` | Checks another condition if the first `if` fails           | `else if (x == 0) print("Zero")` |
+| `ifelse(cond, a, b)`  | Vectorized `if`, returns `a` if `cond` is `TRUE`, else `b` | `ifelse(x > 0, "Yes", "No")`     |
 
----
+------------------------------------------------------------------------
 
 ##### Task : Practice condition statments
 
 A bacterial culture is being observed. You are given the number of bacteria after 1 hour.
 
-- If the number of bacteria is greater than 1000, print `"Rapid growth"`.
-- If the number is between 500 and 1000 (inclusive), print `"Moderate growth"`.
-- If the number is below 500, print `"Slow growth"`.
+-   If the number of bacteria is greater than 1000, print `"Rapid growth"`.
+-   If the number is between 500 and 1000 (inclusive), print `"Moderate growth"`.
+-   If the number is below 500, print `"Slow growth"`.
 
 Write an `if`/`else if`/`else` statement to classify the growth.
 
@@ -228,16 +229,16 @@ Write an `if`/`else if`/`else` statement to classify the growth.
 
 ```
 
-##### Taks :  Add growth classification to a `cell_division_summary` function
+##### Taks : Add growth classification to a `cell_division_summary` function
 
 You are given a function that calculates the number of cells after one division and groups them based on a specified group size.
 
 Your task is to **modify the function** to also classify the **growth level** as a new element of the list called `growth_classification` based on the number of cells after division:
 
-- If the number is **greater than 2000**, print `"Extreme growth"`
-- If the number is **between 1001 and 2000**, print `"Rapid growth"`
-- If the number is **between 501 and 1000**, print `"Moderate growth"`
-- If the number is **500 or less**, print `"Slow growth"`
+-   If the number is **greater than 2000**, print `"Extreme growth"`
+-   If the number is **between 1001 and 2000**, print `"Rapid growth"`
+-   If the number is **between 501 and 1000**, print `"Moderate growth"`
+-   If the number is **500 or less**, print `"Slow growth"`
 
 This classification should be added **using conditional statements** (`if`, `else if`, `else`) inside the function.
 
@@ -273,28 +274,29 @@ cell_division_summary <- function(initial_cells, group_size = 10) {
 
 When writing your own functions, it's useful to give feedback to the user using different types of messages:
 
-- **`message()`** – Informational messages. These are shown but do not interrupt execution.
+-   **`message()`** -- Informational messages. These are shown but do not interrupt execution.
 
 ```{r, eval=FALSE}
 message("Calculation complete.")
 ```
 
-- **`warning()`** – Alerts the user that something may be wrong, but the function continues running.
+-   **`warning()`** -- Alerts the user that something may be wrong, but the function continues running.
 
 ```{r, eval=FALSE}
 if (x < 0) warning("Negative value detected.")
 ```
 
-- **`stop()`** – Stops the function and throws an error. Use this to prevent further execution if input is invalid.
+-   **`stop()`** -- Stops the function and throws an error. Use this to prevent further execution if input is invalid.
+
 ```{r, eval=FALSE}
 if (!is.numeric(x)) stop("Input must be numeric.")
 ```
-
 :::
 
 #### Task example
 
 Try to make the example so all three message are shown
+
 ```{r}
 my_function <- function(x) {
   
@@ -323,3 +325,47 @@ my_function <- function(x) {
 # - and the error
 ```
 
+
+# Apply family
+
+The `apply` family of functions (`apply`, `lapply`, `sapply`, `tapply`, `mapply`, etc.) is used to perform operations on data structures without writing explicit loops.
+
+### Summary of the `apply` Family
+
+| Function   | Input Type          | Output Type     | Description                                  |
+|------------|---------------------|------------------|----------------------------------------------|
+| `apply()`  | matrix, data.frame  | vector, array    | Apply a function over rows or columns        |
+| `lapply()` | list, vector        | list             | Apply a function to each element             |
+| `sapply()` | list, vector        | simplified list  | Like `lapply()`, but returns vector/matrix   |
+| `tapply()` | vector + factor     | vector, array    | Apply a function to grouped subsets          |
+| `mapply()` | multiple vectors    | vector, list     | Apply a function in parallel over arguments  |
+
+
+### Examples
+
+1. `sapply()` – Simplified apply (tries to return vector or matrix)
+
+```{r}
+(lst <- list(a = 1:5, b = 6:10))
+# Same as lapply(), but returns a simplified vector
+sapply(lst, mean)
+```
+
+2. `lapply()` – list apply
+
+```{r}
+# Get the mean of each list element
+lapply(lst, mean)
+```
+
+3.  `apply()` – Apply over rows or columns of a matrix or data frame
+```{r}
+# Create a 3x3 matrix
+(mat <- matrix(1:9, nrow = 3) )
+
+# Calculate the mean of each column (2 = columns)
+apply(mat, 2, mean)
+
+# Calculate the sum of each row (1 = rows)
+apply(mat, 1, sum)
+```

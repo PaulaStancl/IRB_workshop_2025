@@ -99,23 +99,25 @@ grep("^[a-z]", my_strings, value = TRUE)
 
 #### How to find special characters?
 
-Sometimes you want to match characters that are **"special" in regex**, like `.`, `*`, `?`, `(`, `)`, etc.  
+Sometimes you want to match characters that are **"special" in regex**, like `.`, `*`, `?`, `(`, `)`, etc.\
 To do this, you must **escape them** using a **double backslash** (`\\`) in R.
 
-Let’s say we want to find strings that contain a question mark:
+Let's say we want to find strings that contain a question mark:
+
 ```{r}
 grep("\\?", my_strings, value = TRUE)
 ```
 
 ##### Tasks
 
-1. Find strings that **end with number**
+1.  Find strings that **end with number**
+
 ```{r}
 # Write the solution here
 ```
 
-2. Find strings that do **not start with capital letters**
+2.  Find strings that do **not start with capital letters**
+
 ```{r}
 # Write the solution here
 ```
-

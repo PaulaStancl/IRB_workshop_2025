@@ -12,8 +12,16 @@ website:
             href: Day1_IRB25_part1.qmd
           - text: Functions and conditions
             href: Day1_IRB25_part2.qmd
+      - text: Day 2
+        menu: 
           - text: Regular expressions
             href: Day1_IRB25_part3.qmd
+          - text: Packages
+            href: Day2_IRB25_part0.qmd
+          - text: Advanced table manipulation
+            href: Day2_IRB25_part1.qmd
+          - text: Vizualization
+            href: Day2_IRB25_plots.qmd
   page-footer:
     background: light
     left: "Copyright 2025, Kuzman Consulting d.o.o."

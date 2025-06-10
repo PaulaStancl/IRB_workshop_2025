@@ -1,0 +1,390 @@
+---
+title: "Visualization"
+author: 
+  - name: "dr.sc. Paula Štancl"
+    affiliation: "Kuzman Consulting d.o.o"
+  - name: "dr.sc. Andrea Gelemanović"
+    affiliation: "MedILS, UNIST"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 4
+    code-fold: false
+    fig-align: center
+    df-print: paged
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# Data visualization with `ggplot2`
+
+## Introduction
+
+`ggplot2` is a powerful and widely used R package for creating elegant, layered, and customizable graphics. It is based on the **Grammar of Graphics**, which provides a structured approach to building plots by combining data, aesthetics, and geometric objects.
+
+To use `ggplot2`, load the package:
+
+```{r}
+library(ggplot2)
+```
+
+## ggplot2 vs. base R plots
+
+```{r}
+plot(iris$Sepal.Length, 
+     iris$Petal.Length, 
+     col=iris$Species, 
+     main = "Base R")
+
+ggplot(iris, aes(Sepal.Length, Petal.Length, color=Species)) + 
+  geom_point()+
+  theme_light()+
+  ggtitle("ggplot2") +
+  theme(plot.title = element_text(hjust=0.5))
+```
+
+## Basic structure of a `ggplot`
+
+::: callout-tip
+Every plot in `ggplot2` starts with the `ggplot()` function, which defines the dataset and the aesthetic mappings (`aes()`). You then add one or more **geometric layers** (geoms), such as:
+
+-   `geom_point()` for scatter plots
+-   `geom_line()` for line plots
+-   `geom_bar()` for bar charts
+
+These layers are added using the `+` operator, allowing you to build plots step by step.
+
+The aes() function is *how* data is stored, how data is split, and geoms is *what* the data looks like. These are geometrical objects stored in subsequent layers.
+
+An empty `ggplot` object is the foundation of any plot. You can build it step by step by specifying the data and aesthetic mappings.
+
+Here are a few ways to define an empty plot object:
+
+```{r, eval=FALSE}
+# Empty canvas
+p <- ggplot()
+
+# Specify data only
+p <- ggplot(data_frame)
+
+# Specify data and aesthetics (x and y mappings)
+p <- ggplot(data_frame, aes(x, y))
+```
+:::
+
+Example: Scatter plot
+
+```{r}
+# Create a scatter plot of Sepal.Length vs. Sepal.Width
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point()
+```
+
+This plot uses the iris dataset and shows the relationship between sepal length and width. The `aes()` function defines the mapping from data columns to visual properties (x and y axes, color, size, etc.).
+
+::: callout-important
+You can keep adding layers (like titles, colors, or trend lines) using the `+` operator.
+:::
+
+```{r}
+# Create a scatter plot of Sepal.Length vs. Sepal.Width
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point() +
+  labs(title="Scatter plot")
+```
+
+## Facets
+
+Faceting allows you to split a plot into multiple panels based on the values of one or more categorical variables. This is useful for comparing subgroups side-by-side.
+
+```{r}
+# Scatter plot split by species
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point() +
+  facet_wrap(~ Species)
+```
+
+| Function       | Description                                                                    | Syntax Example                  |
+|------------------|-----------------------------------|------------------|
+| `facet_wrap()` | Creates a series of plots wrapped into multiple rows or columns                | `facet_wrap(~ variable)`        |
+| `facet_grid()` | Creates a grid of plots by combining one variable for rows and one for columns | `facet_grid(row_var ~ col_var)` |
+| `facet_null()` | Default; no faceting applied                                                   | `facet_null()`                  |
+
+### Additional Options
+
+-   `scales = "free"`: Allows each facet to have its own scale.
+-   `nrow`, `ncol`: Control layout in `facet_wrap()`.
+-   `labeller`: Customize facet labels.
+
+Free y-axis per facet
+
+```{r}
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point() +
+  facet_grid(~ Species, scales = "free_x")
+```
+
+## Colors and fills in `ggplot2`
+
+Controlling the **appearance** of plots is key to effective data visualization. In `ggplot2`, `color` and `fill` are used to modify how geometric objects look.
+
+### `color` vs `fill`
+
+| Aesthetic | Affects               | Common in                      |
+|-----------|-----------------------|--------------------------------|
+| `color`   | Outline or line color | `geom_point()`, `geom_line()`  |
+| `fill`    | Inside (area) color   | `geom_bar()`, `geom_boxplot()` |
+
+#### Example: `color` and `fill` in a boxplot
+
+```{r}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot(color = "black", fill = "lightblue")
+```
+
+### Mapping vs Setting Colors
+
+Mapped: Aesthetic is linked to a variable (aes(fill = Species))
+
+Set manually: Aesthetic is fixed (fill = "skyblue")
+
+```{r}
+# Mapping
+ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_histogram(bins = 20, position = "identity", alpha = 0.6)
+
+# Setting
+ggplot(iris, aes(x = Sepal.Length)) +
+  geom_histogram(fill = "steelblue", color = "black", bins = 20)
+```
+
+### Custom Color Palettes
+
+You can apply your own custom colors using `scale_fill_manual()` and `scale_color_manual()`.
+
+```{r}
+my_palette <- c("setosa" = "#1b9e77", "versicolor" = "#d95f02", "virginica" = "#7570b3")
+
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(size = 3) +
+  scale_color_manual(values = my_palette)
+```
+
+::: callout-tip
+## Useful Tips
+
+-   Use **named vectors** to avoid color-order mismatches.
+
+-   Use `RColorBrewer`, `viridis`, or `ggsci` for prebuilt, colorblind-friendly palettes.
+
+-   Use **`theme(legend.position = "none")`** to hide legends when needed.
+:::
+
+#### Using ggsci for Scientific and Sci-Fi Color Palettes
+
+The `ggsci` package includes curated palettes inspired by scientific journals (e.g., Nature, JAMA) and pop culture (e.g., Star Trek, Rick and Morty).
+
+You can switch palettes using functions like:
+
+-   `scale_fill_npg()` -- *Nature Publishing Group*
+
+-   `scale_color_jama()` -- *JAMA*
+
+-   `scale_fill_startrek()`, `scale_color_rickandmorty()` -- Fun, themed palettes
+
+If you do not have the package, you must install it.
+
+```{r, eval=FALSE}
+install.packages("ggsci")
+```
+
+```{r}
+library(ggsci)
+
+ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
+  geom_boxplot() +
+  scale_fill_nejm() +  # NEJM palette
+  theme_bw()
+```
+
+## Themes
+
+The `ggplot2` package provides a flexible `theme()` system that allows you to adjust visual aspects of your plots such as fonts, backgrounds, borders, axes, and legend positions. You can use built-in themes or customize your own.
+
+-   `theme_bw()` -- clean black-and-white
+-   `theme_minimal()` -- light, minimalistic
+-   `theme_classic()` -- traditional axes with no grid
+-   `theme_void()` -- empty canvas, good for maps
+-   `theme_light()` -- lightly gridded version of minimal
+
+```{r}
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(size = 3) +
+  theme_minimal()
+```
+
+You can tweak the theme with `theme()`:
+
+```{r}
+ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
+  geom_point(size = 3) +
+  theme_classic() +
+  theme(legend.position = "top", 
+        text = element_text(family = "serif", size = 12))
+```
+
+## Combining multiple geometric layers
+
+You can overlay multiple geometric layers (geoms) in a single plot to combine their strengths. For example, a **violin plot** shows the full distribution, while a **boxplot** shows median, quartiles, and outliers.
+
+```{r}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_violin(trim = FALSE, alpha = 0.5, aes( fill = Species)) +   # Show full distribution
+  geom_boxplot(width = 0.2, color = "black", outlier.shape = NA) +  # Summary stats
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## `ggpubr` for publication-ready plots
+
+The **`ggpubr`** package simplifies the process of making polished, publication-ready figures. It includes easy theming, statistical annotations, and tools for combining plots.
+
+If you do not have the package, you must install it.
+
+```{r, eval=FALSE}
+install.packages("ggpubr")
+```
+
+```{r}
+library(ggpubr)
+
+# Scatter plot with stat_cor (correlation)
+ggscatter(iris, x = "Sepal.Length", 
+          y = "Petal.Length",
+          color = "Species", 
+          add = "reg.line", 
+          conf.int = TRUE,
+          cor.coef = TRUE, 
+          cor.method = "pearson") +
+  theme_pubr()
+```
+The `ggpubr` package makes it easy to create boxplots with **group comparisons**, including **statistical test results** directly annotated on the plot.
+```{r}
+ggboxplot(iris, x = "Species", 
+          y = "Sepal.Length", 
+          color = "Species", 
+          palette = "jco",
+          add = "jitter") +
+  stat_compare_means()  # Default: Kruskal-Wallis test for >2 groups
+```
+
+Add pairwise comparisons (e.g., t-tests between groups)
+```{r}
+ggboxplot(iris, x = "Species", 
+          y = "Sepal.Length", 
+          color = "Species", 
+          palette = "jco",
+          add = "jitter") +
+  stat_compare_means(comparisons = list(c("setosa", "versicolor"), 
+                                        c("setosa", "virginica"),
+                                        c("versicolor", "virginica")),
+                     method = "t.test") +
+  stat_compare_means(label.y = 8.5)  # Global p-value (ANOVA/Kruskal-Wallis)
+```
+
+
+## Reusing and updating a ggplot object with `%+%`
+
+You can store a `ggplot` object in a variable and **reprint or reuse** it later. Using the `%+%` operator, you can update the underlying dataset without changing the plot structure.
+
+This is useful when applying the same plot design to different subsets of data.
+
+```{r operator, exercise=TRUE}
+# Create a base plot using the full iris dataset
+p <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(size = 3)
+
+# Print the original plot
+print(p)
+```
+
+We now reuse the plot with a **filtered dataset** containing only **`virginica`** species:
+
+```{r}
+# Replace the data with a subset: only virginica species
+p2 <- p %+% iris[iris$Species == "virginica", ]
+
+# Print the updated plot
+print(p2)
+```
+
+
+
+## Combining plots with `cowplot`
+
+The `cowplot` package provides simple and flexible tools for arranging multiple `ggplot2` plots into a single figure. It’s especially useful when preparing figures for publications or presentations.
+
+
+```{r, eval=FALSE}
+ install.packages("cowplot") 
+```
+
+```{r}
+# Create two plots using the iris dataset
+p1 <- ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Boxplot")
+
+p2 <- ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_histogram(bins = 20, alpha = 0.6, position = "identity") +
+  theme_minimal() +
+  labs(title = "Histogram")
+
+# Combine side by side
+cowplot::plot_grid(p1, p2, labels = c("A", "B"))
+
+```
+
+| Argument         | Description                                             | Example                     |
+|------------------|---------------------------------------------------------|-----------------------------|
+| `...`            | The plots to combine                                    | `plot_grid(p1, p2)`         |
+| `ncol`           | Number of columns                                       | `ncol = 2`                  |
+| `nrow`           | Number of rows                                          | `nrow = 1`                  |
+| `labels`         | Add labels to subplots (e.g., "A", "B", ...)            | `labels = c("A", "B")`      |
+| `label_size`     | Size of subplot labels                                  | `label_size = 14`           |
+| `align`          | Align plots by axis (`"h"`, `"v"`, `"hv"`)              | `align = "hv"`              |
+| `axis`           | Share axis text/limits (`"t"`, `"b"`, `"l"`, `"r"`)     | `axis = "tb"`               |
+| `rel_widths`     | Relative widths of columns                              | `rel_widths = c(1, 2)`      |
+| `rel_heights`    | Relative heights of rows                                | `rel_heights = c(1, 1.5)`   |
+
+
+```{r}
+cowplot::plot_grid(p1, p2, ncol = 1, rel_heights = c(1, 2), labels = c("A", "B"))
+```
+## Saving a Plot with `ggsave()`
+
+You can save any `ggplot` object to a file using the `ggsave()` function.
+
+| Argument  | Description                        | Example             |
+|-----------|------------------------------------|---------------------|
+| `filename`| Output file name (with extension)  | `"plot.pdf"`, `"plot.png"` |
+| `plot`    | Plot object to save (optional)     | `plot = p`          |
+| `width`   | Width in inches                    | `width = 6`         |
+| `height`  | Height in inches                   | `height = 4`        |
+| `dpi`     | Resolution (use 300 for print)     | `dpi = 300`         |
+
+```{r, eval=FALSE}
+ggsave("results/scatterplot.png", # be careful about the path
+       plot = p1, 
+       width = 6, 
+       height = 4, 
+       dpi = 300)
+```
+
+::: callout-tip
+For more information and help with making graphs see the [R Graphics Cookbook](https://r-graphics.org/)
+:::
