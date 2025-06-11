@@ -107,11 +107,11 @@ Faceting allows you to split a plot into multiple panels based on the values of 
 # Scatter plot split by species
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   geom_point() +
-  facet_wrap(~ Species)
+  facet_grid( ~ Species)
 ```
 
 | Function       | Description                                                                    | Syntax Example                  |
-|------------------|-----------------------------------|------------------|
+|-------------------|----------------------------------|-------------------|
 | `facet_wrap()` | Creates a series of plots wrapped into multiple rows or columns                | `facet_wrap(~ variable)`        |
 | `facet_grid()` | Creates a grid of plots by combining one variable for rows and one for columns | `facet_grid(row_var ~ col_var)` |
 | `facet_null()` | Default; no faceting applied                                                   | `facet_null()`                  |
@@ -172,8 +172,9 @@ You can apply your own custom colors using `scale_fill_manual()` and `scale_colo
 my_palette <- c("setosa" = "#1b9e77", "versicolor" = "#d95f02", "virginica" = "#7570b3")
 
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point(size = 3) +
-  scale_color_manual(values = my_palette)
+  geom_point(size = 3, show.legend = FALSE) +
+  scale_color_manual(values = my_palette ) +
+  facet_grid(~Species)
 ```
 
 ::: callout-tip
@@ -209,7 +210,7 @@ library(ggsci)
 
 ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
   geom_boxplot() +
-  scale_fill_nejm() +  # NEJM palette
+  scale_fill_simpsons() +  # NEJM palette
   theme_bw()
 ```
 
@@ -225,7 +226,7 @@ The `ggplot2` package provides a flexible `theme()` system that allows you to ad
 
 ```{r}
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point(size = 3) +
+  geom_point(size = 5) +
   theme_minimal()
 ```
 
@@ -274,7 +275,9 @@ ggscatter(iris, x = "Sepal.Length",
           cor.method = "pearson") +
   theme_pubr()
 ```
+
 The `ggpubr` package makes it easy to create boxplots with **group comparisons**, including **statistical test results** directly annotated on the plot.
+
 ```{r}
 ggboxplot(iris, x = "Species", 
           y = "Sepal.Length", 
@@ -285,6 +288,7 @@ ggboxplot(iris, x = "Species",
 ```
 
 Add pairwise comparisons (e.g., t-tests between groups)
+
 ```{r}
 ggboxplot(iris, x = "Species", 
           y = "Sepal.Length", 
@@ -297,7 +301,6 @@ ggboxplot(iris, x = "Species",
                      method = "t.test") +
   stat_compare_means(label.y = 8.5)  # Global p-value (ANOVA/Kruskal-Wallis)
 ```
-
 
 ## Reusing and updating a ggplot object with `%+%`
 
@@ -324,12 +327,9 @@ p2 <- p %+% iris[iris$Species == "virginica", ]
 print(p2)
 ```
 
-
-
 ## Combining plots with `cowplot`
 
-The `cowplot` package provides simple and flexible tools for arranging multiple `ggplot2` plots into a single figure. It’s especially useful when preparing figures for publications or presentations.
-
+The `cowplot` package provides simple and flexible tools for arranging multiple `ggplot2` plots into a single figure. It's especially useful when preparing figures for publications or presentations.
 
 ```{r, eval=FALSE}
  install.packages("cowplot") 
@@ -352,33 +352,33 @@ cowplot::plot_grid(p1, p2, labels = c("A", "B"))
 
 ```
 
-| Argument         | Description                                             | Example                     |
-|------------------|---------------------------------------------------------|-----------------------------|
-| `...`            | The plots to combine                                    | `plot_grid(p1, p2)`         |
-| `ncol`           | Number of columns                                       | `ncol = 2`                  |
-| `nrow`           | Number of rows                                          | `nrow = 1`                  |
-| `labels`         | Add labels to subplots (e.g., "A", "B", ...)            | `labels = c("A", "B")`      |
-| `label_size`     | Size of subplot labels                                  | `label_size = 14`           |
-| `align`          | Align plots by axis (`"h"`, `"v"`, `"hv"`)              | `align = "hv"`              |
-| `axis`           | Share axis text/limits (`"t"`, `"b"`, `"l"`, `"r"`)     | `axis = "tb"`               |
-| `rel_widths`     | Relative widths of columns                              | `rel_widths = c(1, 2)`      |
-| `rel_heights`    | Relative heights of rows                                | `rel_heights = c(1, 1.5)`   |
-
+| Argument      | Description                                         | Example                   |
+|------------------|------------------------------------|-------------------|
+| `...`         | The plots to combine                                | `plot_grid(p1, p2)`       |
+| `ncol`        | Number of columns                                   | `ncol = 2`                |
+| `nrow`        | Number of rows                                      | `nrow = 1`                |
+| `labels`      | Add labels to subplots (e.g., "A", "B", ...)        | `labels = c("A", "B")`    |
+| `label_size`  | Size of subplot labels                              | `label_size = 14`         |
+| `align`       | Align plots by axis (`"h"`, `"v"`, `"hv"`)          | `align = "hv"`            |
+| `axis`        | Share axis text/limits (`"t"`, `"b"`, `"l"`, `"r"`) | `axis = "tb"`             |
+| `rel_widths`  | Relative widths of columns                          | `rel_widths = c(1, 2)`    |
+| `rel_heights` | Relative heights of rows                            | `rel_heights = c(1, 1.5)` |
 
 ```{r}
 cowplot::plot_grid(p1, p2, ncol = 1, rel_heights = c(1, 2), labels = c("A", "B"))
 ```
+
 ## Saving a Plot with `ggsave()`
 
 You can save any `ggplot` object to a file using the `ggsave()` function.
 
-| Argument  | Description                        | Example             |
-|-----------|------------------------------------|---------------------|
-| `filename`| Output file name (with extension)  | `"plot.pdf"`, `"plot.png"` |
-| `plot`    | Plot object to save (optional)     | `plot = p`          |
-| `width`   | Width in inches                    | `width = 6`         |
-| `height`  | Height in inches                   | `height = 4`        |
-| `dpi`     | Resolution (use 300 for print)     | `dpi = 300`         |
+| Argument   | Description                       | Example                    |
+|------------------|----------------------------------|--------------------|
+| `filename` | Output file name (with extension) | `"plot.pdf"`, `"plot.png"` |
+| `plot`     | Plot object to save (optional)    | `plot = p`                 |
+| `width`    | Width in inches                   | `width = 6`                |
+| `height`   | Height in inches                  | `height = 4`               |
+| `dpi`      | Resolution (use 300 for print)    | `dpi = 300`                |
 
 ```{r, eval=FALSE}
 ggsave("results/scatterplot.png", # be careful about the path

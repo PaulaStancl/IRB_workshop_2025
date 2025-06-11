@@ -43,16 +43,25 @@ Let's examine the first six rows of the table!
 head(iris)
 ```
 
++----------------+--------------------------------+-------------------------------------+
 | Feature        | `data.frame`                   | `data.table`                        |
-|----------------|--------------------------------|-------------------------------------|
++================+================================+=====================================+
 | Base structure | Base R object                  | Extension of `data.frame`           |
++----------------+--------------------------------+-------------------------------------+
 | Speed          | Moderate                       | Very fast, optimized for large data |
++----------------+--------------------------------+-------------------------------------+
 | Syntax         | Verbose                        | Concise and powerful                |
++----------------+--------------------------------+-------------------------------------+
 | Rownames       | Supported                      | Discouraged / ignored               |
++----------------+--------------------------------+-------------------------------------+
 | Memory usage   | Standard                       | More memory-efficient               |
++----------------+--------------------------------+-------------------------------------+
 | Grouping       | Uses `aggregate()` or `dplyr`  | Built-in with `by=`                 |
++----------------+--------------------------------+-------------------------------------+
 | Joining        | Uses `merge()`                 | Fast joins with keys (`setkey()`)   |
++----------------+--------------------------------+-------------------------------------+
 | Learning curve | Low (familiar to most R users) | Medium (different syntax)           |
++----------------+--------------------------------+-------------------------------------+
 
 ### Import different type of data
 
@@ -152,21 +161,26 @@ Create a variable **iris_dt** that contains iris data set as data.table object. 
 
 ```{r}
 iris_dt <- as.data.table(iris)
+
+
+iris
+rownames(iris)
+rownames(iris_dt)
 ```
 
 ## Row subsetting
 
 ### Syntax comparison
 
-+----------------------------------+-------------------+--------------+
-| Operation                        | *data.frame*      | ```          |
-|                                  |                   | _data.table_ |
-|                                  |                   | ```          |
-+==================================+===================+==============+
-| Subseting rows                   | `df[1:20, ]`      | `df[1:20]`   |
-+----------------------------------+-------------------+--------------+
-| Subseting rows based on criteria | `df[df$id < 4, ]` | `df[id < 4]` |
-+----------------------------------+-------------------+--------------+
++----------------------------------+-------------------+---------------+
+| Operation                        | *data.frame*      | ```           |
+|                                  |                   | _data.table_  |
+|                                  |                   | ```           |
++==================================+===================+===============+
+| Subseting rows                   | `df[1:20, ]`      | `df[1:20]`    |
++----------------------------------+-------------------+---------------+
+| Subseting rows based on criteria | `df[df$id < 4, ]` | `df[id < 4]`  |
++----------------------------------+-------------------+---------------+
 
 ##### Task
 
@@ -174,12 +188,15 @@ Select all rows in **iris_dt** with Sepal.Length less than 6.7 and Petal.Length 
 
 ```{r}
 # Write the solution here
+
+iris_dt[Sepal.Length < 6.7 & Petal.Length < 1.2]
 ```
 
 Select only setosa species with more than 0.3 Petal.Width.
 
 ```{r}
 # Write the solution here
+iris_dt[Species == "setosa" & Petal.Width < 0.3]
 ```
 
 ## Column subsetting
@@ -204,6 +221,8 @@ Select columns Petal.Length and Petal.Width and first 3 rows
 
 ```{r}
 # Write the solution here
+
+iris_dt[ 1:3, .(Petal.Length, Petal.Width) ]
 ```
 
 ### Additional methods of subsetting columns in data.table
@@ -252,11 +271,15 @@ Select all rows in **iris_dt** with Sepal.Width equal to **3.0**, but show only 
 
 ### Syntax comparison
 
++--------------------------------+--------------------------------+---------------------------+
 | Operation                      | *data.frame*                   | *data.table*              |
-|--------------------------------|--------------------------------|---------------------------|
++================================+================================+===========================+
 | Calculate sum                  | `sum(df$id)`                   | `df[, sum(id)]`           |
++--------------------------------+--------------------------------+---------------------------+
 | Calculate sum by group         | `by(df$id,` `df$group,` `sum)` | `df[, sum(id), by=group]` |
++--------------------------------+--------------------------------+---------------------------+
 | Calling column out as a vector | `df$id`                        | `df[, id]`                |
++--------------------------------+--------------------------------+---------------------------+
 
 Calculate mean of Sepal.Width for all species.
 
@@ -353,6 +376,15 @@ Add columns to iris_dt that represent mean and sd of `Petal.Width` grouped by sp
 
 ```{r}
 # Write the solution here
+
+iris_dt[, ":=" (meanPW = mean(Petal.Width),  
+                sdPW = sd(Petal.Width) ),
+        by=.(Species)]
+iris_dt[1:3]
+
+###how to remove columns :D 
+iris_dt[, sdPW := NULL]
+iris_dt[1:3]
 ```
 
 Use function **uniqueN()** to check how many unique mean `Petal.Width` there are in total and by Species group.
@@ -377,7 +409,7 @@ iris_dt[, .N, by=.(Species, Sepal.Length>=4.8)]
 
 ##### Task: :=, .N
 
-Add columns to **iris_dt** that represent number of observations, row number and group ID of all rows for which Petal.Length is smaller than 6.5 in **iris_dt** grouped by species.
+Add columns to **iris_dt** that represent number of observations of all rows for which Petal.Length is smaller than 6.5 in **iris_dt** grouped by species.
 
 ```{r}
 # Write the solution here

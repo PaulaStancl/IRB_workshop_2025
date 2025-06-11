@@ -9,7 +9,7 @@
 <meta name="author" content="dr.sc. Paula Štancl">
 <meta name="author" content="dr.sc. Andrea Gelemanović">
 
-<title>IRB workshop 2025 - Functions and conditions</title>
+<title>IRB workshop 2025 - Practice data.table and ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -5345,31 +5345,9 @@ window.onload = function() {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-are-functions" id="toc-what-are-functions" class="nav-link active" data-scroll-target="#what-are-functions">What are functions?</a>
-  <ul>
-  <li><a href="#function-skeleton" id="toc-function-skeleton" class="nav-link" data-scroll-target="#function-skeleton">Function skeleton</a>
-  <ul>
-  <li><a href="#task-example" id="toc-task-example" class="nav-link" data-scroll-target="#task-example">Task example:</a></li>
-  <li><a href="#task-example-defining-a-function-for-cell-division" id="toc-task-example-defining-a-function-for-cell-division" class="nav-link" data-scroll-target="#task-example-defining-a-function-for-cell-division">Task example: Defining a function for cell division</a>
-  <ul class="collapse">
-  <li><a href="#task" id="toc-task" class="nav-link" data-scroll-target="#task">Task</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#conditions" id="toc-conditions" class="nav-link" data-scroll-target="#conditions">Conditions</a>
-  <ul>
-  <li><a href="#summary-of-conditional-statements" id="toc-summary-of-conditional-statements" class="nav-link" data-scroll-target="#summary-of-conditional-statements">Summary of conditional statements</a>
-  <ul>
-  <li><a href="#task-practice-condition-statments" id="toc-task-practice-condition-statments" class="nav-link" data-scroll-target="#task-practice-condition-statments">Task : Practice condition statments</a></li>
-  <li><a href="#taks-add-growth-classification-to-a-cell_division_summary-function" id="toc-taks-add-growth-classification-to-a-cell_division_summary-function" class="nav-link" data-scroll-target="#taks-add-growth-classification-to-a-cell_division_summary-function">Taks : Add growth classification to a <code>cell_division_summary</code> function</a></li>
-  <li><a href="#task-example-1" id="toc-task-example-1" class="nav-link" data-scroll-target="#task-example-1">Task example</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#apply-family" id="toc-apply-family" class="nav-link" data-scroll-target="#apply-family">Apply family</a>
-  <ul>
-  <li><a href="#summary-of-the-apply-family" id="toc-summary-of-the-apply-family" class="nav-link" data-scroll-target="#summary-of-the-apply-family">Summary of the <code>apply</code> Family</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
-  </ul></li>
+  <li><a href="#library" id="toc-library" class="nav-link active" data-scroll-target="#library">Library</a></li>
+  <li><a href="#data-set-for-analysis" id="toc-data-set-for-analysis" class="nav-link" data-scroll-target="#data-set-for-analysis">Data set for analysis</a></li>
+  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks">Tasks</a></li>
   </ul>
 </nav>
     </div>
@@ -5378,7 +5356,7 @@ window.onload = function() {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Functions and conditions</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Practice data.table and ggplot2</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -5414,573 +5392,67 @@ window.onload = function() {
 
 </header>
 
-<section id="what-are-functions" class="level1">
-<h1>What are functions?</h1>
-<p>Functions are <strong>reusable blocks of code</strong> designed to perform specific tasks. They can take inputs (called <strong>arguments</strong>), perform operations, and return results. Functions help you write cleaner, more efficient, and more modular code.</p>
-<p>You can use built-in R functions like <code>mean()</code>, <code>sum()</code>, or <code>length()</code>, or you can create your <strong>own custom functions</strong> using the <code>function()</code> keyword.</p>
-<section id="function-skeleton" class="level2">
-<h2 class="anchored" data-anchor-id="function-skeleton">Function skeleton</h2>
-<p>In R, you can define your own functions using the <code>function()</code> keyword.<br>
-A function takes <strong>input(s)</strong>, performs some <strong>operations</strong>, and usually <strong>returns a result</strong> which <strong>is automatically the last line</strong> in the function.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Basic function structure
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="library" class="level2">
+<h2 class="anchored" data-anchor-id="library">Library</h2>
+<p>In the first code chunk, load the <strong><code>data.table</code></strong> and <strong><code>ggplot2</code></strong> libraries — these will be essential for data manipulation and visualization throughout the analysis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, <span class="at">argument2 =</span> default_value) {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Code block that does something with the arguments</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> ...  <span class="co"># Some calculation or value</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result) <span class="co"># Optional: explicitly return the result</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-<section id="task-example" class="level3">
-<h3 class="anchored" data-anchor-id="task-example">Task example:</h3>
-<p>Let’s look at a simple example of how to write and use a custom function in R.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> x<span class="sc">*</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">4</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(res)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Let’s use the custom function:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add two numbers</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_function</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 6</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add two vectors</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_function</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -2  0  2</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the libraries</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="task-example-defining-a-function-for-cell-division" class="level3">
-<h3 class="anchored" data-anchor-id="task-example-defining-a-function-for-cell-division">Task example: Defining a function for cell division</h3>
-<p>A scientist has <strong>48</strong> stem cells. Each one divides into <strong>2</strong> daughter cells.</p>
-<ul>
-<li>How many cells will there be after division?</li>
-<li>How many full groups of <strong>10 cells</strong> can you make?</li>
-<li>How many cells will be left over?</li>
-</ul>
-<p>We’ll write a custom function that <strong>simulates 1 round of cell division</strong> to solve this:</p>
+<section id="data-set-for-analysis" class="level1">
+<h1>Data set for analysis</h1>
+<p>We will analyze the <a href="https://vincentarelbundock.github.io/Rdatasets/csv/CardioDataSets/heartdisease_tbl_df.csv">HeartDisease</a> dataset to explore patterns and potential risk factors associated with heart conditions. As a first step, we’ll use the <code>fread()</code> function from the <code>data.table</code> package to efficiently import the dataset directly from an online source.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function that takes the number of starting cells and returns division results</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>cell_division_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(initial_cells, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_size =</span> <span class="dv">10</span> <span class="co"># default setting of an argument</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                                  ) {</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># total number of cells after 1 division</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  total_cells <span class="ot">&lt;-</span> initial_cells <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># how many groups of cells are after 1 division</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  full_groups <span class="ot">&lt;-</span> total_cells <span class="sc">%/%</span> group_size</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># how many are leftover</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  leftover_cells <span class="ot">&lt;-</span> total_cells <span class="sc">%%</span> group_size</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return a list with results since we can only return one line as an result</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_cells =</span> total_cells,</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_groups =</span> full_groups,</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">leftover_cells =</span> leftover_cells</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Call the function with 48 cells</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="fu">cell_division_summary</span>(<span class="dv">48</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$total_cells
-[1] 96
-
-$full_groups
-[1] 9
-
-$leftover_cells
-[1] 6</code></pre>
-</div>
-</div>
-<section id="task" class="level5">
-<h5 class="anchored" data-anchor-id="task">Task</h5>
-<p>Modify the <code>cell_division_summary</code> function so that it supports <strong>multiple rounds of cell division</strong>.</p>
-<p>Each cycle should double the total number of cells.</p>
-<p>You should add an additional argument called <code>n_cycles</code>, which:</p>
-<ul>
-<li><p>represents the number of division cycles (default should be 1)</p></li>
-<li><p>adjusts the total number of cells to be: <code>initial_cells * 2^n_cycles</code></p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>heart_disease <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</section>
-</section>
-</section>
-<section id="conditions" class="level1">
-<h1>Conditions</h1>
-<p>Conditions in R allow you to <strong>make decisions</strong> in your code. They are typically used with <strong><code>if</code></strong>, <strong><code>else if</code></strong>, and <strong><code>else</code></strong> statements.</p>
-<p>These control structures let your code behave differently depending on whether certain <strong>logical conditions</strong> are <code>TRUE</code> or <code>FALSE</code>.</p>
-<p>For example, you might want to check if a number is positive, negative, or zero, and respond differently in each case. Conditions are essential when building functions, loops, and any logic that depends on the data.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Basic conditional structure
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Simple <code>if</code> condition</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Code to run if condition is TRUE</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Advance multiple conditions</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Code to run if condition is TRUE</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (another_condition) { <span class="co"># else if as many times as needed in the conditions</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Code to run if the first condition is FALSE, but this one is TRUE</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Code to run if none of the above conditions are TRUE</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-<p>Example of this structure</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define a vector</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">3</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># write a message</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Positive number&quot;</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Zero&quot;</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Negative number&quot;</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;Negative number&quot;</code></pre>
-</div>
-</div>
-<p>Another example</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a single age</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use one if statement</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (age <span class="sc">&lt;</span> <span class="dv">30</span>) {</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  my_age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;young&quot;</span>)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  my_age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;old&quot;</span>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># write a sentance about my age</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;I feel very &quot;</span>, my_age, <span class="st">&quot;!&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;I feel very young!&quot;</code></pre>
-</div>
-</div>
-<p>These tools allow you to build logic into your code so that it can react to different values or situations. Use <code>if</code>/<code>else</code> for single conditions, and <code>ifelse()</code> when working with vectors.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Vectorized conditions with <code>ifelse()</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <code>ifelse()</code> function is used to apply a condition across a <strong>vector</strong>. It checks each element and returns one value if the condition is <code>TRUE</code>, and another if it is <code>FALSE</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example vector of temperatures</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">30</span>, <span class="dv">15</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Label each temperature as &quot;Warm&quot; or &quot;Cool&quot;</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(temps <span class="sc">&gt;=</span> <span class="dv">20</span>, <span class="st">&quot;Warm&quot;</span>, <span class="st">&quot;Cool&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;Cool&quot; &quot;Warm&quot; &quot;Warm&quot; &quot;Cool&quot;</code></pre>
-</div>
-</div>
-</div>
-</div>
-<section id="summary-of-conditional-statements" class="level3">
-<h3 class="anchored" data-anchor-id="summary-of-conditional-statements">Summary of conditional statements</h3>
-<table class="table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 47%">
-<col style="width: 27%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Syntax</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>if (condition)</code></td>
-<td>Executes code only if the condition is <code>TRUE</code></td>
-<td><code>if (x &gt; 0) print(&quot;Positive&quot;)</code></td>
-</tr>
-<tr class="even">
-<td><code>else</code></td>
-<td>Executes code if the previous <code>if</code> was <code>FALSE</code></td>
-<td><code>else print(&quot;Not positive&quot;)</code></td>
-</tr>
-<tr class="odd">
-<td><code>else if (condition)</code></td>
-<td>Checks another condition if the first <code>if</code> fails</td>
-<td><code>else if (x == 0) print(&quot;Zero&quot;)</code></td>
-</tr>
-<tr class="even">
-<td><code>ifelse(cond, a, b)</code></td>
-<td>Vectorized <code>if</code>, returns <code>a</code> if <code>cond</code> is <code>TRUE</code>, else <code>b</code></td>
-<td><code>ifelse(x &gt; 0, &quot;Yes&quot;, &quot;No&quot;)</code></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<section id="task-practice-condition-statments" class="level5">
-<h5 class="anchored" data-anchor-id="task-practice-condition-statments">Task : Practice condition statments</h5>
-<p>A bacterial culture is being observed. You are given the number of bacteria after 1 hour.</p>
-<ul>
-<li>If the number of bacteria is greater than 1000, print <code>&quot;Rapid growth&quot;</code>.</li>
-<li>If the number is between 500 and 1000 (inclusive), print <code>&quot;Moderate growth&quot;</code>.</li>
-<li>If the number is below 500, print <code>&quot;Slow growth&quot;</code>.</li>
-</ul>
-<p>Write an <code>if</code>/<code>else if</code>/<code>else</code> statement to classify the growth.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Define a vector containing any number of bacteria</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add your conditional statements and print the growth classification</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="taks-add-growth-classification-to-a-cell_division_summary-function" class="level5">
-<h5 class="anchored" data-anchor-id="taks-add-growth-classification-to-a-cell_division_summary-function">Taks : Add growth classification to a <code>cell_division_summary</code> function</h5>
-<p>You are given a function that calculates the number of cells after one division and groups them based on a specified group size.</p>
-<p>Your task is to <strong>modify the function</strong> to also classify the <strong>growth level</strong> as a new element of the list called <code>growth_classification</code> based on the number of cells after division:</p>
-<ul>
-<li>If the number is <strong>greater than 2000</strong>, print <code>&quot;Extreme growth&quot;</code></li>
-<li>If the number is <strong>between 1001 and 2000</strong>, print <code>&quot;Rapid growth&quot;</code></li>
-<li>If the number is <strong>between 501 and 1000</strong>, print <code>&quot;Moderate growth&quot;</code></li>
-<li>If the number is <strong>500 or less</strong>, print <code>&quot;Slow growth&quot;</code></li>
-</ul>
-<p>This classification should be added <strong>using conditional statements</strong> (<code>if</code>, <code>else if</code>, <code>else</code>) inside the function.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>cell_division_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(initial_cells, <span class="at">group_size =</span> <span class="dv">10</span>) {</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate total number of cells after 1 division</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  total_cells <span class="ot">&lt;-</span> initial_cells <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co">: Add your conditional statements here to define a variable called &#39;growth_classification&#39;</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate number of full groups</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  full_groups <span class="ot">&lt;-</span> total_cells <span class="sc">%/%</span> group_size</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate number of leftover cells</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  leftover_cells <span class="ot">&lt;-</span> total_cells <span class="sc">%%</span> group_size</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co">: return ALL values in a list</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_cells =</span> total_cells,</span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_groups =</span> full_groups,</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">leftover_cells =</span> leftover_cells</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Run your function on some example</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Solved</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cell_division_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(initial_cells, <span class="at">group_size =</span> <span class="dv">10</span>) {</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate total number of cells after 1 division</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  total_cells <span class="ot">&lt;-</span> initial_cells <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add growth classification based on total_cells</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (total_cells <span class="sc">&gt;</span> <span class="dv">2000</span>) {</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    growth_classification <span class="ot">&lt;-</span> <span class="st">&quot;Extreme growth&quot;</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (total_cells <span class="sc">&gt;</span> <span class="dv">1000</span>) {</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    growth_classification <span class="ot">&lt;-</span> <span class="st">&quot;Rapid growth&quot;</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (total_cells <span class="sc">&gt;</span> <span class="dv">500</span>) {</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    growth_classification <span class="ot">&lt;-</span> <span class="st">&quot;Moderate growth&quot;</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    growth_classification <span class="ot">&lt;-</span> <span class="st">&quot;Slow growth&quot;</span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate number of full groups</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  full_groups <span class="ot">&lt;-</span> total_cells <span class="sc">%/%</span> group_size</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate number of leftover cells</span></span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  leftover_cells <span class="ot">&lt;-</span> total_cells <span class="sc">%%</span> group_size</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return all values in a list</span></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_cells =</span> total_cells,</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_groups =</span> full_groups,</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">leftover_cells =</span> leftover_cells,</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">growth_classification =</span> growth_classification</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="fu">cell_division_summary</span>(<span class="dv">600</span>)  <span class="co">#  &quot;Rapid growth&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$total_cells
-[1] 1200
-
-$full_groups
-[1] 120
-
-$leftover_cells
-[1] 0
-
-$growth_classification
-[1] &quot;Rapid growth&quot;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cell_division_summary</span>(<span class="dv">1001</span>) <span class="co">#  &quot;Extreme growth&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$total_cells
-[1] 2002
-
-$full_groups
-[1] 200
-
-$leftover_cells
-[1] 2
-
-$growth_classification
-[1] &quot;Extreme growth&quot;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cell_division_summary</span>(<span class="dv">251</span>)  <span class="co"># &quot;Moderate growth&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$total_cells
-[1] 502
-
-$full_groups
-[1] 50
-
-$leftover_cells
-[1] 2
-
-$growth_classification
-[1] &quot;Moderate growth&quot;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cell_division_summary</span>(<span class="dv">100</span>)  <span class="co">#  &quot;Slow growth&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$total_cells
-[1] 200
-
-$full_groups
-[1] 20
-
-$leftover_cells
-[1] 0
-
-$growth_classification
-[1] &quot;Slow growth&quot;</code></pre>
-</div>
-</div>
-<div class="callout-important callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Messages, Warnings, and Errors in functions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When writing your own functions, it’s useful to give feedback to the user using different types of messages:</p>
-<ul>
-<li><strong><code>message()</code></strong> – Informational messages. These are shown but do not interrupt execution.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">&quot;Calculation complete.&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><strong><code>warning()</code></strong> – Alerts the user that something may be wrong, but the function continues running.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="fu">warning</span>(<span class="st">&quot;Negative value detected.&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><strong><code>stop()</code></strong> – Stops the function and throws an error. Use this to prevent further execution if input is invalid.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) <span class="fu">stop</span>(<span class="st">&quot;Input must be numeric.&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="task-example-1" class="level4">
-<h4 class="anchored" data-anchor-id="task-example-1">Task example</h4>
-<p>Try to make the example so all three message are shown</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Show a message when the function starts</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Starting calculation...&quot;</span>)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Stop the function if x is not numeric</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) {</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Input must be numeric.&quot;</span>)</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Perform the calculation</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">4</span></span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Warn the user if the result is negative</span></span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (res <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;The result is negative.&quot;</span>)</span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(res)</span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write 3 test example that shows:</span></span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="co"># - the message</span></span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="co"># - the warning</span></span>
-<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a><span class="co"># - and the error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-</section>
-<section id="apply-family" class="level1">
-<h1>Apply family</h1>
-<p>The <code>apply</code> family of functions (<code>apply</code>, <code>lapply</code>, <code>sapply</code>, <code>tapply</code>, <code>mapply</code>, etc.) is used to perform operations on data structures without writing explicit loops.</p>
-<section id="summary-of-the-apply-family" class="level3">
-<h3 class="anchored" data-anchor-id="summary-of-the-apply-family">Summary of the <code>apply</code> Family</h3>
-<table class="table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 37%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>Input Type</th>
-<th>Output Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>apply()</code></td>
-<td>matrix, data.frame</td>
-<td>vector, array</td>
-<td>Apply a function over rows or columns</td>
-</tr>
-<tr class="even">
-<td><code>lapply()</code></td>
-<td>list, vector</td>
-<td>list</td>
-<td>Apply a function to each element</td>
-</tr>
-<tr class="odd">
-<td><code>sapply()</code></td>
-<td>list, vector</td>
-<td>simplified list</td>
-<td>Like <code>lapply()</code>, but returns vector/matrix</td>
-</tr>
-<tr class="even">
-<td><code>tapply()</code></td>
-<td>vector + factor</td>
-<td>vector, array</td>
-<td>Apply a function to grouped subsets</td>
-</tr>
-<tr class="odd">
-<td><code>mapply()</code></td>
-<td>multiple vectors</td>
-<td>vector, list</td>
-<td>Apply a function in parallel over arguments</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="examples" class="level3">
-<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<section id="tasks" class="level1">
+<h1>Tasks</h1>
 <ol type="1">
-<li><code>sapply()</code> – Simplified apply (tries to return vector or matrix)</li>
+<li><p>How many patients are in your table?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: Think about how to count the number of observations (rows) in a data.table.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>How many patients are <em>Asymptomatic</em> based on <em>ChestPain</em>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: Use data.table syntax to filter rows and count matching cases.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Which <em>ChestPain</em> types are more common among those with <em>HeartDisease</em>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: Filter by HeartDisease and summarize counts using data.table.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Visualize the relationship between <em>Cholesterol</em> and <em>BloodSugar</em> for both sexes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: Use ggplot2 (or ggpubr if preferred) to create a scatter plot grouped by sex.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Plot the distribution of <em>RestingBP</em> colored by <em>HeartDisease</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: Histograms, density plots, or boxplots are all good options for showing distributions—choose one or more.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Which female patient has the highest <strong>MaximumHR</strong>? What about the male patients?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: Use subsetting by sex and then find the row(s) with the maximum value of MaximumHR OR use by argument to get answer in one code.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Calculate the mean value of all numeric columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: Use data.table column operation syntax</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ol>
+<!-- -->
+<ol start="8" type="1">
+<li><p>Classify patients as Young (&lt;35) or Old (≥35) and count them by <strong>HeartDisease</strong> status.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: Use `ifelse()` inside data.table to create a new column with age group labels.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Visualize the count of young and old patients by <strong>HeartDisease</strong> status.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(lst <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">b =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$a
-[1] 1 2 3 4 5
-
-$b
-[1]  6  7  8  9 10</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same as lapply(), but returns a simplified vector</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(lst, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>a b 
-3 8 </code></pre>
-</div>
-</div>
-<ol start="2" type="1">
-<li><code>lapply()</code> – list apply</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the mean of each list element</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(lst, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$a
-[1] 3
-
-$b
-[1] 8</code></pre>
-</div>
-</div>
-<ol start="3" type="1">
-<li><code>apply()</code> – Apply over rows or columns of a matrix or data frame</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 3x3 matrix</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>(mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     [,1] [,2] [,3]
-[1,]    1    4    7
-[2,]    2    5    8
-[3,]    3    6    9</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean of each column (2 = columns)</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2 5 8</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the sum of each row (1 = rows)</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">1</span>, sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 12 15 18</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: Compare `geom_bar()` vs. `geom_col()`—which one fits your data format?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
 <!-- -->
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -6168,419 +5640,109 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb44" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Functions and conditions&quot;</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> </span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: &quot;dr.sc. Paula Štancl&quot;</span></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: &quot;Kuzman Consulting d.o.o&quot;</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: &quot;dr.sc. Andrea Gelemanović&quot;</span></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: &quot;MedILS, UNIST&quot;</span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: true</span></span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 5</span></span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-align: center</span></span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: &quot;Show code&quot;</span></span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-line-numbers: false</span></span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
-<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a><span class="co">  collapse: true</span></span>
-<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a><span class="fu"># What are functions?</span></span>
-<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a>Functions are **reusable blocks of code** designed to perform specific tasks. They can take inputs (called **arguments**), perform operations, and return results. Functions help you write cleaner, more efficient, and more modular code.</span>
-<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a>You can use built-in R functions like <span class="in">`mean()`</span>, <span class="in">`sum()`</span>, or <span class="in">`length()`</span>, or you can create your **own custom functions** using the <span class="in">`function()`</span> keyword.</span>
-<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Function skeleton</span></span>
-<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a>In R, you can define your own functions using the <span class="in">`function()`</span> keyword.\</span>
-<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a>A function takes **input(s)**, performs some **operations**, and usually **returns a result** which **is automatically the last line** in the function.</span>
-<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Basic function structure</span></span>
-<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-44"><a href="#cb44-44" aria-hidden="true" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, <span class="at">argument2 =</span> default_value) {</span>
-<span id="cb44-45"><a href="#cb44-45" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Code block that does something with the arguments</span></span>
-<span id="cb44-46"><a href="#cb44-46" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-47"><a href="#cb44-47" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> ...  <span class="co"># Some calculation or value</span></span>
-<span id="cb44-48"><a href="#cb44-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result) <span class="co"># Optional: explicitly return the result</span></span>
-<span id="cb44-49"><a href="#cb44-49" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb44-50"><a href="#cb44-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-51"><a href="#cb44-51" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb44-52"><a href="#cb44-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-53"><a href="#cb44-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Task example:</span></span>
-<span id="cb44-54"><a href="#cb44-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-55"><a href="#cb44-55" aria-hidden="true" tabindex="-1"></a>Let&#39;s look at a simple example of how to write and use a custom function in R.</span>
-<span id="cb44-56"><a href="#cb44-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-59"><a href="#cb44-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-60"><a href="#cb44-60" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb44-61"><a href="#cb44-61" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> x<span class="sc">*</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">4</span></span>
-<span id="cb44-62"><a href="#cb44-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(res)</span>
-<span id="cb44-63"><a href="#cb44-63" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb44-64"><a href="#cb44-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-65"><a href="#cb44-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-66"><a href="#cb44-66" aria-hidden="true" tabindex="-1"></a>Let&#39;s use the custom function:</span>
-<span id="cb44-67"><a href="#cb44-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-70"><a href="#cb44-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-71"><a href="#cb44-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Add two numbers</span></span>
-<span id="cb44-72"><a href="#cb44-72" aria-hidden="true" tabindex="-1"></a><span class="fu">my_function</span>(<span class="dv">5</span>)</span>
-<span id="cb44-73"><a href="#cb44-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Add two vectors</span></span>
-<span id="cb44-74"><a href="#cb44-74" aria-hidden="true" tabindex="-1"></a><span class="fu">my_function</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb44-75"><a href="#cb44-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-76"><a href="#cb44-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-77"><a href="#cb44-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### Task example: Defining a function for cell division</span></span>
-<span id="cb44-78"><a href="#cb44-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-79"><a href="#cb44-79" aria-hidden="true" tabindex="-1"></a>A scientist has **48** stem cells. Each one divides into **2** daughter cells.</span>
-<span id="cb44-80"><a href="#cb44-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-81"><a href="#cb44-81" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How many cells will there be after division?</span>
-<span id="cb44-82"><a href="#cb44-82" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How many full groups of **10 cells** can you make?</span>
-<span id="cb44-83"><a href="#cb44-83" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How many cells will be left over?</span>
-<span id="cb44-84"><a href="#cb44-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-85"><a href="#cb44-85" aria-hidden="true" tabindex="-1"></a>We&#39;ll write a custom function that **simulates 1 round of cell division** to solve this:</span>
-<span id="cb44-86"><a href="#cb44-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-89"><a href="#cb44-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-90"><a href="#cb44-90" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function that takes the number of starting cells and returns division results</span></span>
-<span id="cb44-91"><a href="#cb44-91" aria-hidden="true" tabindex="-1"></a>cell_division_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(initial_cells, </span>
-<span id="cb44-92"><a href="#cb44-92" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_size =</span> <span class="dv">10</span> <span class="co"># default setting of an argument</span></span>
-<span id="cb44-93"><a href="#cb44-93" aria-hidden="true" tabindex="-1"></a>                                  ) {</span>
-<span id="cb44-94"><a href="#cb44-94" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-95"><a href="#cb44-95" aria-hidden="true" tabindex="-1"></a>  <span class="co"># total number of cells after 1 division</span></span>
-<span id="cb44-96"><a href="#cb44-96" aria-hidden="true" tabindex="-1"></a>  total_cells <span class="ot">&lt;-</span> initial_cells <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb44-97"><a href="#cb44-97" aria-hidden="true" tabindex="-1"></a>  <span class="co"># how many groups of cells are after 1 division</span></span>
-<span id="cb44-98"><a href="#cb44-98" aria-hidden="true" tabindex="-1"></a>  full_groups <span class="ot">&lt;-</span> total_cells <span class="sc">%/%</span> group_size</span>
-<span id="cb44-99"><a href="#cb44-99" aria-hidden="true" tabindex="-1"></a>  <span class="co"># how many are leftover</span></span>
-<span id="cb44-100"><a href="#cb44-100" aria-hidden="true" tabindex="-1"></a>  leftover_cells <span class="ot">&lt;-</span> total_cells <span class="sc">%%</span> group_size</span>
-<span id="cb44-101"><a href="#cb44-101" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-102"><a href="#cb44-102" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return a list with results since we can only return one line as an result</span></span>
-<span id="cb44-103"><a href="#cb44-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
-<span id="cb44-104"><a href="#cb44-104" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_cells =</span> total_cells,</span>
-<span id="cb44-105"><a href="#cb44-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_groups =</span> full_groups,</span>
-<span id="cb44-106"><a href="#cb44-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">leftover_cells =</span> leftover_cells</span>
-<span id="cb44-107"><a href="#cb44-107" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb44-108"><a href="#cb44-108" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb44-109"><a href="#cb44-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-110"><a href="#cb44-110" aria-hidden="true" tabindex="-1"></a><span class="co"># Call the function with 48 cells</span></span>
-<span id="cb44-111"><a href="#cb44-111" aria-hidden="true" tabindex="-1"></a><span class="fu">cell_division_summary</span>(<span class="dv">48</span>)</span>
-<span id="cb44-112"><a href="#cb44-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-113"><a href="#cb44-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-114"><a href="#cb44-114" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
-<span id="cb44-115"><a href="#cb44-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-116"><a href="#cb44-116" aria-hidden="true" tabindex="-1"></a>Modify the <span class="in">`cell_division_summary`</span> function so that it supports **multiple rounds of cell division**.</span>
-<span id="cb44-117"><a href="#cb44-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-118"><a href="#cb44-118" aria-hidden="true" tabindex="-1"></a>Each cycle should double the total number of cells.</span>
-<span id="cb44-119"><a href="#cb44-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-120"><a href="#cb44-120" aria-hidden="true" tabindex="-1"></a>You should add an additional argument called <span class="in">`n_cycles`</span>, which:</span>
-<span id="cb44-121"><a href="#cb44-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-122"><a href="#cb44-122" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>represents the number of division cycles (default should be 1)</span>
-<span id="cb44-123"><a href="#cb44-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-124"><a href="#cb44-124" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>adjusts the total number of cells to be: <span class="in">`initial_cells * 2^n_cycles`</span></span>
-<span id="cb44-125"><a href="#cb44-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-128"><a href="#cb44-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-129"><a href="#cb44-129" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
-<span id="cb44-130"><a href="#cb44-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-131"><a href="#cb44-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-132"><a href="#cb44-132" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conditions</span></span>
-<span id="cb44-133"><a href="#cb44-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-134"><a href="#cb44-134" aria-hidden="true" tabindex="-1"></a>Conditions in R allow you to **make decisions** in your code. They are typically used with **`if`**, **`else if`**, and **`else`** statements.</span>
-<span id="cb44-135"><a href="#cb44-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-136"><a href="#cb44-136" aria-hidden="true" tabindex="-1"></a>These control structures let your code behave differently depending on whether certain **logical conditions** are <span class="in">`TRUE`</span> or <span class="in">`FALSE`</span>.</span>
-<span id="cb44-137"><a href="#cb44-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-138"><a href="#cb44-138" aria-hidden="true" tabindex="-1"></a>For example, you might want to check if a number is positive, negative, or zero, and respond differently in each case. Conditions are essential when building functions, loops, and any logic that depends on the data.</span>
-<span id="cb44-139"><a href="#cb44-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-140"><a href="#cb44-140" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb44-141"><a href="#cb44-141" aria-hidden="true" tabindex="-1"></a><span class="fu">## Basic conditional structure</span></span>
-<span id="cb44-142"><a href="#cb44-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-143"><a href="#cb44-143" aria-hidden="true" tabindex="-1"></a>**Simple `if` condition**</span>
-<span id="cb44-144"><a href="#cb44-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-145"><a href="#cb44-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb44-146"><a href="#cb44-146" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
-<span id="cb44-147"><a href="#cb44-147" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Code to run if condition is TRUE</span></span>
-<span id="cb44-148"><a href="#cb44-148" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb44-149"><a href="#cb44-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-150"><a href="#cb44-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-151"><a href="#cb44-151" aria-hidden="true" tabindex="-1"></a>**Advance multiple conditions**</span>
-<span id="cb44-152"><a href="#cb44-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-153"><a href="#cb44-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb44-154"><a href="#cb44-154" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
-<span id="cb44-155"><a href="#cb44-155" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Code to run if condition is TRUE</span></span>
-<span id="cb44-156"><a href="#cb44-156" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (another_condition) { <span class="co"># else if as many times as needed in the conditions</span></span>
-<span id="cb44-157"><a href="#cb44-157" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Code to run if the first condition is FALSE, but this one is TRUE</span></span>
-<span id="cb44-158"><a href="#cb44-158" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb44-159"><a href="#cb44-159" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Code to run if none of the above conditions are TRUE</span></span>
-<span id="cb44-160"><a href="#cb44-160" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb44-161"><a href="#cb44-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-162"><a href="#cb44-162" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb44-163"><a href="#cb44-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-164"><a href="#cb44-164" aria-hidden="true" tabindex="-1"></a>Example of this structure</span>
-<span id="cb44-165"><a href="#cb44-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-168"><a href="#cb44-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-169"><a href="#cb44-169" aria-hidden="true" tabindex="-1"></a><span class="co"># define a vector</span></span>
-<span id="cb44-170"><a href="#cb44-170" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">3</span></span>
-<span id="cb44-171"><a href="#cb44-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-172"><a href="#cb44-172" aria-hidden="true" tabindex="-1"></a><span class="co"># write a message</span></span>
-<span id="cb44-173"><a href="#cb44-173" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb44-174"><a href="#cb44-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Positive number&quot;</span>)</span>
-<span id="cb44-175"><a href="#cb44-175" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb44-176"><a href="#cb44-176" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Zero&quot;</span>)</span>
-<span id="cb44-177"><a href="#cb44-177" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb44-178"><a href="#cb44-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Negative number&quot;</span>)</span>
-<span id="cb44-179"><a href="#cb44-179" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb44-180"><a href="#cb44-180" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-181"><a href="#cb44-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-182"><a href="#cb44-182" aria-hidden="true" tabindex="-1"></a>Another example</span>
-<span id="cb44-183"><a href="#cb44-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-186"><a href="#cb44-186" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-187"><a href="#cb44-187" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a single age</span></span>
-<span id="cb44-188"><a href="#cb44-188" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb44-189"><a href="#cb44-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-190"><a href="#cb44-190" aria-hidden="true" tabindex="-1"></a><span class="co"># Use one if statement</span></span>
-<span id="cb44-191"><a href="#cb44-191" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (age <span class="sc">&lt;</span> <span class="dv">30</span>) {</span>
-<span id="cb44-192"><a href="#cb44-192" aria-hidden="true" tabindex="-1"></a>  my_age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;young&quot;</span>)</span>
-<span id="cb44-193"><a href="#cb44-193" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb44-194"><a href="#cb44-194" aria-hidden="true" tabindex="-1"></a>  my_age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;old&quot;</span>)</span>
-<span id="cb44-195"><a href="#cb44-195" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb44-196"><a href="#cb44-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-197"><a href="#cb44-197" aria-hidden="true" tabindex="-1"></a><span class="co"># write a sentance about my age</span></span>
-<span id="cb44-198"><a href="#cb44-198" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;I feel very &quot;</span>, my_age, <span class="st">&quot;!&quot;</span>))</span>
-<span id="cb44-199"><a href="#cb44-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-200"><a href="#cb44-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-201"><a href="#cb44-201" aria-hidden="true" tabindex="-1"></a>These tools allow you to build logic into your code so that it can react to different values or situations. Use <span class="in">`if`</span>/<span class="in">`else`</span> for single conditions, and <span class="in">`ifelse()`</span> when working with vectors.</span>
-<span id="cb44-202"><a href="#cb44-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-203"><a href="#cb44-203" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb44-204"><a href="#cb44-204" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vectorized conditions with `ifelse()`</span></span>
-<span id="cb44-205"><a href="#cb44-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-206"><a href="#cb44-206" aria-hidden="true" tabindex="-1"></a>The <span class="in">`ifelse()`</span> function is used to apply a condition across a **vector**. It checks each element and returns one value if the condition is <span class="in">`TRUE`</span>, and another if it is <span class="in">`FALSE`</span>.</span>
-<span id="cb44-207"><a href="#cb44-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-210"><a href="#cb44-210" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-211"><a href="#cb44-211" aria-hidden="true" tabindex="-1"></a><span class="co"># Example vector of temperatures</span></span>
-<span id="cb44-212"><a href="#cb44-212" aria-hidden="true" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">30</span>, <span class="dv">15</span>)</span>
-<span id="cb44-213"><a href="#cb44-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-214"><a href="#cb44-214" aria-hidden="true" tabindex="-1"></a><span class="co"># Label each temperature as &quot;Warm&quot; or &quot;Cool&quot;</span></span>
-<span id="cb44-215"><a href="#cb44-215" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(temps <span class="sc">&gt;=</span> <span class="dv">20</span>, <span class="st">&quot;Warm&quot;</span>, <span class="st">&quot;Cool&quot;</span>)</span>
-<span id="cb44-216"><a href="#cb44-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-217"><a href="#cb44-217" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb44-218"><a href="#cb44-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-219"><a href="#cb44-219" aria-hidden="true" tabindex="-1"></a><span class="fu">### Summary of conditional statements</span></span>
-<span id="cb44-220"><a href="#cb44-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-221"><a href="#cb44-221" aria-hidden="true" tabindex="-1"></a>| Syntax                | Description                                                | Example                          |</span>
-<span id="cb44-222"><a href="#cb44-222" aria-hidden="true" tabindex="-1"></a>|------------------|----------------------------------|--------------------|</span>
-<span id="cb44-223"><a href="#cb44-223" aria-hidden="true" tabindex="-1"></a>| <span class="in">`if (condition)`</span>      | Executes code only if the condition is <span class="in">`TRUE`</span>              | <span class="in">`if (x &gt; 0) print(&quot;Positive&quot;)`</span>   |</span>
-<span id="cb44-224"><a href="#cb44-224" aria-hidden="true" tabindex="-1"></a>| <span class="in">`else`</span>                | Executes code if the previous <span class="in">`if`</span> was <span class="in">`FALSE`</span>             | <span class="in">`else print(&quot;Not positive&quot;)`</span>     |</span>
-<span id="cb44-225"><a href="#cb44-225" aria-hidden="true" tabindex="-1"></a>| <span class="in">`else if (condition)`</span> | Checks another condition if the first <span class="in">`if`</span> fails           | <span class="in">`else if (x == 0) print(&quot;Zero&quot;)`</span> |</span>
-<span id="cb44-226"><a href="#cb44-226" aria-hidden="true" tabindex="-1"></a>| <span class="in">`ifelse(cond, a, b)`</span>  | Vectorized <span class="in">`if`</span>, returns <span class="in">`a`</span> if <span class="in">`cond`</span> is <span class="in">`TRUE`</span>, else <span class="in">`b`</span> | <span class="in">`ifelse(x &gt; 0, &quot;Yes&quot;, &quot;No&quot;)`</span>     |</span>
-<span id="cb44-227"><a href="#cb44-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-228"><a href="#cb44-228" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb44-229"><a href="#cb44-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-230"><a href="#cb44-230" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task : Practice condition statments</span></span>
-<span id="cb44-231"><a href="#cb44-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-232"><a href="#cb44-232" aria-hidden="true" tabindex="-1"></a>A bacterial culture is being observed. You are given the number of bacteria after 1 hour.</span>
-<span id="cb44-233"><a href="#cb44-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-234"><a href="#cb44-234" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number of bacteria is greater than 1000, print <span class="in">`&quot;Rapid growth&quot;`</span>.</span>
-<span id="cb44-235"><a href="#cb44-235" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is between 500 and 1000 (inclusive), print <span class="in">`&quot;Moderate growth&quot;`</span>.</span>
-<span id="cb44-236"><a href="#cb44-236" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is below 500, print <span class="in">`&quot;Slow growth&quot;`</span>.</span>
-<span id="cb44-237"><a href="#cb44-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-238"><a href="#cb44-238" aria-hidden="true" tabindex="-1"></a>Write an <span class="in">`if`</span>/<span class="in">`else if`</span>/<span class="in">`else`</span> statement to classify the growth.</span>
-<span id="cb44-239"><a href="#cb44-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-242"><a href="#cb44-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-243"><a href="#cb44-243" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
-<span id="cb44-244"><a href="#cb44-244" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Define a vector containing any number of bacteria</span></span>
-<span id="cb44-245"><a href="#cb44-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-246"><a href="#cb44-246" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add your conditional statements and print the growth classification</span></span>
-<span id="cb44-247"><a href="#cb44-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-248"><a href="#cb44-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-249"><a href="#cb44-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-250"><a href="#cb44-250" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Taks : Add growth classification to a `cell_division_summary` function</span></span>
-<span id="cb44-251"><a href="#cb44-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-252"><a href="#cb44-252" aria-hidden="true" tabindex="-1"></a>You are given a function that calculates the number of cells after one division and groups them based on a specified group size.</span>
-<span id="cb44-253"><a href="#cb44-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-254"><a href="#cb44-254" aria-hidden="true" tabindex="-1"></a>Your task is to **modify the function** to also classify the **growth level** as a new element of the list called <span class="in">`growth_classification`</span> based on the number of cells after division:</span>
-<span id="cb44-255"><a href="#cb44-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-256"><a href="#cb44-256" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is **greater than 2000**, print <span class="in">`&quot;Extreme growth&quot;`</span></span>
-<span id="cb44-257"><a href="#cb44-257" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is **between 1001 and 2000**, print <span class="in">`&quot;Rapid growth&quot;`</span></span>
-<span id="cb44-258"><a href="#cb44-258" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is **between 501 and 1000**, print <span class="in">`&quot;Moderate growth&quot;`</span></span>
-<span id="cb44-259"><a href="#cb44-259" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is **500 or less**, print <span class="in">`&quot;Slow growth&quot;`</span></span>
-<span id="cb44-260"><a href="#cb44-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-261"><a href="#cb44-261" aria-hidden="true" tabindex="-1"></a>This classification should be added **using conditional statements** (<span class="in">`if`</span>, <span class="in">`else if`</span>, <span class="in">`else`</span>) inside the function.</span>
-<span id="cb44-262"><a href="#cb44-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-265"><a href="#cb44-265" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-266"><a href="#cb44-266" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
-<span id="cb44-267"><a href="#cb44-267" aria-hidden="true" tabindex="-1"></a>cell_division_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(initial_cells, <span class="at">group_size =</span> <span class="dv">10</span>) {</span>
-<span id="cb44-268"><a href="#cb44-268" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-269"><a href="#cb44-269" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate total number of cells after 1 division</span></span>
-<span id="cb44-270"><a href="#cb44-270" aria-hidden="true" tabindex="-1"></a>  total_cells <span class="ot">&lt;-</span> initial_cells <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb44-271"><a href="#cb44-271" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-272"><a href="#cb44-272" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co">: Add your conditional statements here to define a variable called &#39;growth_classification&#39;</span></span>
-<span id="cb44-273"><a href="#cb44-273" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-274"><a href="#cb44-274" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-275"><a href="#cb44-275" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate number of full groups</span></span>
-<span id="cb44-276"><a href="#cb44-276" aria-hidden="true" tabindex="-1"></a>  full_groups <span class="ot">&lt;-</span> total_cells <span class="sc">%/%</span> group_size</span>
-<span id="cb44-277"><a href="#cb44-277" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-278"><a href="#cb44-278" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate number of leftover cells</span></span>
-<span id="cb44-279"><a href="#cb44-279" aria-hidden="true" tabindex="-1"></a>  leftover_cells <span class="ot">&lt;-</span> total_cells <span class="sc">%%</span> group_size</span>
-<span id="cb44-280"><a href="#cb44-280" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-281"><a href="#cb44-281" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co">: return ALL values in a list</span></span>
-<span id="cb44-282"><a href="#cb44-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
-<span id="cb44-283"><a href="#cb44-283" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_cells =</span> total_cells,</span>
-<span id="cb44-284"><a href="#cb44-284" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_groups =</span> full_groups,</span>
-<span id="cb44-285"><a href="#cb44-285" aria-hidden="true" tabindex="-1"></a>    <span class="at">leftover_cells =</span> leftover_cells</span>
-<span id="cb44-286"><a href="#cb44-286" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb44-287"><a href="#cb44-287" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb44-288"><a href="#cb44-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-289"><a href="#cb44-289" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Run your function on some example</span></span>
-<span id="cb44-290"><a href="#cb44-290" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-291"><a href="#cb44-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-292"><a href="#cb44-292" aria-hidden="true" tabindex="-1"></a>Solved</span>
-<span id="cb44-293"><a href="#cb44-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-296"><a href="#cb44-296" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-297"><a href="#cb44-297" aria-hidden="true" tabindex="-1"></a>cell_division_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(initial_cells, <span class="at">group_size =</span> <span class="dv">10</span>) {</span>
-<span id="cb44-298"><a href="#cb44-298" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-299"><a href="#cb44-299" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate total number of cells after 1 division</span></span>
-<span id="cb44-300"><a href="#cb44-300" aria-hidden="true" tabindex="-1"></a>  total_cells <span class="ot">&lt;-</span> initial_cells <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb44-301"><a href="#cb44-301" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-302"><a href="#cb44-302" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add growth classification based on total_cells</span></span>
-<span id="cb44-303"><a href="#cb44-303" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (total_cells <span class="sc">&gt;</span> <span class="dv">2000</span>) {</span>
-<span id="cb44-304"><a href="#cb44-304" aria-hidden="true" tabindex="-1"></a>    growth_classification <span class="ot">&lt;-</span> <span class="st">&quot;Extreme growth&quot;</span></span>
-<span id="cb44-305"><a href="#cb44-305" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (total_cells <span class="sc">&gt;</span> <span class="dv">1000</span>) {</span>
-<span id="cb44-306"><a href="#cb44-306" aria-hidden="true" tabindex="-1"></a>    growth_classification <span class="ot">&lt;-</span> <span class="st">&quot;Rapid growth&quot;</span></span>
-<span id="cb44-307"><a href="#cb44-307" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (total_cells <span class="sc">&gt;</span> <span class="dv">500</span>) {</span>
-<span id="cb44-308"><a href="#cb44-308" aria-hidden="true" tabindex="-1"></a>    growth_classification <span class="ot">&lt;-</span> <span class="st">&quot;Moderate growth&quot;</span></span>
-<span id="cb44-309"><a href="#cb44-309" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb44-310"><a href="#cb44-310" aria-hidden="true" tabindex="-1"></a>    growth_classification <span class="ot">&lt;-</span> <span class="st">&quot;Slow growth&quot;</span></span>
-<span id="cb44-311"><a href="#cb44-311" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb44-312"><a href="#cb44-312" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-313"><a href="#cb44-313" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate number of full groups</span></span>
-<span id="cb44-314"><a href="#cb44-314" aria-hidden="true" tabindex="-1"></a>  full_groups <span class="ot">&lt;-</span> total_cells <span class="sc">%/%</span> group_size</span>
-<span id="cb44-315"><a href="#cb44-315" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-316"><a href="#cb44-316" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate number of leftover cells</span></span>
-<span id="cb44-317"><a href="#cb44-317" aria-hidden="true" tabindex="-1"></a>  leftover_cells <span class="ot">&lt;-</span> total_cells <span class="sc">%%</span> group_size</span>
-<span id="cb44-318"><a href="#cb44-318" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-319"><a href="#cb44-319" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return all values in a list</span></span>
-<span id="cb44-320"><a href="#cb44-320" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
-<span id="cb44-321"><a href="#cb44-321" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_cells =</span> total_cells,</span>
-<span id="cb44-322"><a href="#cb44-322" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_groups =</span> full_groups,</span>
-<span id="cb44-323"><a href="#cb44-323" aria-hidden="true" tabindex="-1"></a>    <span class="at">leftover_cells =</span> leftover_cells,</span>
-<span id="cb44-324"><a href="#cb44-324" aria-hidden="true" tabindex="-1"></a>    <span class="at">growth_classification =</span> growth_classification</span>
-<span id="cb44-325"><a href="#cb44-325" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb44-326"><a href="#cb44-326" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb44-327"><a href="#cb44-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-328"><a href="#cb44-328" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb44-329"><a href="#cb44-329" aria-hidden="true" tabindex="-1"></a><span class="fu">cell_division_summary</span>(<span class="dv">600</span>)  <span class="co">#  &quot;Rapid growth&quot;</span></span>
-<span id="cb44-330"><a href="#cb44-330" aria-hidden="true" tabindex="-1"></a><span class="fu">cell_division_summary</span>(<span class="dv">1001</span>) <span class="co">#  &quot;Extreme growth&quot;</span></span>
-<span id="cb44-331"><a href="#cb44-331" aria-hidden="true" tabindex="-1"></a><span class="fu">cell_division_summary</span>(<span class="dv">251</span>)  <span class="co"># &quot;Moderate growth&quot;</span></span>
-<span id="cb44-332"><a href="#cb44-332" aria-hidden="true" tabindex="-1"></a><span class="fu">cell_division_summary</span>(<span class="dv">100</span>)  <span class="co">#  &quot;Slow growth&quot;</span></span>
-<span id="cb44-333"><a href="#cb44-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-334"><a href="#cb44-334" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-335"><a href="#cb44-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-336"><a href="#cb44-336" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb44-337"><a href="#cb44-337" aria-hidden="true" tabindex="-1"></a><span class="fu">## Messages, Warnings, and Errors in functions</span></span>
-<span id="cb44-338"><a href="#cb44-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-339"><a href="#cb44-339" aria-hidden="true" tabindex="-1"></a>When writing your own functions, it&#39;s useful to give feedback to the user using different types of messages:</span>
-<span id="cb44-340"><a href="#cb44-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-341"><a href="#cb44-341" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`message()`** -- Informational messages. These are shown but do not interrupt execution.</span>
-<span id="cb44-342"><a href="#cb44-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-343"><a href="#cb44-343" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb44-344"><a href="#cb44-344" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">&quot;Calculation complete.&quot;</span>)</span>
-<span id="cb44-345"><a href="#cb44-345" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-346"><a href="#cb44-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-347"><a href="#cb44-347" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`warning()`** -- Alerts the user that something may be wrong, but the function continues running.</span>
-<span id="cb44-348"><a href="#cb44-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-349"><a href="#cb44-349" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb44-350"><a href="#cb44-350" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="fu">warning</span>(<span class="st">&quot;Negative value detected.&quot;</span>)</span>
-<span id="cb44-351"><a href="#cb44-351" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-352"><a href="#cb44-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-353"><a href="#cb44-353" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`stop()`** -- Stops the function and throws an error. Use this to prevent further execution if input is invalid.</span>
-<span id="cb44-354"><a href="#cb44-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-355"><a href="#cb44-355" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb44-356"><a href="#cb44-356" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) <span class="fu">stop</span>(<span class="st">&quot;Input must be numeric.&quot;</span>)</span>
-<span id="cb44-357"><a href="#cb44-357" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-358"><a href="#cb44-358" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb44-359"><a href="#cb44-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-360"><a href="#cb44-360" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Task example</span></span>
-<span id="cb44-361"><a href="#cb44-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-362"><a href="#cb44-362" aria-hidden="true" tabindex="-1"></a>Try to make the example so all three message are shown</span>
-<span id="cb44-363"><a href="#cb44-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-366"><a href="#cb44-366" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-367"><a href="#cb44-367" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb44-368"><a href="#cb44-368" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-369"><a href="#cb44-369" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Show a message when the function starts</span></span>
-<span id="cb44-370"><a href="#cb44-370" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Starting calculation...&quot;</span>)</span>
-<span id="cb44-371"><a href="#cb44-371" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-372"><a href="#cb44-372" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Stop the function if x is not numeric</span></span>
-<span id="cb44-373"><a href="#cb44-373" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) {</span>
-<span id="cb44-374"><a href="#cb44-374" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Input must be numeric.&quot;</span>)</span>
-<span id="cb44-375"><a href="#cb44-375" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb44-376"><a href="#cb44-376" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-377"><a href="#cb44-377" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Perform the calculation</span></span>
-<span id="cb44-378"><a href="#cb44-378" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">4</span></span>
-<span id="cb44-379"><a href="#cb44-379" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-380"><a href="#cb44-380" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Warn the user if the result is negative</span></span>
-<span id="cb44-381"><a href="#cb44-381" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (res <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
-<span id="cb44-382"><a href="#cb44-382" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;The result is negative.&quot;</span>)</span>
-<span id="cb44-383"><a href="#cb44-383" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb44-384"><a href="#cb44-384" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb44-385"><a href="#cb44-385" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(res)</span>
-<span id="cb44-386"><a href="#cb44-386" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb44-387"><a href="#cb44-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-388"><a href="#cb44-388" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write 3 test example that shows:</span></span>
-<span id="cb44-389"><a href="#cb44-389" aria-hidden="true" tabindex="-1"></a><span class="co"># - the message</span></span>
-<span id="cb44-390"><a href="#cb44-390" aria-hidden="true" tabindex="-1"></a><span class="co"># - the warning</span></span>
-<span id="cb44-391"><a href="#cb44-391" aria-hidden="true" tabindex="-1"></a><span class="co"># - and the error</span></span>
-<span id="cb44-392"><a href="#cb44-392" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-393"><a href="#cb44-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-394"><a href="#cb44-394" aria-hidden="true" tabindex="-1"></a><span class="fu"># Apply family</span></span>
-<span id="cb44-395"><a href="#cb44-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-396"><a href="#cb44-396" aria-hidden="true" tabindex="-1"></a>The <span class="in">`apply`</span> family of functions (<span class="in">`apply`</span>, <span class="in">`lapply`</span>, <span class="in">`sapply`</span>, <span class="in">`tapply`</span>, <span class="in">`mapply`</span>, etc.) is used to perform operations on data structures without writing explicit loops.</span>
-<span id="cb44-397"><a href="#cb44-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-398"><a href="#cb44-398" aria-hidden="true" tabindex="-1"></a><span class="fu">### Summary of the `apply` Family</span></span>
-<span id="cb44-399"><a href="#cb44-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-400"><a href="#cb44-400" aria-hidden="true" tabindex="-1"></a>| Function   | Input Type         | Output Type     | Description                                 |</span>
-<span id="cb44-401"><a href="#cb44-401" aria-hidden="true" tabindex="-1"></a>|---------------|---------------|---------------|---------------------------|</span>
-<span id="cb44-402"><a href="#cb44-402" aria-hidden="true" tabindex="-1"></a>| <span class="in">`apply()`</span>  | matrix, data.frame | vector, array   | Apply a function over rows or columns       |</span>
-<span id="cb44-403"><a href="#cb44-403" aria-hidden="true" tabindex="-1"></a>| <span class="in">`lapply()`</span> | list, vector       | list            | Apply a function to each element            |</span>
-<span id="cb44-404"><a href="#cb44-404" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sapply()`</span> | list, vector       | simplified list | Like <span class="in">`lapply()`</span>, but returns vector/matrix  |</span>
-<span id="cb44-405"><a href="#cb44-405" aria-hidden="true" tabindex="-1"></a>| <span class="in">`tapply()`</span> | vector + factor    | vector, array   | Apply a function to grouped subsets         |</span>
-<span id="cb44-406"><a href="#cb44-406" aria-hidden="true" tabindex="-1"></a>| <span class="in">`mapply()`</span> | multiple vectors   | vector, list    | Apply a function in parallel over arguments |</span>
-<span id="cb44-407"><a href="#cb44-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-408"><a href="#cb44-408" aria-hidden="true" tabindex="-1"></a><span class="fu">### Examples</span></span>
-<span id="cb44-409"><a href="#cb44-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-410"><a href="#cb44-410" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span><span class="in">`sapply()`</span> -- Simplified apply (tries to return vector or matrix)</span>
-<span id="cb44-411"><a href="#cb44-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-414"><a href="#cb44-414" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-415"><a href="#cb44-415" aria-hidden="true" tabindex="-1"></a>(lst <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">b =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>))</span>
-<span id="cb44-416"><a href="#cb44-416" aria-hidden="true" tabindex="-1"></a><span class="co"># Same as lapply(), but returns a simplified vector</span></span>
-<span id="cb44-417"><a href="#cb44-417" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(lst, mean)</span>
-<span id="cb44-418"><a href="#cb44-418" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-419"><a href="#cb44-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-420"><a href="#cb44-420" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span><span class="in">`lapply()`</span> -- list apply</span>
-<span id="cb44-421"><a href="#cb44-421" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-424"><a href="#cb44-424" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-425"><a href="#cb44-425" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the mean of each list element</span></span>
-<span id="cb44-426"><a href="#cb44-426" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(lst, mean)</span>
-<span id="cb44-427"><a href="#cb44-427" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb44-428"><a href="#cb44-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-429"><a href="#cb44-429" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span><span class="in">`apply()`</span> -- Apply over rows or columns of a matrix or data frame</span>
-<span id="cb44-430"><a href="#cb44-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-433"><a href="#cb44-433" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-434"><a href="#cb44-434" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 3x3 matrix</span></span>
-<span id="cb44-435"><a href="#cb44-435" aria-hidden="true" tabindex="-1"></a>(mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>) )</span>
-<span id="cb44-436"><a href="#cb44-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-437"><a href="#cb44-437" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean of each column (2 = columns)</span></span>
-<span id="cb44-438"><a href="#cb44-438" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, mean)</span>
-<span id="cb44-439"><a href="#cb44-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-440"><a href="#cb44-440" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the sum of each row (1 = rows)</span></span>
-<span id="cb44-441"><a href="#cb44-441" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">1</span>, sum)</span>
-<span id="cb44-442"><a href="#cb44-442" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="markdown" data-shortcodes="false"><code>---
+title: &quot;Practice data.table and ggplot2&quot;
+author: 
+  - name: &quot;dr.sc. Paula Štancl&quot;
+    affiliation: &quot;Kuzman Consulting d.o.o&quot;
+  - name: &quot;dr.sc. Andrea Gelemanović&quot;
+    affiliation: &quot;MedILS, UNIST&quot;
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 5
+    code-fold: false
+    fig-align: center
+    df-print: paged
+    code-summary: &quot;Show code&quot;
+    code-line-numbers: false
+    code-tools: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Library
+
+In the first code chunk, load the **`data.table`** and **`ggplot2`** libraries --- these will be essential for data manipulation and visualization throughout the analysis.
+
+quarto-executable-code-5450563D
+
+```r
+# Import the libraries
+```
+
+# Data set for analysis
+
+We will analyze the [HeartDisease](https://vincentarelbundock.github.io/Rdatasets/csv/CardioDataSets/heartdisease_tbl_df.csv) dataset to explore patterns and potential risk factors associated with heart conditions. As a first step, we&#39;ll use the `fread()` function from the `data.table` package to efficiently import the dataset directly from an online source.
+
+```{r, eval=FALSE}
+heart_disease &lt;- fread(&quot;&quot;)
+```
+
+# Tasks
+
+1.  How many patients are in your table?
+
+    ```{r}
+    # Hint: Think about how to count the number of observations (rows) in a data.table.
+    ```
+
+2.  How many patients are *Asymptomatic* based on *ChestPain*?
+
+    ```{r}
+    # Hint: Use data.table syntax to filter rows and count matching cases.
+    ```
+
+3.  Which *ChestPain* types are more common among those with *HeartDisease*?
+
+    ```{r}
+    # Hint: Filter by HeartDisease and summarize counts using data.table.
+    ```
+
+4.  Visualize the relationship between *Cholesterol* and *BloodSugar* for both sexes.
+
+    ```{r}
+    # Hint: Use ggplot2 (or ggpubr if preferred) to create a scatter plot grouped by sex.
+    ```
+
+5.  Plot the distribution of *RestingBP* colored by *HeartDisease*.
+
+    ```{r}
+    # Hint: Histograms, density plots, or boxplots are all good options for showing distributions—choose one or more.
+
+    ```
+
+6.  Which female patient has the highest **MaximumHR**? What about the male patients?
+
+    ```{r}
+    # Hint: Use subsetting by sex and then find the row(s) with the maximum value of MaximumHR OR use by argument to get answer in one code.
+    ```
+
+7.  Calculate the mean value of all numeric columns.
+
+    ```{r}
+    # Hint: Use data.table column operation syntax
+    ```
+
+```{=html}
+&lt;!-- --&gt;
+```
+8.  Classify patients as Young (\&lt;35) or Old (≥35) and count them by **HeartDisease** status.
+
+    ```{r}
+    # Hint: Use `ifelse()` inside data.table to create a new column with age group labels.
+    ```
+
+9.  Visualize the count of young and old patients by **HeartDisease** status.
+
+quarto-executable-code-5450563D
+
+```r
+# Hint: Compare `geom_bar()` vs. `geom_col()`—which one fits your data format?
+```</code></pre>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

@@ -22,6 +22,10 @@ website:
             href: Day2_IRB25_part1.qmd
           - text: Visualization
             href: Day2_IRB25_plots.qmd
+      - text: Day 3
+        menu: 
+          - text: Practice
+            href: Day3_IRB25_part0.qmd
   page-footer:
     background: light
     left: "Copyright 2025, Kuzman Consulting d.o.o."

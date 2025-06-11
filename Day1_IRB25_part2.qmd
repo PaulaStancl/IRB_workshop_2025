@@ -203,7 +203,7 @@ ifelse(temps >= 20, "Warm", "Cool")
 ### Summary of conditional statements
 
 | Syntax                | Description                                                | Example                          |
-|------------------|--------------------------------|-----------------------|
+|------------------|----------------------------------|--------------------|
 | `if (condition)`      | Executes code only if the condition is `TRUE`              | `if (x > 0) print("Positive")`   |
 | `else`                | Executes code if the previous `if` was `FALSE`             | `else print("Not positive")`     |
 | `else if (condition)` | Checks another condition if the first `if` fails           | `else if (x == 0) print("Zero")` |
@@ -269,6 +269,48 @@ cell_division_summary <- function(initial_cells, group_size = 10) {
 # TODO: Run your function on some example
 ```
 
+Solved
+
+```{r}
+cell_division_summary <- function(initial_cells, group_size = 10) {
+  
+  # Calculate total number of cells after 1 division
+  total_cells <- initial_cells * 2
+  
+  # Add growth classification based on total_cells
+  if (total_cells > 2000) {
+    growth_classification <- "Extreme growth"
+  } else if (total_cells > 1000) {
+    growth_classification <- "Rapid growth"
+  } else if (total_cells > 500) {
+    growth_classification <- "Moderate growth"
+  } else {
+    growth_classification <- "Slow growth"
+  }
+  
+  # Calculate number of full groups
+  full_groups <- total_cells %/% group_size
+  
+  # Calculate number of leftover cells
+  leftover_cells <- total_cells %% group_size
+  
+  # Return all values in a list
+  list(
+    total_cells = total_cells,
+    full_groups = full_groups,
+    leftover_cells = leftover_cells,
+    growth_classification = growth_classification
+  )
+}
+
+# Example usage
+cell_division_summary(600)  #  "Rapid growth"
+cell_division_summary(1001) #  "Extreme growth"
+cell_division_summary(251)  # "Moderate growth"
+cell_division_summary(100)  #  "Slow growth"
+
+```
+
 ::: callout-important
 ## Messages, Warnings, and Errors in functions
 
@@ -325,25 +367,23 @@ my_function <- function(x) {
 # - and the error
 ```
 
-
 # Apply family
 
 The `apply` family of functions (`apply`, `lapply`, `sapply`, `tapply`, `mapply`, etc.) is used to perform operations on data structures without writing explicit loops.
 
 ### Summary of the `apply` Family
 
-| Function   | Input Type          | Output Type     | Description                                  |
-|------------|---------------------|------------------|----------------------------------------------|
-| `apply()`  | matrix, data.frame  | vector, array    | Apply a function over rows or columns        |
-| `lapply()` | list, vector        | list             | Apply a function to each element             |
-| `sapply()` | list, vector        | simplified list  | Like `lapply()`, but returns vector/matrix   |
-| `tapply()` | vector + factor     | vector, array    | Apply a function to grouped subsets          |
-| `mapply()` | multiple vectors    | vector, list     | Apply a function in parallel over arguments  |
-
+| Function   | Input Type         | Output Type     | Description                                 |
+|---------------|---------------|---------------|---------------------------|
+| `apply()`  | matrix, data.frame | vector, array   | Apply a function over rows or columns       |
+| `lapply()` | list, vector       | list            | Apply a function to each element            |
+| `sapply()` | list, vector       | simplified list | Like `lapply()`, but returns vector/matrix  |
+| `tapply()` | vector + factor    | vector, array   | Apply a function to grouped subsets         |
+| `mapply()` | multiple vectors   | vector, list    | Apply a function in parallel over arguments |
 
 ### Examples
 
-1. `sapply()` – Simplified apply (tries to return vector or matrix)
+1.  `sapply()` -- Simplified apply (tries to return vector or matrix)
 
 ```{r}
 (lst <- list(a = 1:5, b = 6:10))
@@ -351,14 +391,15 @@ The `apply` family of functions (`apply`, `lapply`, `sapply`, `tapply`, `mapply`
 sapply(lst, mean)
 ```
 
-2. `lapply()` – list apply
+2.  `lapply()` -- list apply
 
 ```{r}
 # Get the mean of each list element
 lapply(lst, mean)
 ```
 
-3.  `apply()` – Apply over rows or columns of a matrix or data frame
+3.  `apply()` -- Apply over rows or columns of a matrix or data frame
+
 ```{r}
 # Create a 3x3 matrix
 (mat <- matrix(1:9, nrow = 3) )
