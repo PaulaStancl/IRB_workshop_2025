@@ -42,55 +42,53 @@ heart_disease <- fread("")
 
 1.  How many patients are in your table?
 
-    ```{r}
+```{r}
     # Hint: Think about how to count the number of observations (rows) in a data.table.
-    ```
+```
 
 2.  How many patients are *Asymptomatic* based on *ChestPain*?
 
-    ```{r}
+```{r}
     # Hint: Use data.table syntax to filter rows and count matching cases.
-    ```
+```
 
 3.  Which *ChestPain* types are more common among those with *HeartDisease*?
 
-    ```{r}
+```{r}
     # Hint: Filter by HeartDisease and summarize counts using data.table.
-    ```
+```
 
 4.  Visualize the relationship between *Cholesterol* and *BloodSugar* for both sexes.
 
-    ```{r}
+```{r}
     # Hint: Use ggplot2 (or ggpubr if preferred) to create a scatter plot grouped by sex.
-    ```
+```
 
 5.  Plot the distribution of *RestingBP* colored by *HeartDisease*.
 
-    ```{r}
+```{r}
     # Hint: Histograms, density plots, or boxplots are all good options for showing distributions—choose one or more.
-
-    ```
+```
 
 6.  Which female patient has the highest **MaximumHR**? What about the male patients?
 
-    ```{r}
+```{r}
     # Hint: Use subsetting by sex and then find the row(s) with the maximum value of MaximumHR OR use by argument to get answer in one code.
-    ```
+```
 
 7.  Calculate the mean value of all numeric columns.
 
-    ```{r}
-    # Hint: Use data.table column operation syntax
-    ```
-
-```{=html}
-<!-- -->
+```{r}
+  # Hint: Use data.table column operation syntax
 ```
+
+
+
 8.  Classify patients as Young (\<35) or Old (≥35) and count them by **HeartDisease** status.
 
-    ```{r}
+```{r}
     # Hint: Use `ifelse()` inside data.table to create a new column with age group labels.
-    ```
+```
 
 9.  Visualize the count of young and old patients by **HeartDisease** status.
 
