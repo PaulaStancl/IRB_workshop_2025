@@ -87,7 +87,7 @@ heart_disease <- fread("")
 8.  Classify patients as Young (\<35) or Old (≥35) and count them by **HeartDisease** status.
 
 ```{r}
-    # Hint: Use `ifelse()` inside data.table to create a new column with age group labels.
+# Hint: Use `ifelse()` inside data.table to create a new column with age group labels.
 ```
 
 9.  Visualize the count of young and old patients by **HeartDisease** status.
