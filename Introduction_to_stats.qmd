@@ -56,10 +56,6 @@ library(rstatix)       # identify_outliers
 library(outliers)      # grubbs.test
 library(EnvStats)      # rosnerTest
 
-# Missing data visualization & imputation
-library(VIM)           # aggr
-library(mice)          # mice, complete
-
 # Correlation matrix with p-values
 library(Hmisc)         # rcorr
 
@@ -255,52 +251,6 @@ Correlation shows **linear association between two variables only**.
 **Multicollinearity** can involve **more than two variables**, and this isn't captured by correlation alone.
 
 Two variables can have **low pairwise correlation**, but still cause multicollinearity **in combination with others**.
-:::
-
-## Dealing with missing data
-
-::: callout-tip
-### Check for missing data using `msleep` dataset
-
-```{r}
-data(msleep)
-msleep <- as.data.table(msleep)
-dim(msleep)
-head(msleep)
-
-# Count missing values
-table(is.na(msleep))
-
-# Visualize missing values
-ggplot(msleep, aes(bodywt, sleep_total, colour = is.na(brainwt))) +
-  geom_point() +
-  scale_x_log10()
-
-# Improved missing data plots with VIM
-aggr(msleep)
-aggr(msleep, col=c('navyblue','red'), numbers=TRUE, sortVars=TRUE, labels=names(msleep), cex.axis=.7, gap=3, 
-     ylab=c("Histogram of missing data","Pattern"))
-
-# Select complete cases
-msleep_complete_cases <- msleep[complete.cases(msleep), ]
-dim(msleep_complete_cases)
-aggr(msleep_complete_cases, col=c('navyblue','red'), numbers=TRUE, sortVars=TRUE, labels=names(msleep), cex.axis=.7, gap=3, 
-     ylab=c("Histogram of missing data","Pattern"))
-
-# Impute missing data with mice
-imputed <- mice(msleep)
-summary(imputed)
-imputed <- complete(imputed)
-
-# Visualize after imputation
-ggplot(imputed, aes(bodywt, sleep_total, colour = is.na(brainwt))) +
-  geom_point() +
-  scale_x_log10()
-
-aggr(imputed)
-aggr(imputed, col=c('navyblue','red'), numbers=TRUE, sortVars=TRUE, labels=names(imputed), cex.axis=.7, gap=3, 
-     ylab=c("Histogram of missing data","Pattern"))
-```
 :::
 
 # PART 2: Statistical analysis
