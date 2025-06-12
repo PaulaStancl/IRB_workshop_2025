@@ -1,0 +1,456 @@
+---
+title: "Introduction to statistics"
+author: 
+  - name: "dr.sc. Paula Štancl"
+    affiliation: "Kuzman Consulting d.o.o"
+  - name: "dr.sc. Andrea Gelemanović"
+    affiliation: "MedILS, UNIST"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 5
+    code-fold: false
+    fig-align: center
+    df-print: paged
+    code-summary: "Show code"
+    code-line-numbers: false
+    code-tools: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# Part 1: Exploratory data analysis
+
+## Define research question
+
+We will investigate another build-in dataset **`mtcars`**.
+
+Let's say that our research question will be: "Which factors are most associated with fuel efficiency (mpg) in cars?"
+
+We will treat mpg (miles per gallon) as the outcome variable and analyze the effects of other available characteristics on it.
+
+#### Question:
+
+Where can we obtain some information about this dataset?
+
+## Load the data
+
+#### Question:
+
+What is the very first thing you do when starting a new analysis?
+
+```{r}
+# Data manipulation
+library(data.table)
+
+# Visualization
+library(ggplot2)
+library(ggpubr)        # For gghistogram, ggboxplot, ggscatter, stat_compare_means, stat_cor
+library(corrplot)      # For correlation matrix plot
+
+# Outlier detection
+library(rstatix)       # identify_outliers
+library(outliers)      # grubbs.test
+library(EnvStats)      # rosnerTest
+
+# Missing data visualization & imputation
+library(VIM)           # aggr
+library(mice)          # mice, complete
+
+# Correlation matrix with p-values
+library(Hmisc)         # rcorr
+
+# Variance Inflation Factor (VIF) to check multicollinearity
+library(car)          # vif
+```
+
+```{r}
+dt <- as.data.table(mtcars)
+str(dt)
+summary(dt)
+head(dt)
+```
+
+What can you conclude from your data?
+
+-   *mpg*: Fuel efficiency (miles per gallon) - dependent variable
+
+-   *hp, wt, disp*: Numeric predictors
+
+-   *am, cyl, gear*: Categorical factors
+
+### Check categorical variables
+
+```{r}
+lapply(dt[, .(cyl, am, gear)], table)
+```
+
+### Convert numerical variables to categorical
+
+We want to do this to ensure that R will treat am, gear, cyl as categorical variables, not continuous numerical. This is crucial because comparing means across groups (e.g. Automatic vs Manual) requires factors, not numbers.
+
+```{r}
+# Apply factor conversion with correct labeling
+# 'am' is 0 = Automatic, 1 = Manual
+dt[, cyl := as.factor(cyl)]
+dt[, gear := as.factor(gear)]
+dt[, am := factor(am, levels = c(0, 1), labels = c("Automatic", "Manual"))]
+```
+
+**Check categorical variables (again)**
+
+```{r}
+lapply(dt[, .(cyl, am, gear)], table)
+```
+
+#### Question:
+
+Can you define what type of data is `factor` in R?
+
+#### Task:
+
+Make descriptive statistics for *mpg* variable grouped by 1) *am* and 2) *cyl*.
+
+```{r}
+# Write your solution here
+```
+
+## Familiarize yourself with the data
+
+To evaluate some descriptive statistics we can first visually inspect the data.
+
+### Normality check
+
+```{r}
+# Make histograms
+gghistogram(dt, x = "mpg", fill = "cyl")
+gghistogram(dt, x = "mpg", fill = "am")
+gghistogram(dt, x = "mpg", fill = "cyl", facet.by = "am")
+```
+
+#### Question:
+
+What function `ggdensity` does?
+
+```{r}
+# Make Q-Q plot
+ggqqplot(dt, x = "mpg")
+ggqqplot(dt, x = "mpg", color = "cyl", facet.by = "cyl")
+ggqqplot(dt, x = "mpg", color = "am", facet.by = "am")
+```
+
+```{r}
+# Run statistical test
+shapiro.test(dt$mpg)
+```
+
+### Boxplot with significance test
+
+```{r}
+ggboxplot(dt, x = "am", y = "mpg", fill = "am") +
+  stat_compare_means(method = "t.test")
+```
+
+#### Task:
+
+Can you detect any outliers in other variables?
+
+```{r}
+# Write your solution here
+```
+
+### Outlier detection
+
+**Outlier detection using descriptive statistics methods**
+
+Apart from visual inspection with boxplots, outliers can also be detected via several descriptive statistics (including minimum, maximum, histogram, and percentiles) or thanks to more formal techniques of outliers detection using statistical tests. Once you detect a possible outlier, it is up to you to decide how to treat them (i.e., keeping, removing or imputing them) before conducting further analyses.
+
+**Outlier detection using descriptive statistics methods**
+
+```{r}
+# SD method - those that are 2 x SD away from mean
+mean_mpg <- mean(dt$mpg)
+sd_mpg <- sd(dt$mpg)
+dt[mpg < mean_mpg - 2 * sd_mpg | mpg > mean_mpg + 2 * sd_mpg]
+```
+
+```{r}
+# IQR method - those that are 1.5 x IQR away from 1st or 3rd quartile
+identify_outliers(data = dt, variable = "mpg")
+```
+
+```{r}
+# Z-score method (if your data has a normal distribution)
+# A z-score below -3.29 or above 3.29 means you have detected outliers. 
+# This value of 3.29 comes from the fact that 1 observation out of 1000 is out of this interval if the data follow a normal distribution.
+z_scores <- scale(dt$mpg)
+dt[, z_mpg := z_scores]
+dt[abs(z_mpg) > 3.29]
+```
+
+#### Question:
+
+Can you conclude what `scale` does?
+
+### Outlier detection using statistical tests
+
+Take into consideration that these tests assume normality of the data.
+
+***The Grubbs test***
+
+It allows to detect whether the highest or lowest value in a dataset is an outlier. It only detects one outlier at a time. It is not appropriate for sample size of 6 or less.
+
+```{r}
+grubbs.test(dt$mpg)
+grubbs.test(dt$mpg, opposite = TRUE)
+```
+
+***Dixon test***
+
+Similar to the Grubbs test, Dixon test is used to test whether a single low or high value is an outlier. So if more than one outliers is suspected, the test has to be performed on these suspected outliers individually. This test is most useful for small sample size (usually n ≤ 25).
+
+```{r, error=TRUE}
+dixon.test(dt$mpg)
+```
+
+It is a good practice to always check the results of the statistical test for outliers against the boxplot to make sure we tested all potential outliers.
+
+If outlier is detected, find and exclude highest value (i.e. outlier) and then repeat the Dixon test on dataset without this outlier.
+
+***Rosner test***
+
+It is used to detect several outliers at once (unlike Grubbs and Dixon test which must be performed iteratively to screen for multiple outliers), and it is designed to avoid the problem of masking, where an outlier that is close in value to another outlier can go undetected. It is most appropriate when the sample size is large (n ≥ 20).
+
+```{r}
+rosnerTest(dt$mpg, k = 1)
+```
+
+### Checking for correlation patterns
+
+We can first visually inspect correlations by creating scatter plots:
+
+```{r}
+ggscatter(data = dt, 
+          x = "am", 
+          y = "mpg", 
+          add = "reg.line")
+```
+
+What if you want to do correlation analysis for all available numeric variables?
+
+```{r}
+cor_data <- dt[, .(mpg, hp, wt, qsec)]
+cor_matrix <- cor(cor_data)
+corrplot(cor_matrix, method = 'square', type = 'upper', diag = FALSE, tl.col = "black")
+```
+
+::: callout-important
+### Correlation ≠ Collinearity
+
+Correlation shows **linear association between two variables only**.
+
+**Multicollinearity** can involve **more than two variables**, and this isn't captured by correlation alone.
+
+Two variables can have **low pairwise correlation**, but still cause multicollinearity **in combination with others**.
+:::
+
+## Dealing with missing data
+
+::: callout-tip
+### Check for missing data using `msleep` dataset
+
+```{r}
+data(msleep)
+msleep <- as.data.table(msleep)
+dim(msleep)
+head(msleep)
+
+# Count missing values
+table(is.na(msleep))
+
+# Visualize missing values
+ggplot(msleep, aes(bodywt, sleep_total, colour = is.na(brainwt))) +
+  geom_point() +
+  scale_x_log10()
+
+# Improved missing data plots with VIM
+aggr(msleep)
+aggr(msleep, col=c('navyblue','red'), numbers=TRUE, sortVars=TRUE, labels=names(msleep), cex.axis=.7, gap=3, 
+     ylab=c("Histogram of missing data","Pattern"))
+
+# Select complete cases
+msleep_complete_cases <- msleep[complete.cases(msleep), ]
+dim(msleep_complete_cases)
+aggr(msleep_complete_cases, col=c('navyblue','red'), numbers=TRUE, sortVars=TRUE, labels=names(msleep), cex.axis=.7, gap=3, 
+     ylab=c("Histogram of missing data","Pattern"))
+
+# Impute missing data with mice
+imputed <- mice(msleep)
+summary(imputed)
+imputed <- complete(imputed)
+
+# Visualize after imputation
+ggplot(imputed, aes(bodywt, sleep_total, colour = is.na(brainwt))) +
+  geom_point() +
+  scale_x_log10()
+
+aggr(imputed)
+aggr(imputed, col=c('navyblue','red'), numbers=TRUE, sortVars=TRUE, labels=names(imputed), cex.axis=.7, gap=3, 
+     ylab=c("Histogram of missing data","Pattern"))
+```
+:::
+
+# PART 2: Statistical analysis
+
+### Categorical data analysis: Chi-square Test
+
+To investigate if there is any statistical difference between the groups we use chi-square test for categorical data.
+
+```{r}
+chisq.test(table(dt$am, dt$cyl))
+```
+
+#### Question:
+
+How can we make some visual representation of this categorical data? For homework :)
+
+### Numerical data analysis
+
+First, we need to evaluate if there is a normal distribution with our numerical data (Shapiro-Wilk test or Kolmogorov-Smirnov test).
+
+If the data is normally distributed, we can investigate if there is statistical difference between groups using T-test (if we compare two groups) or ANOVA (if we compare more than two groups).
+
+If the data is not normally distributed, we can investigate if there is statistical difference between groups using Mann-Whitney U test (if we compare two groups) or Kruskal-Wallis test (if we compare more than two groups).
+
+If you are working with paired data (same individuals measured more than once, e.g. before or after the treatment, several different time points), we need to use paired versions of all the above mentioned tests (usually by adding parameter "paired = TRUE" in your statistical test functions).
+
+#### Task:
+
+Perform statistical test to check data normality and visualize it.
+
+```{r}
+# Write your solution here
+```
+
+Let's run some statistical tests - two groups comparison:
+
+```{r}
+t.test(mpg ~ am, data = dt)
+```
+
+::: callout-important
+By default, `t.test()` uses **Welch's t-test**, which **does not assume equal variances** between the two groups.
+
+If you want to perform the **Student's t-test** (i.e. assuming equal variances), you need to explicitly set the argument `var.equal = TRUE`.
+
+**Variance is a measure of how spread out the values are in a dataset**. Two groups can have the same mean but very different spreads (variances).
+
+How to check equal variance? Use F-test:
+
+var.test(mpg \~ am, data = dt)
+
+-   **p \< 0.05** Variances are significantly different (don't assume equal variances)
+
+-   **p ≥ 0.05** No strong evidence of difference (safe to assume equal variances)
+:::
+
+```{r}
+t.test(mpg ~ am, data = dt, var.equal = TRUE)
+wilcox.test(mpg ~ am, data = dt)
+
+ggboxplot(dt, x = "am", y = "mpg", fill = "am")
+```
+
+And now for some 2+ groups:
+
+```{r}
+summary(aov(mpg ~ gear, data = dt))
+kruskal.test(mpg ~ gear, data = dt)
+
+ggboxplot(dt, x = "gear", y = "mpg", fill = "gear")
+
+ggboxplot(dt, x = "gear", y = "mpg", fill = "gear") + 
+  stat_compare_means()
+```
+
+#### Question:
+
+What is mandatory next step after anova?
+
+```{r}
+TukeyHSD(aov(mpg ~ gear, data = dt))
+```
+
+### Correlation analysis
+
+We can run correlations to assess how two variables are associated with one another. There is no direction here. Coefficient of correlation can go from -1 (very negative correlation) to 1 (very positive correlation).
+
+#### Task:
+
+We learned how to do basic correlation analysis, but if we want to check correlations between all numerical variables & get the statistical significance, we can use function rcorr from package Hmisc. Try it out!
+
+```{r}
+# Write your solution here
+```
+
+#### Task:
+
+How can we improve our `corrplot` to add statistical significance?
+
+```{r}
+# Write your solution here
+```
+
+### Regression models
+
+We use linear regression models when our dependent variable is numerical, and logistic regression models when we have binary categorical dependent variable.
+
+```{r}
+# Logistic regression
+dt[, am_binary := ifelse(am == "Manual", 1, 0)]
+
+model1 <- glm(am_binary ~ hp, data = dt, family = "binomial")
+summary(model1)
+```
+
+::: callout-important
+If we **did not manually create a binary variable** `am_binary`, and we used the factor `am` (e.g. `Automatic`/`Manual`) in the regression model, R will **automatically choose a reference level** based on the **alphabetical order** of the factor levels **unless you specify otherwise**. The first level alphabetically becomes the **reference category** and is coded as `0`, and the other as `1`.
+:::
+
+```{r}
+# Linear regression
+model2 <- lm(mpg ~ hp, data = dt)
+summary(model2)
+```
+
+#### Task:
+
+Perform now a multivariate regressions:
+
+```{r}
+# Write your solution here
+```
+
+To properly assess multicollinearity, we need to check the Variance Inflation Factor (VIF) which is a proper diagnostic tool.
+
+```{r}
+# Multivariable linear regression
+model_multi <- lm(mpg ~ hp + wt + qsec, data = dt)
+summary(model_multi)
+
+# Calculate VIF
+vif(model_multi)
+```
+
+What is the interpretation?
+
+-   `hp` is moderately correlated with the other variables in our model.
+
+**VIF ≈ 1**: No multicollinearity
+
+**VIF \> 5**: Moderate multicollinearity (can be a concern)
+
+**VIF \> 10**: High multicollinearity (serious concern)

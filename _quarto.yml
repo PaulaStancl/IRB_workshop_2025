@@ -26,6 +26,8 @@ website:
         menu: 
           - text: Practice
             href: Day3_IRB25_part0.qmd
+          - text: Statistics
+            href: Introduction_to_stats.qmd
   page-footer:
     background: light
     left: "Copyright 2025, Kuzman Consulting d.o.o."
