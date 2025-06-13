@@ -1,0 +1,457 @@
+---
+title: "Introduction to machine learning"
+author: 
+  - name: "dr.sc. Paula Štancl"
+    affiliation: "Kuzman Consulting d.o.o"
+  - name: "dr.sc. Andrea Gelemanović"
+    affiliation: "MedILS, UNIST"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 5
+    code-fold: false
+    fig-align: center
+    df-print: paged
+    code-summary: "Show code"
+    code-line-numbers: false
+    code-tools: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# Load libraries
+
+```{r}
+# Data manipulation
+library(data.table)
+
+# Visualization
+library(ggplot2)
+library(ggpubr)        
+library(corrplot)  
+
+# Machine learning
+library(caret)
+library(MASS)
+library(factoextra)
+library(Boruta)
+```
+
+set.seed() in R sets the random number generator seed, which ensures that any random operations (like splitting data into training/test sets, random sampling, cross-validation folds) are reproducible.
+
+When you perform these tasks they involve randomness. Without set.seed(), the results would change every time you run the code. By setting a seed, you ensure that the same random split happens every time, and that others can reproduce your results exactly.
+
+```{r}
+# Set seed for reproducibility
+set.seed(12345)
+```
+
+# Import dataset
+
+We will once again work with [HeartDisease](https://vincentarelbundock.github.io/Rdatasets/csv/CardioDataSets/heartdisease_tbl_df.csv) dataset.
+
+```{r}
+heart_disease <- fread("https://vincentarelbundock.github.io/Rdatasets/csv/CardioDataSets/heartdisease_tbl_df.csv")
+class(heart_disease)
+```
+
+# Research question
+
+Let's define our research question to be this: "What predicts heart disease?"
+
+# Data preprocessing
+
+Remember how your data looks like:
+
+```{r}
+str(heart_disease)
+head(heart_disease)
+summary(heart_disease)
+table(heart_disease$HeartDisease)
+```
+
+## Convert categorical variables to factor
+
+```{r}
+heart_disease[, Sex := as.factor(Sex)]
+heart_disease[, ChestPain := as.factor(ChestPain)]
+heart_disease[, BloodSugar := as.factor(BloodSugar)]
+heart_disease[, ExerciseInducedAngina := as.factor(ExerciseInducedAngina)]
+heart_disease[, HeartDisease := as.factor(HeartDisease)]
+
+str(heart_disease)
+```
+
+## Evaluate correlation patterns
+
+```{r}
+# Calculate Pearson's correlation coefficient
+cor_matrix <- cor(heart_disease[, .SD, .SDcols = is.numeric][, -1],
+                  method = "pearson", 
+                  use = "complete.obs")
+
+# Plot corrplot to evaluate correlation patterns among the data
+corrplot(cor_matrix,
+         method = "color",      
+         type = "upper", 
+         diag = FALSE,
+         order = "hclust",      
+         tl.cex = 0.7,    
+         tl.col = "black", addCoef.col = "black",
+         col = colorRampPalette(c("blue", "white", "red"))(200)) 
+```
+
+## Data scaling
+
+Before fitting any machine learning model, scaling of the dataset needs to be performed. Usually, all algorithms are sensitive to variables that have incomparable units, leading to misleading results.
+
+To avoid this problem (because all variables should be treated equally), the variables need to be transformed to be on a similar scale which allows them to be compared correctly using the distance metric.
+
+The most popular method for that is standardization, which consists in subtracting the average value from the feature value and then dividing it by its standard deviation. This technique will allow obtaining features with a mean of 0 and a deviation of 1.
+
+Standardization is often used as a pre-processing step in machine learning to make sure that all the variables have the same scale and same importance in the model. Standardization is not sensitive to outliers.
+
+In R, standardization can be done with the `scale()` function.
+
+```{r}
+# Summary of the data
+summary(heart_disease)
+
+# Data scaling
+heart_disease_scaled <- scale(heart_disease[, .SD, .SDcols = is.numeric][, -1])
+
+# Summary of the normalized data
+summary(heart_disease_scaled)
+```
+
+# Part 1: Unsupervised learning
+
+Main categories of unsupervised learning are:
+
+-   Clustering which aims to find structure and patterns in the unlabeled data
+
+-   Dimensionality reduction which aims to decrease the number of features to describe an observation while preserving its essential structure and characteristics
+
+## PCA analysis
+
+```{r}
+# Run PCA
+pca_result <- prcomp(heart_disease_scaled, scale. = FALSE)
+
+# Combine PCA and original label
+pca_df <- data.frame(pca_result$x, 
+                     diagnosis = heart_disease$HeartDisease)
+
+# Plot PC1 vs PC2 and color by diagnosis
+ggplot(pca_df, aes(PC1, PC2, col = diagnosis)) +
+  geom_point(size = 2, alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "", color = "Diagnosis")
+
+# Explained variance
+summary(pca_result)
+```
+
+## K-means clustering
+
+```{r}
+km.out_initial <- kmeans(heart_disease_scaled, 
+                         centers = 2,
+                         nstart = 20)
+km.out_initial
+
+# Evaluate size of each cluster
+km.out_initial$size
+```
+
+::: callout-important
+***How to select for optimal number of clusters?***
+
+When you run k-means clustering with different values of k (e.g., from 1 to 10), the algorithm calculates a value called **Total Within-Cluster Sum of Squares (WSS)** - it measures how compact the clusters are (i.e. how close data points are to their assigned cluster centers).
+
+As k increases, WSS decreases because more clusters mean smaller, tighter groups. But adding more clusters always reduces WSS and at some point, the benefit becomes marginal.
+
+For visual representation of this we can run Elbow plot and find a point where the rate of decrease sharply changes - that elbow suggests an optimal balance.
+:::
+
+```{r}
+# Elbow method 
+fviz_nbclust(heart_disease_scaled, 
+             kmeans, 
+             method = "wss")
+```
+
+Let's visualize our K-means clusters:
+
+```{r}
+# Combine K-means and original label
+kmeans_df <- cbind(heart_disease, 
+                   cluster = as.factor(km.out_initial$cluster)
+                   )
+
+# How well did k-means clustering do in comparison with known groups?
+table(kmeans_df$cluster, kmeans_df$HeartDisease)
+```
+
+Let's merge now our K-means clustering with PCA visualization
+
+```{r}
+# Visualize PCA with cluster assignment
+fviz_pca_ind(prcomp(heart_disease_scaled), 
+             geom.ind = "point", 
+             col.ind = as.factor(kmeans_df$cluster), 
+             palette = "jco",
+             addEllipses = TRUE,
+             legend.title = "Cluster")
+```
+
+## Hierarchical clustering
+
+This is an alternative to k-means clustering, with big advantage that it does not require pre-selection of the number of clusters to obtain in the end.
+
+```{r}
+# Calculate clusters based on default distance metrics - evaluate others!
+hclust_result <- hclust(dist(heart_disease_scaled), 
+                        method = "complete")
+
+# Create dendogram
+plot(hclust_result)
+```
+
+For improved visualizations please examine [here](https://www.sthda.com/english/wiki/beautiful-dendrogram-visualizations-in-r-5-must-known-methods-unsupervised-machine-learning?title=beautiful-dendrogram-visualizations-in-r-5-must-known-methods-unsupervised-machine-learning) (strongly recommended):
+
+# Part 2: Supervised learning
+
+## Feature selection
+
+When we have huge number of predictors we want to first reduce the number of features. With that we can: Improve model performance - irrelevant or redundant variables can confuse the model, causing overfitting. Reduce overfitting - models trained on too many features may fit noise instead of signal. Speed up training - important for complex models or large datasets. Improve model interpretability - fewer variables make it easier to understand and explain the model's decisions. Avoid multicollinearity - helps remove such redundant variables.
+
+### Feature selection with stepwise regression model
+
+```{r}
+# Full model
+full_model <- glm(HeartDisease ~ ., 
+                  data = heart_disease, 
+                  family = binomial)
+
+# Perform backward selection & select variables
+step_model_back <- stepAIC(full_model, 
+                           direction = "backward", 
+                           trace = FALSE)
+selected_vars_back <- names(coef(step_model_back))[-1]
+selected_vars_back
+
+# Perform forward selection & select variables
+step_model_for <- stepAIC(full_model, 
+                          direction = "forward",
+                          trace = FALSE)
+selected_vars_for <- names(coef(step_model_for))[-1]
+selected_vars_for
+
+# Perform both selection & select variables
+step_model_both <- stepAIC(full_model,
+                           direction = "both", 
+                           trace = FALSE)
+selected_vars_both <- names(coef(step_model_both))[-1]
+selected_vars_both
+```
+
+### Feature selection with Boruta random forest model
+
+`Boruta` is a feature selection algorithm that adds shadow features (randomized copies of original features), trains a Random Forest model, compares importance of original vs shadow features, and iteratively confirms, rejects, or leaves undecided the features.
+
+It gives a robust, data-driven way to filter out noise and works well with non-linear relationships.
+
+Unlike stepwise methods, it respects feature interactions.
+
+```{r}
+# Run Boruta
+model_boruta <- Boruta(HeartDisease ~ ., 
+                       data = heart_disease)
+print(model_boruta)
+plot(model_boruta)
+
+# Select confirmed features
+selected_var <- getSelectedAttributes(model_boruta)
+
+# Resolve tentative features (if any)
+final_boruta <- TentativeRoughFix(model_boruta)
+getSelectedAttributes(final_boruta)
+```
+
+## Splitting data into training and testing sets
+
+Now we'll use the caret library to split the dataset into training and testing sets. The `createDataPartition` function from the caret library helps us achieve this. We'll partition 70% of the data for training and the remaining 30% for testing.
+
+By splitting the data, you ensure that your model is trained and tested on different data, which helps in evaluating its real-world performance.
+
+```{r}
+heart_disease <- as.data.frame(heart_disease[, -1])
+
+# Splitting data into training and testing sets
+trainIndex <- createDataPartition(heart_disease$HeartDisease, 
+                                  p = 0.7, 
+                                  list = FALSE, 
+                                  times = 1)
+trainData <- heart_disease[trainIndex, ]
+testData <- heart_disease[-trainIndex, ]
+
+# Print the number of rows in training and testing sets
+print(nrow(trainData))
+table(trainData$HeartDisease)
+
+print(nrow(testData))
+table(testData$HeartDisease)
+```
+
+## Feature scaling
+
+Feature scaling is an important step to ensure that all data points are on a similar scale. This is especially important for algorithms that use distance measurements (e.g., K-Nearest Neighbors).
+
+We'll normalize (center and scale) the features using the `preProcess` function from the caret library. `preProcess` computes scaling parameters predict applies scaling to the data
+
+```{r}
+# Feature scaling (excluding factor columns)
+numericColumns <- sapply(trainData, is.numeric)
+preProcValues <- preProcess(trainData[, numericColumns[-1]], method = c("center", "scale"))
+trainData[, numericColumns] <- predict(preProcValues, 
+                                       trainData[, numericColumns])
+testData[, numericColumns] <- predict(preProcValues, 
+                                      testData[, numericColumns])
+```
+
+## Building and evaluating models
+
+### Train a logistic regression model
+
+```{r}
+glm_model <- train(HeartDisease ~ ., 
+                   data = trainData, 
+                   method = "glm", 
+                   family = "binomial")
+glm_model
+summary(glm_model)
+
+```
+
+-   **Accuracy:** This measures the proportion of correct predictions made by the model out of all predictions. For example, an accuracy of 0.76 means the model correctly predicted 77% of the cases.
+
+-   **Kappa:** This adjusts the accuracy to account for the possibility of the agreement occurring by chance. A Kappa value of 1 indicates perfect agreement, while 0 means the agreement is no better than random guessing.
+
+### Make predictions and evaluate the model
+
+```{r}
+# Making predictions
+predictions <- predict(glm_model, testData)
+
+# Evaluating the model
+confusion <- confusionMatrix(predictions, testData$HeartDisease)
+print(confusion)
+```
+
+A confusion matrix is a table that is often used to describe the performance of a classification model on a set of test data for which the true values are known.
+
+-   True Positives (TP): The number of correct positive predictions.
+
+-   True Negatives (TN): The number of correct negative predictions.
+
+-   False Positives (FP): The number of incorrect positive predictions (also known as Type I errors).
+
+-   False Negatives (FN): The number of incorrect negative predictions (also known as Type II errors).
+
+### Visual inspection of model and the importance of different features
+
+```{r}
+# Visualizing the logistic regression coefficients
+coef_df <- as.data.frame(coef(summary(glm_model$finalModel)))
+coef_df$Variable <- rownames(coef_df)
+names(coef_df)[1] <- "Estimate"
+
+scatter_plot <- ggplot(coef_df, aes(x = reorder(Variable, Estimate), y = Estimate)) +
+  geom_bar(stat = 'identity') +
+  coord_flip() +
+  theme_light() +
+  labs(title = "Variable Importance (Logistic Regression)",
+       x = "Variables",
+       y = "Estimate")
+```
+
+### Model generalization and validation through cross-validation
+
+Cross-validation is a technique used to evaluate how well your model generalizes to unseen data by splitting the dataset into multiple subsets or "folds". The model is trained on a portion of the data and validated on the remaining part, rotating through the folds to get a comprehensive performance metric. This helps ensure that your model isn't just fitting noise in your training data but can perform well on independent datasets. It reduces the risk of overfitting and provides a more reliable estimate of model performance.
+
+-   Model Reliability - cross-validation helps you gauge the reliability of your model by testing it on different subsets of your data. This way, you reduce the risk of overfitting and ensure that your model has good performance across various datasets.
+
+-   Performance Metrics - it provides you with more robust performance metrics by averaging the results from different folds. This gives you a better understanding of your model's capabilities.
+
+-   Real-World Readiness - in the real world, the data your model encounters can vary. Cross-validation ensures that your model is not just tailored to one specific dataset but is generalized for better real-world application.
+
+```{r}
+# Basic parameter tuning
+fitControl <- trainControl(
+  ## 10-fold CV
+  method = "repeatedcv",
+  number = 10,
+  ## repeated ten times
+  repeats = 10)
+```
+
+```{r}
+# Create a model
+glm_model_2 <- train(HeartDisease ~ ., 
+                     data = trainData, 
+                     method = "glm", 
+                     family = "binomial", 
+                     metric = "Accuracy", 
+                     trControl = fitControl)
+glm_model_2
+summary(glm_model_2)
+
+```
+
+```{r}
+# Making predictions
+predictions_2 <- predict(glm_model_2, testData)
+
+# Evaluating the model
+confusion_2 <- confusionMatrix(predictions_2, testData$HeartDisease)
+print(confusion_2)
+```
+
+##### TASK:
+
+What if we choose only Boruta selected features?
+
+```{r}
+# Create a model
+glm_model_Boruta <- train(HeartDisease ~ ., 
+                          data = trainData[, c("HeartDisease", selected_var)], 
+                          method = "glm", 
+                          family = "binomial", 
+                          metric = "Accuracy", 
+                          trControl = fitControl)
+glm_model_Boruta
+summary(glm_model_Boruta)
+
+# Making predictions
+predictions_Boruta <- predict(glm_model_Boruta, testData)
+
+# Evaluating the model
+confusion_Boruta <- confusionMatrix(predictions_Boruta, testData$HeartDisease)
+print(confusion_Boruta)
+```
+
+##### TASK:
+
+Try repeating the same steps for other methods, e.g. k-nearest neighbors (method = "knn"), support vector machine (method = "svmLinear"), random forest (method = "rf"), bagging (method = "treebag").
+
+Check all the possible models [here](https://topepo.github.io/caret/train-models-by-tag.html).
+
+##### TASK:
+
+Find out how to plot AUC (Area Under the Curve) for your test data. AUC represents the overall performance of a binary classification model based on the area under its ROC (Receiver Operating Characteristic) curve. A higher AUC value indicates better model performance, reflecting a greater ability to distinguish between classes. Essentially, it's a single metric summarizing how well a model can differentiate between positive and negative instances.
+
+**\*note:** check pROC package
