@@ -40,7 +40,7 @@ library(factoextra)
 library(Boruta)
 ```
 
-set.seed() in R sets the random number generator seed, which ensures that any random operations (like splitting data into training/test sets, random sampling, cross-validation folds) are reproducible.
+**`set.seed()`** in R sets the random number generator seed, which ensures that any random operations (like splitting data into training/test sets, random sampling, cross-validation folds) are reproducible.
 
 When you perform these tasks they involve randomness. Without set.seed(), the results would change every time you run the code. By setting a seed, you ensure that the same random split happens every time, and that others can reproduce your results exactly.
 

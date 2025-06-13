@@ -5458,7 +5458,7 @@ window.onload = function() {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Boruta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>set.seed() in R sets the random number generator seed, which ensures that any random operations (like splitting data into training/test sets, random sampling, cross-validation folds) are reproducible.</p>
+<p><strong><code>set.seed()</code></strong> in R sets the random number generator seed, which ensures that any random operations (like splitting data into training/test sets, random sampling, cross-validation folds) are reproducible.</p>
 <p>When you perform these tasks they involve randomness. Without set.seed(), the results would change every time you run the code. By setting a seed, you ensure that the same random split happens every time, and that others can reproduce your results exactly.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
@@ -5850,7 +5850,7 @@ Important
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> heart_disease)</span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(model_boruta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Boruta performed 32 iterations in 2.048437 secs.
+<pre><code>Boruta performed 32 iterations in 1.838308 secs.
  6 attributes confirmed important: Age, BP, ChestPain,
 ExerciseInducedAngina, MaximumHR and 1 more;
  3 attributes confirmed unimportant: BloodSugar, Cholesterol, rownames;</code></pre>
@@ -6495,7 +6495,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb71-42"><a href="#cb71-42" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Boruta)</span>
 <span id="cb71-43"><a href="#cb71-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-44"><a href="#cb71-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-45"><a href="#cb71-45" aria-hidden="true" tabindex="-1"></a>set.seed() in R sets the random number generator seed, which ensures that any random operations (like splitting data into training/test sets, random sampling, cross-validation folds) are reproducible.</span>
+<span id="cb71-45"><a href="#cb71-45" aria-hidden="true" tabindex="-1"></a>**`set.seed()`** in R sets the random number generator seed, which ensures that any random operations (like splitting data into training/test sets, random sampling, cross-validation folds) are reproducible.</span>
 <span id="cb71-46"><a href="#cb71-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-47"><a href="#cb71-47" aria-hidden="true" tabindex="-1"></a>When you perform these tasks they involve randomness. Without set.seed(), the results would change every time you run the code. By setting a seed, you ensure that the same random split happens every time, and that others can reproduce your results exactly.</span>
 <span id="cb71-48"><a href="#cb71-48" aria-hidden="true" tabindex="-1"></a></span>
