@@ -43,5 +43,11 @@
   },
   "Introduction_to_ML.qmd": {
     "Introduction_to_ML.html": "a980bae7"
+  },
+  "Projects/project_cancer/Project_CANCER.qmd": {
+    "Project_CANCER.html": "821e5b6a"
+  },
+  "Projects/project_obesity/Project_MICROBIOME.qmd": {
+    "Project_MICROBIOME.html": "8f63afe7"
   }
 }

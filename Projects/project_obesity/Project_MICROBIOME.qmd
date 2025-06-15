@@ -1,0 +1,95 @@
+---
+title: "Project tasks : Obesity microbiome"
+author: 
+  - name: "dr.sc. Paula Štancl"
+    affiliation: "Kuzman Consulting d.o.o"
+  - name: "dr.sc. Andrea Gelemanović"
+    affiliation: "MedILS, UNIST"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 5
+    code-fold: false
+    fig-align: center
+    df-print: paged
+    code-summary: "Show code"
+    code-line-numbers: false
+    code-tools: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# Microbiome dataset
+
+The study by Le Chatelier et al. found that individuals with obesity who have lower bacterial richness in their gut (low gene count - LGC) tend to have more severe metabolic issues like increased overall adiposity, dyslipidemia, insulin resistance, and inflammation compared to obese individuals with higher gut bacterial richness (high gene count - HGC). This suggests a link between gut microbiota composition and the severity of obesity-related complications.
+
+This dataset was sourced from [Kaggle](https://www.kaggle.com/datasets/antaresnyc/metagenomics) and subsetted for this analysis. Kaggle is an online platform for data science and machine learning where users can find datasets, enter competitions, and share code through cloud-based notebooks. It also offers free courses and a community forum, making it a great place to learn, practice, and collaborate on real-world data problems.
+
+## Organize your Rproject
+
+Create a new project where you will save all the data, scripts and outputs for this Hackaton. Afterwards download the dataset:
+
+-   [Download the dataset](gut_obesity_subset.csv)
+
+Import your downloaded data into R using `fread()`
+
+```{r, eval=FALSE}
+(microbiome <- fread("PATH/TO/FILE"))
+```
+
+## Exploratory analysis
+
+a)  Use the functions `str()` and `summary()` to explore the dataset and understand what it contains. How many different bacteria do you have in your table?
+
+b)  How many obese samples are in the dataset? Visualize the results.
+
+c)  In column `disease` change the `n` to `NA` to identify the uknown.
+
+d)  Do the `uknown` have similar BMI as the obese ones? Investigate this using both visualization and statistical testing.
+
+e)  Visualize the distribution of `s__Barnesiella_intestinihominis` per cancer `disease`. Perform the appropriate test to determine if there is a significant difference.
+
+f)  Which bacteria is most correlated with BMI?
+
+## Prediction of *`obesity`* status based on the abundance of bacterial species
+
+### Feature selection
+
+a)  Set the seed to **18**. Are there any columns that should be excluded from the dataset before modeling? Remove those columns and rows. Hint: You only want to keep those samples who have confirmed **obesity** or **leaness** in column `disease`.
+
+b)  Split your data into training and test sets. Consider whether there is anything important to keep in mind when splitting the data - for example, potential data leakage or class imbalance.
+
+c)  Use **backwards selection** to identify and select up to 10 of the most relevant features for predicting the `disease` of the samples.
+
+### Unsupervised clustering with top 10 most significant features
+
+a)  Run **k-means clustering** on the full dataset (before splitting the data) using all and the top 10 most significant features .
+
+b)  Visualize the data with **PCA** on the full dataset (before splitting the data) using all and the top 10 most significant features.
+
+### Model development with top 10 most significant features
+
+Develop a model using the top 10 most significant features. You can choose one of the following approaches, all using 10-fold cross-validation:
+
+1.  **Random forest**
+2.  **Logistic regression**
+3.  **Bagging**
+
+Each group member may select a different model, or you can all use the same one.
+
+-   Train the chosen model on the **training dataset**.
+
+-   What is the model's accuracy on the training data?
+
+-   Plot the ROC curve and report the AUC for the training set.
+
+Now evaluate the model on the **test dataset**.
+
+-   What is the accuracy on the test set?
+
+-   Plot the ROC curve and report the AUC for the test set.
+
+#### What is your overall conclusion?

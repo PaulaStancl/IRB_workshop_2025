@@ -377,6 +377,7 @@ scatter_plot <- ggplot(coef_df, aes(x = reorder(Variable, Estimate), y = Estimat
   labs(title = "Variable Importance (Logistic Regression)",
        x = "Variables",
        y = "Estimate")
+scatter_plot
 ```
 
 ### Model generalization and validation through cross-validation

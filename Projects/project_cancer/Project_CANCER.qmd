@@ -1,0 +1,95 @@
+---
+title: "Project tasks: Cancer"
+author: 
+  - name: "dr.sc. Paula Štancl"
+    affiliation: "Kuzman Consulting d.o.o"
+  - name: "dr.sc. Andrea Gelemanović"
+    affiliation: "MedILS, UNIST"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 5
+    code-fold: false
+    fig-align: center
+    df-print: paged
+    code-summary: "Show code"
+    code-line-numbers: false
+    code-tools: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# Lung cancer dataset
+
+This synthetic dataset offers comprehensive information on lung cancer patients, including demographics, medical background, treatment details, and survival data. While the data is artificially generated, it reflects patterns commonly seen in real clinical cases. It can be used for developing predictive models, analyzing patient outcomes, evaluating treatment effectiveness, and supporting various types of lung cancer research.
+
+This dataset was sourced from [Kaggle](https://www.kaggle.com/datasets/rashadrmammadov/lung-cancer-prediction/data) and subsetted for this analysis. Kaggle is an online platform for data science and machine learning where users can find datasets, enter competitions, and share code through cloud-based notebooks. It also offers free courses and a community forum, making it a great place to learn, practice, and collaborate on real-world data problems.
+
+## Organize your Rproject
+
+Create a new project where you will save all the data, scripts and outputs for this Hackaton. Afterwards download the dataset:
+
+-   [Download the dataset](lung_cancer_subset_data.csv)
+
+Import your downloaded data into R using `fread()`
+
+```{r, eval=FALSE}
+(cancer <- data.table::fread("PATH/TO/FILE"))
+```
+
+## Exploratory analysis
+
+a)  Use the functions `str()` and `summary()` to explore the dataset and understand what it contains.
+
+b)  How many female and male lung cancer patients are in the dataset? Visualize the results.
+
+c)  Are males more likely to be smokers than females? Visualize this relationship and perform the appropriate statistical test.
+
+d)  Do smokers have lower number of white blood cells (column `White_Blood_Cell_Count`)? Investigate this using both visualization and statistical testing.
+
+e)  Visualize the distribution of `Tumor_Size_mm` per cancer `Stage`. Perform the appropriate test to determine if there is a significant difference.
+
+f)  Which numerical variables are most strongly correlated?
+
+## Prediction of *`Stage`* for lung cancer patients
+
+### Feature selection
+
+a)  Set the seed to **12**. Are there any columns that should be excluded from the dataset before modeling? Remove them!
+
+b)  Split your data into training and test sets. Consider whether there is anything important to keep in mind when splitting the data - for example, potential data leakage or class imbalance.
+
+c)  Use **forward selection** to identify and select up to 10 of the most relevant features for predicting the `Stage` of the samples.
+
+### Unsupervised clustering with top 10 most significant features
+
+a)  Perform **k-means clustering** on the full dataset (before splitting the data) using the all and top 10 most significant features.
+
+b)  Visualize the dataset using **PCA** on the full dataset (before splitting the data) using all and the top 10 most significant features .
+
+### Model development with top 10 most significant features
+
+Develop a model using the top 10 most significant features. You can choose one of the following approaches, all using 10-fold cross-validation:
+
+1.  **Random forest**
+2.  **Logistic regression**
+3.  **Bagging**
+
+Each group member may select a different model, or you can all use the same one.
+
+-   Train the chosen model on the **training dataset**.
+
+-   What is the model's accuracy on the training data?
+
+-   Plot the ROC curve and report the AUC for the training set.
+
+Now evaluate the model on the **test dataset**.
+
+-   What is the accuracy on the test set?
+
+-   Plot the ROC curve and report the AUC for the test set.
+
+#### What is your overall conclusion?
