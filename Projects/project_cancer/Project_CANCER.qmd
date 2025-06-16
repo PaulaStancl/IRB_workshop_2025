@@ -54,7 +54,7 @@ e)  Visualize the distribution of `Tumor_Size_mm` per cancer `Stage`. Perform th
 
 f)  Which numerical variables are most strongly correlated?
 
-## Prediction of *`Stage`* for lung cancer patients
+## Prediction of *`Stage I and IV`* for lung cancer patients
 
 ### Feature selection
 
