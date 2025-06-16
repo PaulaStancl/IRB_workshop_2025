@@ -36,8 +36,31 @@ Create a new project where you will save all the data, scripts and outputs for t
 
 Import your downloaded data into R using `fread()`
 
-```{r, eval=FALSE}
-(microbiome <- fread("PATH/TO/FILE"))
+```{r, eval=TRUE}
+# Data manipulation
+library(data.table)
+library(caret)
+# Machine learning
+library(caret)
+library(MASS)
+library(factoextra)
+library(Boruta)
+# Visualization
+library(ggplot2)
+library(ggpubr)        # For gghistogram, ggboxplot, ggscatter, stat_compare_means, stat_cor
+library(corrplot)      # For correlation matrix plot
+
+# Outlier detection
+library(rstatix)       # identify_outliers
+library(outliers)      # grubbs.test
+library(EnvStats)      # rosnerTest
+
+# Correlation matrix with p-values
+library(Hmisc)         # rcorr
+
+# Variance Inflation Factor (VIF) to check multicollinearity
+library(car)          # vif
+(microbiome <- fread("gut_obesity_subset.csv"))
 ```
 
 ## Exploratory analysis
@@ -46,13 +69,101 @@ a)  Use the functions `str()` and `summary()` to explore the dataset and underst
 
 b)  How many obese samples are in the dataset? Visualize the results.
 
+```{r}
+# table
+microbiome[,.N, disease]
+## plot
+ggplot(microbiome, aes(x=disease)) +
+  geom_bar() +
+  theme_bw() + 
+stat_count(geom = "text", 
+           colour = "white", size = 3.5,
+           aes(label = ..count..),
+           position=position_stack(vjust=0.5)
+           )
+```
+
 c)  In column `disease` change the `n` to `NA` to identify the uknown.
+
+```{r}
+microbiome[disease == "n", disease := NA]
+```
 
 d)  Do the `uknown` have similar BMI as the obese ones? Investigate this using both visualization and statistical testing.
 
-e)  Visualize the distribution of `s__Barnesiella_intestinihominis` per cancer `disease`. Perform the appropriate test to determine if there is a significant difference.
+```{r}
+#
+ggqqplot(microbiome, x = "bmi",
+         color = "disease",
+         facet.by = "disease") +
+  theme(legend.position = "right")
+
+
+###
+
+ggplot(microbiome, aes(x=disease, y=bmi)) +
+  geom_violin() +
+  geom_boxplot() +
+  theme_bw() +
+  ggpubr::stat_compare_means(
+    comparison = list(c("leaness", "obesity"),
+                      c(NA, "obesity") ) 
+    )
+```
+
+
+```{r}
+##
+microbiome[is.na(disease), disease := "Uknown"]
+ggplot(microbiome, aes(x=disease, y=bmi)) +
+  geom_violin() +
+  geom_boxplot(width= 0.25) +
+  theme_bw() +
+  ggpubr::stat_compare_means( 
+    comparisons = list(
+                      c("Uknown", "obesity")
+                      ) 
+  )
+```
+
+```{r}
+# Ukoliko koristimo test
+wilcox.test(bmi ~ disease, data= microbiome[disease != "leaness"])
+```
+
+e)  Visualize the distribution of `s__Barnesiella_intestinihominis` per `disease`. Perform the appropriate test to determine if there is a significant difference.
+
+```{r}
+ggplot(microbiome, aes(x=disease, y=s__Barnesiella_intestinihominis)) +
+  geom_violin() +
+  geom_boxplot(width= 0.25) +
+  theme_bw() +
+  ggpubr::stat_compare_means()
+```
+
+
+```{r}
+ggplot(microbiome, aes(x=s__Barnesiella_intestinihominis, fill=disease)) +
+  geom_density(alpha=0.4) +
+  theme_bw()
+
+###
+kruskal.test(s__Barnesiella_intestinihominis ~ disease, 
+             data = microbiome)
+```
 
 f)  Which bacteria is most correlated with BMI?
+
+```{r}
+cor_data <- microbiome[, .SD,.SDcols=is.numeric]
+cor_matrix <- cor(cor_data)
+
+###
+png("Corr_plot.png", width = 800, height = 800)
+corrplot(cor_matrix, method = 'square', type = 'upper', diag = FALSE, tl.col = "black")
+dev.off()
+
+```
 
 ## Prediction of *`obesity`* status based on the abundance of bacterial species
 
@@ -60,15 +171,102 @@ f)  Which bacteria is most correlated with BMI?
 
 a)  Set the seed to **18**. Are there any columns that should be excluded from the dataset before modeling? Remove those columns and rows. Hint: You only want to keep those samples who have confirmed **obesity** or **leaness** in column `disease`.
 
+```{r}
+microbiome_clean <- microbiome[!is.na(disease),-c("dataset_name", "bodysite", "sampleID", "bmi")]
+
+microbiome_clean[, disease := factor(disease)]
+```
+
 b)  Split your data into training and test sets. Consider whether there is anything important to keep in mind when splitting the data - for example, potential data leakage or class imbalance.
+
+```{r}
+# Splitting data into training and testing sets
+trainIndex <- createDataPartition(microbiome_clean$disease, 
+                                  p = 0.7, 
+                                  list = FALSE, 
+                                  times = 1)
+trainData <- microbiome_clean[trainIndex, ]
+testData <- microbiome_clean[-trainIndex, ]
+
+# Print the number of rows in training and testing sets
+print(nrow(trainData))
+```
 
 c)  Use **backwards selection** to identify and select up to 10 of the most relevant features for predicting the `disease` of the samples.
 
+```{r}
+full_model <- glm(disease ~ ., 
+                  data = trainData, 
+                  family = binomial)
+summary(full_model)
+# Perform forward selection & select variables
+step_model_for <- stepAIC(full_model, 
+                          direction = "forward",
+                          trace = FALSE)
+selected_vars_for <- names(coef(step_model_for))[-1]
+selected_vars_for
+```
+
 ### Unsupervised clustering with top 10 most significant features
 
-a)  Run **k-means clustering** on the full dataset (before splitting the data) using all and the top 10 most significant features .
+a)  Run **k-means clustering** on the full dataset (before splitting the data) using all and the top 10 most significant features.
+
+```{r}
+# Remove non-numeric columns (e.g., outcome variable)
+numeric_data <- microbiome_clean[, .SD, .SDcols = is.numeric]
+
+# Standardize
+scaled_all <- scale(numeric_data)
+
+# Perform k-means on all features
+set.seed(123)
+
+# Elbow method 
+fviz_nbclust(scaled_all, 
+             kmeans, 
+             method = "wss")
+
+
+km_all <- kmeans(scaled_all, centers = 2)
+
+# Combine K-means and original label
+kmeans_df <- cbind(microbiome_clean, 
+                   cluster = as.factor(km_all$cluster)
+                   )
+
+# How well did k-means clustering do in comparison with known groups?
+table(kmeans_df$cluster, kmeans_df$disease)
+```
 
 b)  Visualize the data with **PCA** on the full dataset (before splitting the data) using all and the top 10 most significant features.
+
+```{r}
+# Visualize PCA with cluster assignment
+# Perform PCA on the scaled matrix
+pca_all <- prcomp(scaled_all)
+
+
+# Visualize individuals, colored by cluster
+fviz_pca_ind(pca_all, 
+             geom.ind = "point", 
+             col.ind = as.factor(km_all$cluster),  # km_all is from kmeans()
+             palette = "jco",
+             addEllipses = TRUE,
+             legend.title = "Cluster")
+
+
+# Combine PCA and original label
+pca_df <- data.frame(pca_all$x, 
+                     disease = microbiome_clean$disease,
+                     kmeans_res = as.factor(km_all$cluster))
+
+# Plot PC1 vs PC2 and color by diagnosis
+ggplot(pca_df, aes(PC1, PC2, col = disease, shape=kmeans_res)) +
+  geom_point(size = 2, alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "", color = "Disease")
+
+```
 
 ### Model development with top 10 most significant features
 
@@ -78,18 +276,72 @@ Develop a model using the top 10 most significant features. You can choose one o
 2.  **Logistic regression**
 3.  **Bagging**
 
+```{r}
+# seting cross-valudation
+ctrl <- trainControl(method = "cv",
+                     number = 10)
+```
+
 Each group member may select a different model, or you can all use the same one.
 
 -   Train the chosen model on the **training dataset**.
 
+```{r}
+model <- train(disease ~ ., 
+               data = trainData, 
+               method = "rf",       # or "rf", or "treebag"
+               trControl = ctrl,
+               family = binomial)
+
+model
+```
+
 -   What is the model's accuracy on the training data?
 
+```{r}
+### confusion matrix and error
+table(predict(model, trainData), trainData$disease) %>% 
+  confusionMatrix()
+```
+
 -   Plot the ROC curve and report the AUC for the training set.
+
+```{r}
+library(pROC)
+# Get predicted probabilities for the positive class (e.g. "Yes")
+train_probs <- predict(model, newdata = trainData, type = "prob")[, "obesity"]
+train_labels <- trainData$disease
+
+# Compute ROC
+roc_train <- roc(train_labels, train_probs)
+
+# Plot ROC
+plot(roc_train, col = "blue", lwd = 2, main = "ROC Curve - Training")
+text(0.6, 0.2, paste("AUC =", round(auc(roc_train), 3)), col = "black")
+```
 
 Now evaluate the model on the **test dataset**.
 
 -   What is the accuracy on the test set?
 
+```{r}
+# Predicted probabilities and classes
+table(predict(model, testData), testData$disease) %>% confusionMatrix()
+```
+
 -   Plot the ROC curve and report the AUC for the test set.
+
+```{r}
+# Predict probabilities for test data
+test_probs <- predict(model, newdata = testData, type = "prob")[, "obesity"]
+test_labels <- testData$disease
+
+# Compute ROC
+roc_test <- roc(test_labels, test_probs)
+
+# Plot ROC
+plot(roc_test, col = "darkgreen", lwd = 2, main = "ROC Curve - Test Set")
+text(0.6, 0.2, paste("AUC =", round(auc(roc_test), 3)), col = "black")
+```
 
 #### What is your overall conclusion?
