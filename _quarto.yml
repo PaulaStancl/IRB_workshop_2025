@@ -41,7 +41,7 @@ website:
       #       href: Introduction_to_ML.qmd
   page-footer:
     background: light
-    left: "Copyright 2025, Kuzman Consulting d.o.o."
+    left: "Copyright 2025"
     right: "This website is built with Quarto."
 format:
   html:
