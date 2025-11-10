@@ -1,10 +1,17 @@
 project:
   type: website
+  render:
+    - Day1_IRB25_part1.qmd
+    - Day1_IRB25_part2.qmd
+    - Day1_IRB25_part3.qmd
+    - Day2_IRB25_part0.qmd
+    - Day2_IRB25_part1.qmd
+    - Day2_IRB25_plots.qmd
   output-dir: docs
 website:
   title: "IRB workshop 2025"
   navbar:
-    logo: logo_KC.jpg
+    # logo: logo_KC.jpg
     right:
       - text: Day 1
         menu: 
@@ -12,32 +19,26 @@ website:
             href: Day1_IRB25_part1.qmd
           - text: Functions and conditions
             href: Day1_IRB25_part2.qmd
-      - text: Day 2
-        menu: 
           - text: Regular expressions
             href: Day1_IRB25_part3.qmd
+      - text: Day 2
+        menu: 
           - text: Packages
             href: Day2_IRB25_part0.qmd
           - text: Table manipulation
             href: Day2_IRB25_part1.qmd
           - text: Visualization
             href: Day2_IRB25_plots.qmd
-      - text: Day 3
-        menu: 
-          - text: Practice
-            href: Day3_IRB25_part0.qmd
-          - text: Statistics
-            href: Introduction_to_stats.qmd
-      - text: Day 4
-        menu: 
-          - text: Machine learning
-            href: Introduction_to_ML.qmd
-      - text: Day 5
-        menu: 
-          - text: Project Cancer
-            href: Projects/project_cancer/Project_CANCER.qmd
-          - text: Project Microbiome
-            href: Projects/project_obesity/Project_MICROBIOME.qmd
+      # - text: Day 3
+      #   menu: 
+      #     - text: Practice
+      #       href: Day3_IRB25_part0.qmd
+      #     - text: Statistics
+      #       href: Introduction_to_stats.qmd
+      # - text: Day 4
+      #   menu: 
+      #     - text: Machine learning
+      #       href: Introduction_to_ML.qmd
   page-footer:
     background: light
     left: "Copyright 2025, Kuzman Consulting d.o.o."
@@ -50,7 +51,7 @@ format:
     page-layout: full
 editor: visual
  # 👇 Add this line:
-resources:
-  - Projects/project_cancer/lung_cancer_subset_data.csv
-  - Projects/project_obesity/gut_obesity_subset.csv
+# resources:
+#   - Projects/project_cancer/lung_cancer_subset_data.csv
+#   - Projects/project_obesity/gut_obesity_subset.csv
 

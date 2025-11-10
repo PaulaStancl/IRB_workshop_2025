@@ -172,14 +172,22 @@ dev.off()
 a)  Set the seed to **18**. Are there any columns that should be excluded from the dataset before modeling? Remove those columns and rows. Hint: You only want to keep those samples who have confirmed **obesity** or **leaness** in column `disease`.
 
 ```{r}
-microbiome_clean <- microbiome[!is.na(disease),-c("dataset_name", "bodysite", "sampleID", "bmi")]
+microbiome_clean <- microbiome[disease != "n",-c("dataset_name", "bodysite", "sampleID", "bmi")]
 
 microbiome_clean[, disease := factor(disease)]
+
+
+microbiome[,.N, disease]
+## reomve uknown
+microbiome[disease != "Uknown"]
+
+dim(microbiome_clean)
 ```
 
 b)  Split your data into training and test sets. Consider whether there is anything important to keep in mind when splitting the data - for example, potential data leakage or class imbalance.
 
 ```{r}
+set.seed(12)
 # Splitting data into training and testing sets
 trainIndex <- createDataPartition(microbiome_clean$disease, 
                                   p = 0.7, 
@@ -189,7 +197,9 @@ trainData <- microbiome_clean[trainIndex, ]
 testData <- microbiome_clean[-trainIndex, ]
 
 # Print the number of rows in training and testing sets
-print(nrow(trainData))
+nrow(trainData)
+
+nrow(testData)
 ```
 
 c)  Use **backwards selection** to identify and select up to 10 of the most relevant features for predicting the `disease` of the samples.
@@ -198,12 +208,21 @@ c)  Use **backwards selection** to identify and select up to 10 of the most rele
 full_model <- glm(disease ~ ., 
                   data = trainData, 
                   family = binomial)
-summary(full_model)
-# Perform forward selection & select variables
+library(broom)
+library(kableExtra)
+
+tidy(full_model) %>%
+  kable(digits = 3, caption = "Summary") %>%
+  kable_styling(full_width = FALSE, position = "center")
+```
+
+ Perform forward selection & select variables
+```{r}
 step_model_for <- stepAIC(full_model, 
-                          direction = "forward",
+                          direction = "backward",
                           trace = FALSE)
 selected_vars_for <- names(coef(step_model_for))[-1]
+# Visualize the best features
 selected_vars_for
 ```
 
@@ -260,7 +279,65 @@ pca_df <- data.frame(pca_all$x,
                      disease = microbiome_clean$disease,
                      kmeans_res = as.factor(km_all$cluster))
 
-# Plot PC1 vs PC2 and color by diagnosis
+# Plot PC1 vs PC2 and color by disease
+ggplot(pca_df, aes(PC1, PC2, col = disease, shape=kmeans_res)) +
+  geom_point(size = 2, alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "", color = "Disease")
+
+```
+
+### Top 6 features identified 
+```{r}
+# Extracting the best features and removing additional characters
+vec_new <- stringr::str_remove_all(selected_vars_for,"`") 
+microbiome_clean[, ..vec_new]
+
+# Remove non-numeric columns (e.g., outcome variable)
+numeric_data <- microbiome_clean[, ..vec_new ]
+
+# Standardize
+scaled_all <- scale(numeric_data)
+
+# Perform k-means on all features
+set.seed(123)
+
+# Elbow method 
+fviz_nbclust(scaled_all, 
+             kmeans, 
+             method = "wss")
+
+
+km_all <- kmeans(scaled_all, centers = 2)
+
+# Combine K-means and original label
+kmeans_df <- cbind(microbiome_clean, 
+                   cluster = as.factor(km_all$cluster)
+                   )
+
+# How well did k-means clustering do in comparison with known groups?
+table(kmeans_df$cluster, kmeans_df$disease)
+
+# Visualize PCA with cluster assignment
+# Perform PCA on the scaled matrix
+pca_all <- prcomp(scaled_all)
+
+
+# Visualize individuals, colored by cluster
+fviz_pca_ind(pca_all, 
+             geom.ind = "point", 
+             col.ind = as.factor(km_all$cluster),  # km_all is from kmeans()
+             palette = "jco",
+             addEllipses = TRUE,
+             legend.title = "Cluster")
+
+
+# Combine PCA and original label
+pca_df <- data.frame(pca_all$x, 
+                     disease = microbiome_clean$disease,
+                     kmeans_res = as.factor(km_all$cluster))
+
+# Plot PC1 vs PC2 and color by disease
 ggplot(pca_df, aes(PC1, PC2, col = disease, shape=kmeans_res)) +
   geom_point(size = 2, alpha = 0.7) +
   theme_minimal() +
@@ -289,7 +366,7 @@ Each group member may select a different model, or you can all use the same one.
 ```{r}
 model <- train(disease ~ ., 
                data = trainData, 
-               method = "rf",       # or "rf", or "treebag"
+               method = "rf", 
                trControl = ctrl,
                family = binomial)
 

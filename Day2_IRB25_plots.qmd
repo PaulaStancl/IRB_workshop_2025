@@ -2,7 +2,7 @@
 title: "Visualization"
 author: 
   - name: "dr.sc. Paula Štancl"
-    affiliation: "Kuzman Consulting d.o.o"
+    affiliation: "Bioinformatics group, Faculty of Science"
   - name: "dr.sc. Andrea Gelemanović"
     affiliation: "MedILS, UNIST"
 format:
@@ -111,7 +111,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
 ```
 
 | Function       | Description                                                                    | Syntax Example                  |
-|-------------------|----------------------------------|-------------------|
+|-------------------|---------------------------------|-------------------|
 | `facet_wrap()` | Creates a series of plots wrapped into multiple rows or columns                | `facet_wrap(~ variable)`        |
 | `facet_grid()` | Creates a grid of plots by combining one variable for rows and one for columns | `facet_grid(row_var ~ col_var)` |
 | `facet_null()` | Default; no faceting applied                                                   | `facet_null()`                  |
@@ -353,7 +353,7 @@ cowplot::plot_grid(p1, p2, labels = c("A", "B"))
 ```
 
 | Argument      | Description                                         | Example                   |
-|------------------|------------------------------------|-------------------|
+|------------------|-----------------------------------|-------------------|
 | `...`         | The plots to combine                                | `plot_grid(p1, p2)`       |
 | `ncol`        | Number of columns                                   | `ncol = 2`                |
 | `nrow`        | Number of rows                                      | `nrow = 1`                |
@@ -373,7 +373,7 @@ cowplot::plot_grid(p1, p2, ncol = 1, rel_heights = c(1, 2), labels = c("A", "B")
 You can save any `ggplot` object to a file using the `ggsave()` function.
 
 | Argument   | Description                       | Example                    |
-|------------------|----------------------------------|--------------------|
+|------------------|---------------------------------|--------------------|
 | `filename` | Output file name (with extension) | `"plot.pdf"`, `"plot.png"` |
 | `plot`     | Plot object to save (optional)    | `plot = p`                 |
 | `width`    | Width in inches                   | `width = 6`                |

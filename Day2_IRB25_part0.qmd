@@ -2,7 +2,7 @@
 title: "R packages"
 author: 
   - name: "dr.sc. Paula Štancl"
-    affiliation: "Kuzman Consulting d.o.o"
+    affiliation: "Bioinformatics group, Faculty of Science"
   - name: "dr.sc. Andrea Gelemanović"
     affiliation: "MedILS, UNIST"
 format:
@@ -78,8 +78,3 @@ Package magrittr provides a new "pipe"-like operator, **`%>%`**. The pipe operat
 sample(x = 1:1000, size = 40) %>% 
    # Call function sum on the whole vector
 ```
-
-
-
-
-
