@@ -7,6 +7,7 @@ project:
     - Day2_IRB25_part0.qmd
     - Day2_IRB25_part1.qmd
     - Day2_IRB25_plots.qmd
+    - Day3_IRB25_part0.qmd
   output-dir: docs
 website:
   title: "IRB workshop 2025"
@@ -29,10 +30,10 @@ website:
             href: Day2_IRB25_part1.qmd
           - text: Visualization
             href: Day2_IRB25_plots.qmd
-      # - text: Day 3
-      #   menu: 
-      #     - text: Practice
-      #       href: Day3_IRB25_part0.qmd
+      - text: Day 3
+        menu:
+          - text: Practice
+            href: Day3_IRB25_part0.qmd
       #     - text: Statistics
       #       href: Introduction_to_stats.qmd
       # - text: Day 4

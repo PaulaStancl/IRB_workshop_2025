@@ -2,7 +2,7 @@
 title: "Practice data.table and ggplot2"
 author: 
   - name: "dr.sc. Paula Štancl"
-    affiliation: "Kuzman Consulting d.o.o"
+    affiliation: "Bioinformatics group, Faculty of Science"
   - name: "dr.sc. Andrea Gelemanović"
     affiliation: "MedILS, UNIST"
 format:
@@ -87,7 +87,6 @@ heart_disease <- fread("")
 # Hint: Use data.table column operation syntax
 
 ```
-
 
 8.  Classify patients as Young (\<35) or Old (≥35) and count them by **HeartDisease** status.
 

@@ -2,7 +2,7 @@
 title: "Basic regular expressions"
 author: 
   - name: "dr.sc. Paula Štancl"
-    affiliation: "Kuzman Consulting d.o.o"
+    affiliation: "Bioinformatics group, Faculty of Science"
   - name: "dr.sc. Andrea Gelemanović"
     affiliation: "MedILS, UNIST"
 format:
