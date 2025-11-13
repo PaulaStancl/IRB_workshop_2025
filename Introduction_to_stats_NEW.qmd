@@ -1,0 +1,423 @@
+---
+title: "Introduction to statistics"
+author: 
+  - name: "dr.sc. Paula Štancl"
+    affiliation: "Bioinformatics group, Faculty of Science"
+  - name: "dr.sc. Andrea Gelemanović"
+    affiliation: "MedILS, UNIST"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 5
+    code-fold: false
+    fig-align: center
+    df-print: paged
+    code-summary: "Show code"
+    code-line-numbers: false
+    code-tools: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# Part 1: Exploratory data analysis
+
+## Define research question
+
+We will continue to analyze the [HeartDisease](https://vincentarelbundock.github.io/Rdatasets/csv/CardioDataSets/heartdisease_tbl_df.csv) dataset to explore patterns and potential risk factors associated with heart conditions.
+
+Let's say that our research question will be: "Which factors are most associated with high cholesterol levels in this cohort of patients?"
+
+We will treat Cholesterol as the outcome variable and analyze the effects of other available characteristics on it.
+
+## Load the data
+
+#### Question:
+
+What is the very first thing you do when starting a new analysis?
+
+1.  ?
+2.  ?
+3.  ?
+
+Import relevant libraries that you will need for data analysis.
+
+```{r}
+vec_pkgs <- c(
+  "data.table", "ggplot2", "ggpubr", 
+  "corrplot", # For correlation matrix plot
+  "rstatix", # identify_outliers
+  "outliers", # grubbs.test
+  "EnvStats",# rosnerTest
+  "Hmisc", # rcorr
+  "car" # Variance Inflation Factor (VIF) to check multicollinearity
+)
+
+for (pkgs in vec_pkgs) {
+  if (!require(pkgs, character.only = TRUE)) install.packages(pkgs)
+  library(pkgs, character.only = TRUE)
+}
+
+```
+
+Import [HeartDisease](https://vincentarelbundock.github.io/Rdatasets/csv/CardioDataSets/heartdisease_tbl_df.csv) dataset and remove unnecessary columns.
+
+```{r}
+# write your solution here
+heart_disease <- fread("https://vincentarelbundock.github.io/Rdatasets/csv/CardioDataSets/heartdisease_tbl_df.csv")
+```
+
+What can you conclude from your data? How many variables, samples? Which variable is of what class?
+
+```{r}
+# write your solution here
+```
+
+-   dependent variable*: Cholesterol*
+
+-   numeric predictors: ?
+
+-   categorical factors: ?
+
+### Check categorical variables
+
+```{r}
+# write your solution here
+```
+
+Let's change *BloodSugar* (FALSE/TRUE) to numerical variable (0/1). How would you do it the simplest way?
+
+```{r}
+# write your solution here
+```
+
+### Convert numerical variables to categorical
+
+If you would have any numeric variable which R should in fact treat as categorical variables, you need to first convert them to categorical. This is crucial because comparing means across groups (e.g. our newly changed *BloodSugar* variable) requires factors, not numbers.
+
+```{r}
+# Apply factor conversion with correct labeling
+heart_disease[, BloodSugar := as.factor(BloodSugar)]
+#heart_disease[, BloodSugar := factor(BloodSugar, levels = c(0, 1), labels = c("No", "Yes"))]
+```
+
+**Check categorical variables (again)**
+
+```{r}
+lapply(heart_disease[, .SD, .SDcols = is.character], table)
+```
+
+```{r}
+lapply(heart_disease[, .SD, .SDcols = function(x) is.character(x) | is.factor(x)], table)
+```
+
+#### Question:
+
+Can you define what type of data is `factor` in R?
+
+#### Task:
+
+Make descriptive statistics for *Cholesterol* variable grouped by 1) *HeartDisease,* 2) *ChestPain*, and 3) *BloodSugar.*
+
+```{r}
+# write your solution here
+```
+
+## Familiarize yourself with the data
+
+To evaluate some descriptive statistics we can first visually inspect the data.
+
+### Normality check
+
+```{r}
+# Make histograms
+gghistogram(heart_disease, x = "Cholesterol", fill = "HeartDisease")
+gghistogram(heart_disease, x = "Cholesterol", fill = "BloodSugar")
+gghistogram(heart_disease, x = "Cholesterol", fill = "HeartDisease", facet.by = "BloodSugar")
+```
+
+#### Question:
+
+What function `ggdensity` does?
+
+```{r}
+# write your solution here
+```
+
+What function `ggqqplot` does?
+
+```{r}
+# Make Q-Q plot
+ggqqplot(heart_disease, x = "Cholesterol")
+ggqqplot(heart_disease, x = "Cholesterol", color = "HeartDisease", facet.by = "HeartDisease")
+```
+
+```{r}
+# Run statistical test
+shapiro.test(heart_disease$Cholesterol)
+ks.test(heart_disease$Cholesterol, "pnorm")
+
+# Separately for each group
+heart_disease[, .(W = shapiro.test(Cholesterol)$statistic,
+                  p_value = shapiro.test(Cholesterol)$p.value), 
+              by = HeartDisease]
+```
+
+### Boxplot with significance test
+
+Investigate levels of Cholesterol based on 1) *BloodSugar*, 2) *HeartDisease*, and 3) *ChestPain*.
+
+```{r}
+# write your solution here
+```
+
+Can you detect any outliers in other variables?
+
+### Outlier detection
+
+**Outlier detection using descriptive statistics methods**
+
+Apart from visual inspection with boxplots, outliers can also be detected via several descriptive statistics (including minimum, maximum, histogram, and percentiles) or thanks to more formal techniques of outliers detection using statistical tests. Once you detect a possible outlier, it is up to you to decide how to treat them (i.e., keeping, removing or imputing them) before conducting further analyses.
+
+**Outlier detection using descriptive statistics methods**
+
+```{r}
+# SD method - those that are 2 x SD away from mean
+mean_Cholesterol <- mean(heart_disease$Cholesterol)
+sd_Cholesterol <- sd(heart_disease$Cholesterol)
+heart_disease[Cholesterol < mean_Cholesterol - 2 * sd_Cholesterol | Cholesterol > mean_Cholesterol + 2 * sd_Cholesterol]
+```
+
+```{r}
+# IQR method - those that are 1.5 x IQR away from 1st or 3rd quartile
+identify_outliers(data = heart_disease, variable = "Cholesterol")
+```
+
+```{r}
+# Z-score method (if your data has a normal distribution)
+# A z-score below -3.29 or above 3.29 means you have detected outliers. 
+# This value of 3.29 comes from the fact that 1 observation out of 1000 is out of this interval if the data follow a normal distribution.
+z_scores <- scale(heart_disease$Cholesterol)
+heart_disease[, z_Cholesterol := z_scores]
+heart_disease[abs(z_Cholesterol) > 3.29]
+```
+
+#### Question:
+
+Check function `scale` and describe what it does.
+
+### Outlier detection using statistical tests
+
+Take into consideration that these tests assume normality of the data.
+
+***The Grubbs test***
+
+It allows to detect whether the highest or lowest value in a dataset is an outlier. It only detects one outlier at a time. It is not appropriate for sample size of 6 or less.
+
+```{r}
+grubbs.test(heart_disease$Cholesterol)
+grubbs.test(heart_disease$Cholesterol, opposite = TRUE)
+```
+
+***Dixon test***
+
+Similar to the Grubbs test, Dixon test is used to test whether a single low or high value is an outlier. So if more than one outliers is suspected, the test has to be performed on these suspected outliers individually. This test is most useful for small sample size (usually n ≤ 25).
+
+```{r, error=TRUE}
+dixon.test(heart_disease$Cholesterol)
+```
+
+It is a good practice to always check the results of the statistical test for outliers against the boxplot to make sure we tested all potential outliers.
+
+If outlier is detected, find and exclude highest value (i.e. outlier) and then repeat the Dixon test on dataset without this outlier.
+
+***Rosner test***
+
+It is used to detect several outliers at once (unlike Grubbs and Dixon test which must be performed iteratively to screen for multiple outliers), and it is designed to avoid the problem of masking, where an outlier that is close in value to another outlier can go undetected. It is most appropriate when the sample size is large (n ≥ 20).
+
+```{r}
+rosnerTest(heart_disease$Cholesterol, k = 1)
+```
+
+### Checking for correlation patterns
+
+We can first visually inspect correlations by creating scatter plots:
+
+```{r}
+ggscatter(data = heart_disease, 
+          x = "BloodSugar", 
+          y = "Cholesterol", 
+          add = "reg.line")
+```
+
+What if you want to do correlation analysis for all available numeric variables?
+
+```{r}
+cor_data <- heart_disease[, .SD, .SDcols = is.numeric]
+cor_matrix <- cor(cor_data)
+corrplot(cor_matrix, method = 'square', type = 'upper', diag = FALSE, tl.col = "black")
+```
+
+::: callout-important
+### Correlation ≠ Collinearity
+
+Correlation shows **linear association between two variables only**.
+
+**Multicollinearity** can involve **more than two variables**, and this isn't captured by correlation alone.
+
+Two variables can have **low pairwise correlation**, but still cause multicollinearity **in combination with others**.
+:::
+
+# PART 2: Statistical analysis
+
+### Categorical data analysis: Chi-square Test
+
+To investigate if there is any statistical difference between the groups we use chi-square test for categorical data.
+
+```{r}
+chisq.test(table(heart_disease$BloodSugar, heart_disease$HeartDisease))
+```
+
+#### Question:
+
+How can we make some visual representation of this categorical data? For homework :)
+
+### Numerical data analysis
+
+First, we need to evaluate if there is a normal distribution with our numerical data (Shapiro-Wilk test or Kolmogorov-Smirnov test).
+
+If the data is normally distributed, we can investigate if there is statistical difference between groups using T-test (if we compare two groups) or ANOVA (if we compare more than two groups).
+
+If the data is not normally distributed, we can investigate if there is statistical difference between groups using Mann-Whitney U test (if we compare two groups) or Kruskal-Wallis test (if we compare more than two groups).
+
+If you are working with paired data (same individuals measured more than once, e.g. before or after the treatment, several different time points), we need to use paired versions of all the above mentioned tests (usually by adding parameter "paired = TRUE" in your statistical test functions).
+
+#### Task:
+
+Perform statistical test to check data normality and visualize it.
+
+```{r}
+# write your solution here
+```
+
+Let's run some statistical tests - two groups comparison:
+
+```{r}
+t.test(Cholesterol ~ BloodSugar, data = heart_disease)
+```
+
+::: callout-important
+By default, `t.test()` uses **Welch's t-test**, which **does not assume equal variances** between the two groups.
+
+If you want to perform the **Student's t-test** (i.e. assuming equal variances), you need to explicitly set the argument `var.equal = TRUE`.
+
+**Variance is a measure of how spread out the values are in a dataset**. Two groups can have the same mean but very different spreads (variances).
+
+How to check equal variance? Use F-test:
+
+var.test(Cholesterol \~ BloodSugar, data = heart_disease)
+
+-   **p \< 0.05** Variances are significantly different (don't assume equal variances)
+
+-   **p ≥ 0.05** No strong evidence of difference (safe to assume equal variances)
+:::
+
+```{r}
+t.test(Cholesterol ~ BloodSugar, data = heart_disease, var.equal = TRUE)
+wilcox.test(Cholesterol ~ BloodSugar, data = heart_disease)
+
+ggboxplot(heart_disease, x = "BloodSugar", y = "Cholesterol", fill = "BloodSugar")
+```
+
+And now for some 2+ groups:
+
+```{r}
+summary(aov(Cholesterol ~ ChestPain, data = heart_disease))
+kruskal.test(Cholesterol ~ ChestPain, data = heart_disease)
+
+ggboxplot(heart_disease, x = "ChestPain", y = "Cholesterol", fill = "ChestPain")
+
+ggboxplot(heart_disease, x = "ChestPain", y = "Cholesterol", fill = "ChestPain") + 
+  stat_compare_means()
+```
+
+#### Question:
+
+What is mandatory next step after anova?
+
+```{r}
+TukeyHSD(aov(Cholesterol ~ ChestPain, data = heart_disease))
+```
+
+### Correlation analysis
+
+We can run correlations to assess how two variables are associated with one another. There is no direction here. Coefficient of correlation can go from -1 (very negative correlation) to 1 (very positive correlation).
+
+#### Task:
+
+We learned how to do basic correlation analysis, but if we want to check correlations between all numerical variables & get the statistical significance, we can use function rcorr from package Hmisc. Try it out!
+
+```{r}
+# write your solution here
+```
+
+#### Task:
+
+How can we improve our `corrplot` to add statistical significance?
+
+```{r}
+# write your solution here
+```
+
+### Regression models
+
+We use linear regression models when our dependent variable is numerical, and logistic regression models when we have binary categorical dependent variable.
+
+```{r}
+# Logistic regression
+#heart_disease[, BloodSugar := ifelse(BloodSugar == "Yes", 1, 0)]
+
+model1 <- glm(BloodSugar ~ HeartDisease, data = heart_disease, family = "binomial")
+summary(model1)
+```
+
+::: callout-important
+If we **did not manually create a binary variable** `BloodSugar`, and we used the factor `BloodSugar` (e.g. `Yes`/`No`) in the regression model, R will **automatically choose a reference level** based on the **alphabetical order** of the factor levels **unless you specify otherwise**. The first level alphabetically becomes the **reference category** and is coded as `0`, and the other as `1`.
+:::
+
+```{r}
+# Linear regression
+model2 <- lm(Cholesterol ~ HeartDisease, data = heart_disease)
+summary(model2)
+```
+
+#### Task:
+
+Perform now a multivariate regressions:
+
+```{r}
+# write your solution here
+```
+
+To properly assess multicollinearity, we need to check the Variance Inflation Factor (VIF) which is a proper diagnostic tool.
+
+```{r}
+# Multivariable linear regression
+model_multi <- lm(Cholesterol ~ BP + MaximumHR, data = heart_disease)
+summary(model_multi)
+
+# Calculate VIF
+vif(model_multi)
+```
+
+What is the interpretation?
+
+-   there are no colinear variables in our model.
+
+**VIF ≈ 1**: No multicollinearity
+
+**VIF \> 5**: Moderate multicollinearity (can be a concern)
+
+**VIF \> 10**: High multicollinearity (serious concern)
