@@ -5325,6 +5325,21 @@ window.onload = function() {
     <a class="dropdown-item" href="./Day3_IRB25_part0.html">
  <span class="dropdown-text">Practice</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Introduction_to_stats_NEW.html">
+ <span class="dropdown-text">Statistics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Day 4</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-day-4">    
+        <li>
+    <a class="dropdown-item" href="./Introduction_to_ML_NEW.html">
+ <span class="dropdown-text">Machine learning</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -5517,12 +5532,12 @@ $leftover_cells
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>cell_division_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(initial_cells, </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_size =</span> <span class="dv">10</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">n_cycles =</span> <span class="dv">1</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_size =</span> <span class="dv">10</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="co"># </span><span class="al">TODO</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                                  ) {</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># total number of cells after 1 division</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  total_cells <span class="ot">&lt;-</span> initial_cells <span class="sc">*</span> <span class="dv">2</span><span class="sc">^</span>n_cycles</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  total_cells <span class="ot">&lt;-</span> initial_cells <span class="sc">*</span> <span class="dv">2</span> <span class="co"># </span><span class="al">TODO</span></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># how many groups of cells are after 1 division</span></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  full_groups <span class="ot">&lt;-</span> total_cells <span class="sc">%/%</span> group_size</span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># how many are leftover</span></span>
@@ -5650,8 +5665,8 @@ Vectorized conditions with <code>ifelse()</code>
 <table class="table">
 <colgroup>
 <col style="width: 26%">
-<col style="width: 45%">
-<col style="width: 28%">
+<col style="width: 44%">
+<col style="width: 29%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -5698,15 +5713,7 @@ Vectorized conditions with <code>ifelse()</code>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Define a vector containing any number of bacteria</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="dv">600</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add your conditional statements and print the growth classification</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (vec <span class="sc">&gt;</span> <span class="dv">1000</span>) {</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Rapid growth&quot;</span>)</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (vec <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span> vec <span class="sc">&lt;=</span> <span class="dv">1000</span>) {</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Medium&quot;</span>)</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Slow&quot;</span>)</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add your conditional statements and print the growth classification</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="taks-add-growth-classification-to-a-cell_division_summary-function" class="level5">
@@ -5816,7 +5823,7 @@ Messages, Warnings, and Errors in functions
 <col style="width: 23%">
 <col style="width: 23%">
 <col style="width: 23%">
-<col style="width: 30%">
+<col style="width: 29%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -6230,12 +6237,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb36-128"><a href="#cb36-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb36-129"><a href="#cb36-129" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
 <span id="cb36-130"><a href="#cb36-130" aria-hidden="true" tabindex="-1"></a>cell_division_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(initial_cells, </span>
-<span id="cb36-131"><a href="#cb36-131" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_size =</span> <span class="dv">10</span>,</span>
-<span id="cb36-132"><a href="#cb36-132" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">n_cycles =</span> <span class="dv">1</span></span>
+<span id="cb36-131"><a href="#cb36-131" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_size =</span> <span class="dv">10</span></span>
+<span id="cb36-132"><a href="#cb36-132" aria-hidden="true" tabindex="-1"></a>                                  <span class="co"># </span><span class="al">TODO</span></span>
 <span id="cb36-133"><a href="#cb36-133" aria-hidden="true" tabindex="-1"></a>                                  ) {</span>
 <span id="cb36-134"><a href="#cb36-134" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb36-135"><a href="#cb36-135" aria-hidden="true" tabindex="-1"></a>  <span class="co"># total number of cells after 1 division</span></span>
-<span id="cb36-136"><a href="#cb36-136" aria-hidden="true" tabindex="-1"></a>  total_cells <span class="ot">&lt;-</span> initial_cells <span class="sc">*</span> <span class="dv">2</span><span class="sc">^</span>n_cycles</span>
+<span id="cb36-136"><a href="#cb36-136" aria-hidden="true" tabindex="-1"></a>  total_cells <span class="ot">&lt;-</span> initial_cells <span class="sc">*</span> <span class="dv">2</span> <span class="co"># </span><span class="al">TODO</span></span>
 <span id="cb36-137"><a href="#cb36-137" aria-hidden="true" tabindex="-1"></a>  <span class="co"># how many groups of cells are after 1 division</span></span>
 <span id="cb36-138"><a href="#cb36-138" aria-hidden="true" tabindex="-1"></a>  full_groups <span class="ot">&lt;-</span> total_cells <span class="sc">%/%</span> group_size</span>
 <span id="cb36-139"><a href="#cb36-139" aria-hidden="true" tabindex="-1"></a>  <span class="co"># how many are leftover</span></span>
@@ -6338,7 +6345,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb36-242"><a href="#cb36-242" aria-hidden="true" tabindex="-1"></a><span class="fu">### Summary of conditional statements</span></span>
 <span id="cb36-243"><a href="#cb36-243" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-244"><a href="#cb36-244" aria-hidden="true" tabindex="-1"></a>| Syntax                | Description                                                | Example                          |</span>
-<span id="cb36-245"><a href="#cb36-245" aria-hidden="true" tabindex="-1"></a>|-------------------|---------------------------------|---------------------|</span>
+<span id="cb36-245"><a href="#cb36-245" aria-hidden="true" tabindex="-1"></a>|-------------------|--------------------------------|---------------------|</span>
 <span id="cb36-246"><a href="#cb36-246" aria-hidden="true" tabindex="-1"></a>| <span class="in">`if (condition)`</span>      | Executes code only if the condition is <span class="in">`TRUE`</span>              | <span class="in">`if (x &gt; 0) print(&quot;Positive&quot;)`</span>   |</span>
 <span id="cb36-247"><a href="#cb36-247" aria-hidden="true" tabindex="-1"></a>| <span class="in">`else`</span>                | Executes code if the previous <span class="in">`if`</span> was <span class="in">`FALSE`</span>             | <span class="in">`else print(&quot;Not positive&quot;)`</span>     |</span>
 <span id="cb36-248"><a href="#cb36-248" aria-hidden="true" tabindex="-1"></a>| <span class="in">`else if (condition)`</span> | Checks another condition if the first <span class="in">`if`</span> fails           | <span class="in">`else if (x == 0) print(&quot;Zero&quot;)`</span> |</span>
@@ -6362,150 +6369,142 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb36-266"><a href="#cb36-266" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="dv">600</span></span>
 <span id="cb36-267"><a href="#cb36-267" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-268"><a href="#cb36-268" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add your conditional statements and print the growth classification</span></span>
-<span id="cb36-269"><a href="#cb36-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-270"><a href="#cb36-270" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (vec <span class="sc">&gt;</span> <span class="dv">1000</span>) {</span>
-<span id="cb36-271"><a href="#cb36-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Rapid growth&quot;</span>)</span>
-<span id="cb36-272"><a href="#cb36-272" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (vec <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span> vec <span class="sc">&lt;=</span> <span class="dv">1000</span>) {</span>
-<span id="cb36-273"><a href="#cb36-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Medium&quot;</span>)</span>
-<span id="cb36-274"><a href="#cb36-274" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb36-275"><a href="#cb36-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Slow&quot;</span>)</span>
-<span id="cb36-276"><a href="#cb36-276" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb36-277"><a href="#cb36-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-278"><a href="#cb36-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-279"><a href="#cb36-279" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Taks : Add growth classification to a `cell_division_summary` function</span></span>
-<span id="cb36-280"><a href="#cb36-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-281"><a href="#cb36-281" aria-hidden="true" tabindex="-1"></a>You are given a function that calculates the number of cells after one division and groups them based on a specified group size.</span>
-<span id="cb36-282"><a href="#cb36-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-283"><a href="#cb36-283" aria-hidden="true" tabindex="-1"></a>Your task is to **modify the function** to also classify the **growth level** as a new element of the list called <span class="in">`growth_classification`</span> based on the number of cells after division:</span>
-<span id="cb36-284"><a href="#cb36-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-285"><a href="#cb36-285" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is **greater than 2000**, print <span class="in">`&quot;Extreme growth&quot;`</span></span>
-<span id="cb36-286"><a href="#cb36-286" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is **between 1001 and 2000**, print <span class="in">`&quot;Rapid growth&quot;`</span></span>
-<span id="cb36-287"><a href="#cb36-287" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is **between 501 and 1000**, print <span class="in">`&quot;Moderate growth&quot;`</span></span>
-<span id="cb36-288"><a href="#cb36-288" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is **500 or less**, print <span class="in">`&quot;Slow growth&quot;`</span></span>
-<span id="cb36-289"><a href="#cb36-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-290"><a href="#cb36-290" aria-hidden="true" tabindex="-1"></a>This classification should be added **using conditional statements** (<span class="in">`if`</span>, <span class="in">`else if`</span>, <span class="in">`else`</span>) inside the function.</span>
-<span id="cb36-291"><a href="#cb36-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-294"><a href="#cb36-294" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-295"><a href="#cb36-295" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
-<span id="cb36-296"><a href="#cb36-296" aria-hidden="true" tabindex="-1"></a>cell_division_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(initial_cells,</span>
-<span id="cb36-297"><a href="#cb36-297" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_size =</span> <span class="dv">10</span>) {</span>
-<span id="cb36-298"><a href="#cb36-298" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-299"><a href="#cb36-299" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate total number of cells after 1 division</span></span>
-<span id="cb36-300"><a href="#cb36-300" aria-hidden="true" tabindex="-1"></a>  total_cells <span class="ot">&lt;-</span> initial_cells <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb36-301"><a href="#cb36-301" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-302"><a href="#cb36-302" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co">: Add your conditional statements here to define a variable called &#39;growth_classification&#39;</span></span>
-<span id="cb36-303"><a href="#cb36-303" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-304"><a href="#cb36-304" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-305"><a href="#cb36-305" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate number of full groups</span></span>
-<span id="cb36-306"><a href="#cb36-306" aria-hidden="true" tabindex="-1"></a>  full_groups <span class="ot">&lt;-</span> total_cells <span class="sc">%/%</span> group_size</span>
-<span id="cb36-307"><a href="#cb36-307" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-308"><a href="#cb36-308" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate number of leftover cells</span></span>
-<span id="cb36-309"><a href="#cb36-309" aria-hidden="true" tabindex="-1"></a>  leftover_cells <span class="ot">&lt;-</span> total_cells <span class="sc">%%</span> group_size</span>
-<span id="cb36-310"><a href="#cb36-310" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-311"><a href="#cb36-311" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co">: return ALL values in a list</span></span>
-<span id="cb36-312"><a href="#cb36-312" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
-<span id="cb36-313"><a href="#cb36-313" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_cells =</span> total_cells,</span>
-<span id="cb36-314"><a href="#cb36-314" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_groups =</span> full_groups,</span>
-<span id="cb36-315"><a href="#cb36-315" aria-hidden="true" tabindex="-1"></a>    <span class="at">leftover_cells =</span> leftover_cells</span>
-<span id="cb36-316"><a href="#cb36-316" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb36-317"><a href="#cb36-317" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-269"><a href="#cb36-269" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-270"><a href="#cb36-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-271"><a href="#cb36-271" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Taks : Add growth classification to a `cell_division_summary` function</span></span>
+<span id="cb36-272"><a href="#cb36-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-273"><a href="#cb36-273" aria-hidden="true" tabindex="-1"></a>You are given a function that calculates the number of cells after one division and groups them based on a specified group size.</span>
+<span id="cb36-274"><a href="#cb36-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-275"><a href="#cb36-275" aria-hidden="true" tabindex="-1"></a>Your task is to **modify the function** to also classify the **growth level** as a new element of the list called <span class="in">`growth_classification`</span> based on the number of cells after division:</span>
+<span id="cb36-276"><a href="#cb36-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-277"><a href="#cb36-277" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is **greater than 2000**, print <span class="in">`&quot;Extreme growth&quot;`</span></span>
+<span id="cb36-278"><a href="#cb36-278" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is **between 1001 and 2000**, print <span class="in">`&quot;Rapid growth&quot;`</span></span>
+<span id="cb36-279"><a href="#cb36-279" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is **between 501 and 1000**, print <span class="in">`&quot;Moderate growth&quot;`</span></span>
+<span id="cb36-280"><a href="#cb36-280" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>If the number is **500 or less**, print <span class="in">`&quot;Slow growth&quot;`</span></span>
+<span id="cb36-281"><a href="#cb36-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-282"><a href="#cb36-282" aria-hidden="true" tabindex="-1"></a>This classification should be added **using conditional statements** (<span class="in">`if`</span>, <span class="in">`else if`</span>, <span class="in">`else`</span>) inside the function.</span>
+<span id="cb36-283"><a href="#cb36-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-286"><a href="#cb36-286" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-287"><a href="#cb36-287" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
+<span id="cb36-288"><a href="#cb36-288" aria-hidden="true" tabindex="-1"></a>cell_division_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(initial_cells,</span>
+<span id="cb36-289"><a href="#cb36-289" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_size =</span> <span class="dv">10</span>) {</span>
+<span id="cb36-290"><a href="#cb36-290" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-291"><a href="#cb36-291" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate total number of cells after 1 division</span></span>
+<span id="cb36-292"><a href="#cb36-292" aria-hidden="true" tabindex="-1"></a>  total_cells <span class="ot">&lt;-</span> initial_cells <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb36-293"><a href="#cb36-293" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-294"><a href="#cb36-294" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co">: Add your conditional statements here to define a variable called &#39;growth_classification&#39;</span></span>
+<span id="cb36-295"><a href="#cb36-295" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-296"><a href="#cb36-296" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-297"><a href="#cb36-297" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate number of full groups</span></span>
+<span id="cb36-298"><a href="#cb36-298" aria-hidden="true" tabindex="-1"></a>  full_groups <span class="ot">&lt;-</span> total_cells <span class="sc">%/%</span> group_size</span>
+<span id="cb36-299"><a href="#cb36-299" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-300"><a href="#cb36-300" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate number of leftover cells</span></span>
+<span id="cb36-301"><a href="#cb36-301" aria-hidden="true" tabindex="-1"></a>  leftover_cells <span class="ot">&lt;-</span> total_cells <span class="sc">%%</span> group_size</span>
+<span id="cb36-302"><a href="#cb36-302" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-303"><a href="#cb36-303" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co">: return ALL values in a list</span></span>
+<span id="cb36-304"><a href="#cb36-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb36-305"><a href="#cb36-305" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_cells =</span> total_cells,</span>
+<span id="cb36-306"><a href="#cb36-306" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_groups =</span> full_groups,</span>
+<span id="cb36-307"><a href="#cb36-307" aria-hidden="true" tabindex="-1"></a>    <span class="at">leftover_cells =</span> leftover_cells</span>
+<span id="cb36-308"><a href="#cb36-308" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb36-309"><a href="#cb36-309" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-310"><a href="#cb36-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-311"><a href="#cb36-311" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Run your function on some example</span></span>
+<span id="cb36-312"><a href="#cb36-312" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-313"><a href="#cb36-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-314"><a href="#cb36-314" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb36-315"><a href="#cb36-315" aria-hidden="true" tabindex="-1"></a><span class="fu">## Messages, Warnings, and Errors in functions</span></span>
+<span id="cb36-316"><a href="#cb36-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-317"><a href="#cb36-317" aria-hidden="true" tabindex="-1"></a>When writing your own functions, it&#39;s useful to give feedback to the user using different types of messages:</span>
 <span id="cb36-318"><a href="#cb36-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-319"><a href="#cb36-319" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Run your function on some example</span></span>
-<span id="cb36-320"><a href="#cb36-320" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-321"><a href="#cb36-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-322"><a href="#cb36-322" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb36-323"><a href="#cb36-323" aria-hidden="true" tabindex="-1"></a><span class="fu">## Messages, Warnings, and Errors in functions</span></span>
+<span id="cb36-319"><a href="#cb36-319" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`message()`** -- Informational messages. These are shown but do not interrupt execution.</span>
+<span id="cb36-320"><a href="#cb36-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-321"><a href="#cb36-321" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb36-322"><a href="#cb36-322" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">&quot;Calculation complete.&quot;</span>)</span>
+<span id="cb36-323"><a href="#cb36-323" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb36-324"><a href="#cb36-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-325"><a href="#cb36-325" aria-hidden="true" tabindex="-1"></a>When writing your own functions, it&#39;s useful to give feedback to the user using different types of messages:</span>
+<span id="cb36-325"><a href="#cb36-325" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`warning()`** -- Alerts the user that something may be wrong, but the function continues running.</span>
 <span id="cb36-326"><a href="#cb36-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-327"><a href="#cb36-327" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`message()`** -- Informational messages. These are shown but do not interrupt execution.</span>
-<span id="cb36-328"><a href="#cb36-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-329"><a href="#cb36-329" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb36-330"><a href="#cb36-330" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">&quot;Calculation complete.&quot;</span>)</span>
-<span id="cb36-331"><a href="#cb36-331" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-327"><a href="#cb36-327" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb36-328"><a href="#cb36-328" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="fu">warning</span>(<span class="st">&quot;Negative value detected.&quot;</span>)</span>
+<span id="cb36-329"><a href="#cb36-329" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-330"><a href="#cb36-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-331"><a href="#cb36-331" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`stop()`** -- Stops the function and throws an error. Use this to prevent further execution if input is invalid.</span>
 <span id="cb36-332"><a href="#cb36-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-333"><a href="#cb36-333" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`warning()`** -- Alerts the user that something may be wrong, but the function continues running.</span>
-<span id="cb36-334"><a href="#cb36-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-335"><a href="#cb36-335" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb36-336"><a href="#cb36-336" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="fu">warning</span>(<span class="st">&quot;Negative value detected.&quot;</span>)</span>
-<span id="cb36-337"><a href="#cb36-337" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-338"><a href="#cb36-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-339"><a href="#cb36-339" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`stop()`** -- Stops the function and throws an error. Use this to prevent further execution if input is invalid.</span>
-<span id="cb36-340"><a href="#cb36-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-341"><a href="#cb36-341" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb36-342"><a href="#cb36-342" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) <span class="fu">stop</span>(<span class="st">&quot;Input must be numeric.&quot;</span>)</span>
-<span id="cb36-343"><a href="#cb36-343" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-344"><a href="#cb36-344" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb36-345"><a href="#cb36-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-346"><a href="#cb36-346" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Example in a function</span></span>
-<span id="cb36-347"><a href="#cb36-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-350"><a href="#cb36-350" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-351"><a href="#cb36-351" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb36-333"><a href="#cb36-333" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb36-334"><a href="#cb36-334" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) <span class="fu">stop</span>(<span class="st">&quot;Input must be numeric.&quot;</span>)</span>
+<span id="cb36-335"><a href="#cb36-335" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-336"><a href="#cb36-336" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb36-337"><a href="#cb36-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-338"><a href="#cb36-338" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Example in a function</span></span>
+<span id="cb36-339"><a href="#cb36-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-342"><a href="#cb36-342" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-343"><a href="#cb36-343" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb36-344"><a href="#cb36-344" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-345"><a href="#cb36-345" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Show a message when the function starts</span></span>
+<span id="cb36-346"><a href="#cb36-346" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Starting calculation...&quot;</span>)</span>
+<span id="cb36-347"><a href="#cb36-347" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-348"><a href="#cb36-348" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Stop the function if x is not numeric</span></span>
+<span id="cb36-349"><a href="#cb36-349" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) {</span>
+<span id="cb36-350"><a href="#cb36-350" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Input must be numeric.&quot;</span>)</span>
+<span id="cb36-351"><a href="#cb36-351" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb36-352"><a href="#cb36-352" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-353"><a href="#cb36-353" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Show a message when the function starts</span></span>
-<span id="cb36-354"><a href="#cb36-354" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Starting calculation...&quot;</span>)</span>
+<span id="cb36-353"><a href="#cb36-353" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Perform the calculation</span></span>
+<span id="cb36-354"><a href="#cb36-354" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">4</span></span>
 <span id="cb36-355"><a href="#cb36-355" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-356"><a href="#cb36-356" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Stop the function if x is not numeric</span></span>
-<span id="cb36-357"><a href="#cb36-357" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) {</span>
-<span id="cb36-358"><a href="#cb36-358" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Input must be numeric.&quot;</span>)</span>
+<span id="cb36-356"><a href="#cb36-356" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Warn the user if the result is negative</span></span>
+<span id="cb36-357"><a href="#cb36-357" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (res <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb36-358"><a href="#cb36-358" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;The result is negative.&quot;</span>)</span>
 <span id="cb36-359"><a href="#cb36-359" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb36-360"><a href="#cb36-360" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-361"><a href="#cb36-361" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Perform the calculation</span></span>
-<span id="cb36-362"><a href="#cb36-362" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">4</span></span>
-<span id="cb36-363"><a href="#cb36-363" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-364"><a href="#cb36-364" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Warn the user if the result is negative</span></span>
-<span id="cb36-365"><a href="#cb36-365" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (res <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
-<span id="cb36-366"><a href="#cb36-366" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;The result is negative.&quot;</span>)</span>
-<span id="cb36-367"><a href="#cb36-367" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb36-368"><a href="#cb36-368" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-369"><a href="#cb36-369" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(res)</span>
-<span id="cb36-370"><a href="#cb36-370" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-361"><a href="#cb36-361" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(res)</span>
+<span id="cb36-362"><a href="#cb36-362" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-363"><a href="#cb36-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-364"><a href="#cb36-364" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-365"><a href="#cb36-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-366"><a href="#cb36-366" aria-hidden="true" tabindex="-1"></a><span class="fu"># Apply family</span></span>
+<span id="cb36-367"><a href="#cb36-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-368"><a href="#cb36-368" aria-hidden="true" tabindex="-1"></a>The <span class="in">`apply`</span> family of functions (<span class="in">`apply`</span>, <span class="in">`lapply`</span>, <span class="in">`sapply`</span>, <span class="in">`tapply`</span>, <span class="in">`mapply`</span>, etc.) is used to perform operations on data structures without writing explicit loops.</span>
+<span id="cb36-369"><a href="#cb36-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-370"><a href="#cb36-370" aria-hidden="true" tabindex="-1"></a><span class="fu">### Summary of the `apply` Family</span></span>
 <span id="cb36-371"><a href="#cb36-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-372"><a href="#cb36-372" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-373"><a href="#cb36-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-374"><a href="#cb36-374" aria-hidden="true" tabindex="-1"></a><span class="fu"># Apply family</span></span>
-<span id="cb36-375"><a href="#cb36-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-376"><a href="#cb36-376" aria-hidden="true" tabindex="-1"></a>The <span class="in">`apply`</span> family of functions (<span class="in">`apply`</span>, <span class="in">`lapply`</span>, <span class="in">`sapply`</span>, <span class="in">`tapply`</span>, <span class="in">`mapply`</span>, etc.) is used to perform operations on data structures without writing explicit loops.</span>
-<span id="cb36-377"><a href="#cb36-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-378"><a href="#cb36-378" aria-hidden="true" tabindex="-1"></a><span class="fu">### Summary of the `apply` Family</span></span>
+<span id="cb36-372"><a href="#cb36-372" aria-hidden="true" tabindex="-1"></a>| Function   | Input Type         | Output Type     | Description                                 |</span>
+<span id="cb36-373"><a href="#cb36-373" aria-hidden="true" tabindex="-1"></a>|-----------------|-----------------|-----------------|---------------------|</span>
+<span id="cb36-374"><a href="#cb36-374" aria-hidden="true" tabindex="-1"></a>| <span class="in">`apply()`</span>  | matrix, data.frame | vector, array   | Apply a function over rows or columns       |</span>
+<span id="cb36-375"><a href="#cb36-375" aria-hidden="true" tabindex="-1"></a>| <span class="in">`lapply()`</span> | list, vector       | list            | Apply a function to each element            |</span>
+<span id="cb36-376"><a href="#cb36-376" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sapply()`</span> | list, vector       | simplified list | Like <span class="in">`lapply()`</span>, but returns vector/matrix  |</span>
+<span id="cb36-377"><a href="#cb36-377" aria-hidden="true" tabindex="-1"></a>| <span class="in">`tapply()`</span> | vector + factor    | vector, array   | Apply a function to grouped subsets         |</span>
+<span id="cb36-378"><a href="#cb36-378" aria-hidden="true" tabindex="-1"></a>| <span class="in">`mapply()`</span> | multiple vectors   | vector, list    | Apply a function in parallel over arguments |</span>
 <span id="cb36-379"><a href="#cb36-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-380"><a href="#cb36-380" aria-hidden="true" tabindex="-1"></a>| Function   | Input Type         | Output Type     | Description                                 |</span>
-<span id="cb36-381"><a href="#cb36-381" aria-hidden="true" tabindex="-1"></a>|-----------------|-----------------|-----------------|----------------------|</span>
-<span id="cb36-382"><a href="#cb36-382" aria-hidden="true" tabindex="-1"></a>| <span class="in">`apply()`</span>  | matrix, data.frame | vector, array   | Apply a function over rows or columns       |</span>
-<span id="cb36-383"><a href="#cb36-383" aria-hidden="true" tabindex="-1"></a>| <span class="in">`lapply()`</span> | list, vector       | list            | Apply a function to each element            |</span>
-<span id="cb36-384"><a href="#cb36-384" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sapply()`</span> | list, vector       | simplified list | Like <span class="in">`lapply()`</span>, but returns vector/matrix  |</span>
-<span id="cb36-385"><a href="#cb36-385" aria-hidden="true" tabindex="-1"></a>| <span class="in">`tapply()`</span> | vector + factor    | vector, array   | Apply a function to grouped subsets         |</span>
-<span id="cb36-386"><a href="#cb36-386" aria-hidden="true" tabindex="-1"></a>| <span class="in">`mapply()`</span> | multiple vectors   | vector, list    | Apply a function in parallel over arguments |</span>
-<span id="cb36-387"><a href="#cb36-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-388"><a href="#cb36-388" aria-hidden="true" tabindex="-1"></a><span class="fu">### Examples</span></span>
-<span id="cb36-389"><a href="#cb36-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-390"><a href="#cb36-390" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span><span class="in">`sapply()`</span> -- Simplified apply (tries to return vector or matrix)</span>
+<span id="cb36-380"><a href="#cb36-380" aria-hidden="true" tabindex="-1"></a><span class="fu">### Examples</span></span>
+<span id="cb36-381"><a href="#cb36-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-382"><a href="#cb36-382" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span><span class="in">`sapply()`</span> -- Simplified apply (tries to return vector or matrix)</span>
+<span id="cb36-383"><a href="#cb36-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-386"><a href="#cb36-386" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-387"><a href="#cb36-387" aria-hidden="true" tabindex="-1"></a>(lst <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">b =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>))</span>
+<span id="cb36-388"><a href="#cb36-388" aria-hidden="true" tabindex="-1"></a><span class="co"># Same as lapply(), but returns a simplified vector</span></span>
+<span id="cb36-389"><a href="#cb36-389" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(lst, mean)</span>
+<span id="cb36-390"><a href="#cb36-390" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb36-391"><a href="#cb36-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-394"><a href="#cb36-394" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-395"><a href="#cb36-395" aria-hidden="true" tabindex="-1"></a>(lst <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">b =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>))</span>
-<span id="cb36-396"><a href="#cb36-396" aria-hidden="true" tabindex="-1"></a><span class="co"># Same as lapply(), but returns a simplified vector</span></span>
-<span id="cb36-397"><a href="#cb36-397" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(lst, mean)</span>
-<span id="cb36-398"><a href="#cb36-398" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-399"><a href="#cb36-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-400"><a href="#cb36-400" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span><span class="in">`lapply()`</span> -- list apply</span>
-<span id="cb36-401"><a href="#cb36-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-404"><a href="#cb36-404" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-405"><a href="#cb36-405" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the mean of each list element</span></span>
-<span id="cb36-406"><a href="#cb36-406" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(lst, mean)</span>
-<span id="cb36-407"><a href="#cb36-407" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-392"><a href="#cb36-392" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span><span class="in">`lapply()`</span> -- list apply</span>
+<span id="cb36-393"><a href="#cb36-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-396"><a href="#cb36-396" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-397"><a href="#cb36-397" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the mean of each list element</span></span>
+<span id="cb36-398"><a href="#cb36-398" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(lst, mean)</span>
+<span id="cb36-399"><a href="#cb36-399" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-400"><a href="#cb36-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-401"><a href="#cb36-401" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span><span class="in">`apply()`</span> -- Apply over rows or columns of a matrix or data frame</span>
+<span id="cb36-402"><a href="#cb36-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-405"><a href="#cb36-405" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-406"><a href="#cb36-406" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 3x3 matrix</span></span>
+<span id="cb36-407"><a href="#cb36-407" aria-hidden="true" tabindex="-1"></a>(mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>) )</span>
 <span id="cb36-408"><a href="#cb36-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-409"><a href="#cb36-409" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span><span class="in">`apply()`</span> -- Apply over rows or columns of a matrix or data frame</span>
-<span id="cb36-410"><a href="#cb36-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-413"><a href="#cb36-413" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-414"><a href="#cb36-414" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 3x3 matrix</span></span>
-<span id="cb36-415"><a href="#cb36-415" aria-hidden="true" tabindex="-1"></a>(mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>) )</span>
-<span id="cb36-416"><a href="#cb36-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-417"><a href="#cb36-417" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean of each column (2 = columns)</span></span>
-<span id="cb36-418"><a href="#cb36-418" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, mean)</span>
-<span id="cb36-419"><a href="#cb36-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-420"><a href="#cb36-420" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the sum of each row (1 = rows)</span></span>
-<span id="cb36-421"><a href="#cb36-421" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">1</span>, sum)</span>
-<span id="cb36-422"><a href="#cb36-422" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-409"><a href="#cb36-409" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean of each column (2 = columns)</span></span>
+<span id="cb36-410"><a href="#cb36-410" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, mean)</span>
+<span id="cb36-411"><a href="#cb36-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-412"><a href="#cb36-412" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the sum of each row (1 = rows)</span></span>
+<span id="cb36-413"><a href="#cb36-413" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">1</span>, sum)</span>
+<span id="cb36-414"><a href="#cb36-414" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

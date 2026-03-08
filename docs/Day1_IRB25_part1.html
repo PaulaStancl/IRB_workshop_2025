@@ -5325,6 +5325,21 @@ window.onload = function() {
     <a class="dropdown-item" href="./Day3_IRB25_part0.html">
  <span class="dropdown-text">Practice</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Introduction_to_stats_NEW.html">
+ <span class="dropdown-text">Statistics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Day 4</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-day-4">    
+        <li>
+    <a class="dropdown-item" href="./Introduction_to_ML_NEW.html">
+ <span class="dropdown-text">Machine learning</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -6634,612 +6649,610 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb152-16"><a href="#cb152-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: &quot;Show code&quot;</span></span>
 <span id="cb152-17"><a href="#cb152-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-line-numbers: false</span></span>
 <span id="cb152-18"><a href="#cb152-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb152-19"><a href="#cb152-19" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb152-20"><a href="#cb152-20" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb152-21"><a href="#cb152-21" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
-<span id="cb152-22"><a href="#cb152-22" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
-<span id="cb152-23"><a href="#cb152-23" aria-hidden="true" tabindex="-1"></a><span class="co">  collapse: true</span></span>
-<span id="cb152-24"><a href="#cb152-24" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb152-25"><a href="#cb152-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-26"><a href="#cb152-26" aria-hidden="true" tabindex="-1"></a>Hello everyone to your first session &quot;Introduction to R&quot; in the Institute Ruder Boskovic (IRB) workshop. During this session, you will learn the basics to R programming and working environment.</span>
-<span id="cb152-27"><a href="#cb152-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-28"><a href="#cb152-28" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb152-29"><a href="#cb152-29" aria-hidden="true" tabindex="-1"></a><span class="fu"># How to quickly code a chunk</span></span>
-<span id="cb152-30"><a href="#cb152-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-31"><a href="#cb152-31" aria-hidden="true" tabindex="-1"></a>**Ctrl + Alt + I**</span>
-<span id="cb152-32"><a href="#cb152-32" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb152-33"><a href="#cb152-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-34"><a href="#cb152-34" aria-hidden="true" tabindex="-1"></a><span class="fu"># R as calculator</span></span>
-<span id="cb152-35"><a href="#cb152-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-36"><a href="#cb152-36" aria-hidden="true" tabindex="-1"></a>R can be used as a basic calculator to perform arithmetic operations like addition, subtraction, multiplication, and division.</span>
-<span id="cb152-37"><a href="#cb152-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-38"><a href="#cb152-38" aria-hidden="true" tabindex="-1"></a>| Expression        | Description                  | Result |</span>
-<span id="cb152-39"><a href="#cb152-39" aria-hidden="true" tabindex="-1"></a>|-------------------|------------------------------|--------|</span>
-<span id="cb152-40"><a href="#cb152-40" aria-hidden="true" tabindex="-1"></a>| <span class="in">`(9 + 2)*(3 - 1)`</span> | Multiply sum and difference  | <span class="in">`22`</span>   |</span>
-<span id="cb152-41"><a href="#cb152-41" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sqrt(2)^2`</span>       | Square of square root of 2   | <span class="in">`2`</span>    |</span>
-<span id="cb152-42"><a href="#cb152-42" aria-hidden="true" tabindex="-1"></a>| <span class="in">`5 / 2`</span>           | Division (gives decimal)     | <span class="in">`2.5`</span>  |</span>
-<span id="cb152-43"><a href="#cb152-43" aria-hidden="true" tabindex="-1"></a>| <span class="in">`5 %/% 2`</span>         | Integer (floor) division     | <span class="in">`2`</span>    |</span>
-<span id="cb152-44"><a href="#cb152-44" aria-hidden="true" tabindex="-1"></a>| <span class="in">`5 %% 2`</span>          | Remainder (modulo operation) | <span class="in">`1`</span>    |</span>
-<span id="cb152-45"><a href="#cb152-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-46"><a href="#cb152-46" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
-<span id="cb152-47"><a href="#cb152-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-48"><a href="#cb152-48" aria-hidden="true" tabindex="-1"></a>A scientist has **48** stem cells. Each one divides into **2** daughter cells.</span>
-<span id="cb152-49"><a href="#cb152-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-50"><a href="#cb152-50" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How many cells will there be after division?</span>
-<span id="cb152-51"><a href="#cb152-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-52"><a href="#cb152-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How many full groups of **10 cells** can you make after first division? How many left over?</span>
-<span id="cb152-53"><a href="#cb152-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-56"><a href="#cb152-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-57"><a href="#cb152-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve here</span></span>
+<span id="cb152-19"><a href="#cb152-19" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb152-20"><a href="#cb152-20" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb152-21"><a href="#cb152-21" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb152-22"><a href="#cb152-22" aria-hidden="true" tabindex="-1"></a><span class="co">  collapse: true</span></span>
+<span id="cb152-23"><a href="#cb152-23" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb152-24"><a href="#cb152-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-25"><a href="#cb152-25" aria-hidden="true" tabindex="-1"></a>Hello everyone to your first session &quot;Introduction to R&quot; in the Institute Ruder Boskovic (IRB) workshop. During this session, you will learn the basics to R programming and working environment.</span>
+<span id="cb152-26"><a href="#cb152-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-27"><a href="#cb152-27" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb152-28"><a href="#cb152-28" aria-hidden="true" tabindex="-1"></a><span class="fu"># How to quickly code a chunk</span></span>
+<span id="cb152-29"><a href="#cb152-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-30"><a href="#cb152-30" aria-hidden="true" tabindex="-1"></a>**Ctrl + Alt + I**</span>
+<span id="cb152-31"><a href="#cb152-31" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-32"><a href="#cb152-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-33"><a href="#cb152-33" aria-hidden="true" tabindex="-1"></a><span class="fu"># R as calculator</span></span>
+<span id="cb152-34"><a href="#cb152-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-35"><a href="#cb152-35" aria-hidden="true" tabindex="-1"></a>R can be used as a basic calculator to perform arithmetic operations like addition, subtraction, multiplication, and division.</span>
+<span id="cb152-36"><a href="#cb152-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-37"><a href="#cb152-37" aria-hidden="true" tabindex="-1"></a>| Expression        | Description                  | Result |</span>
+<span id="cb152-38"><a href="#cb152-38" aria-hidden="true" tabindex="-1"></a>|-------------------|------------------------------|--------|</span>
+<span id="cb152-39"><a href="#cb152-39" aria-hidden="true" tabindex="-1"></a>| <span class="in">`(9 + 2)*(3 - 1)`</span> | Multiply sum and difference  | <span class="in">`22`</span>   |</span>
+<span id="cb152-40"><a href="#cb152-40" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sqrt(2)^2`</span>       | Square of square root of 2   | <span class="in">`2`</span>    |</span>
+<span id="cb152-41"><a href="#cb152-41" aria-hidden="true" tabindex="-1"></a>| <span class="in">`5 / 2`</span>           | Division (gives decimal)     | <span class="in">`2.5`</span>  |</span>
+<span id="cb152-42"><a href="#cb152-42" aria-hidden="true" tabindex="-1"></a>| <span class="in">`5 %/% 2`</span>         | Integer (floor) division     | <span class="in">`2`</span>    |</span>
+<span id="cb152-43"><a href="#cb152-43" aria-hidden="true" tabindex="-1"></a>| <span class="in">`5 %% 2`</span>          | Remainder (modulo operation) | <span class="in">`1`</span>    |</span>
+<span id="cb152-44"><a href="#cb152-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-45"><a href="#cb152-45" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
+<span id="cb152-46"><a href="#cb152-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-47"><a href="#cb152-47" aria-hidden="true" tabindex="-1"></a>A scientist has **48** stem cells. Each one divides into **2** daughter cells.</span>
+<span id="cb152-48"><a href="#cb152-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-49"><a href="#cb152-49" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How many cells will there be after division?</span>
+<span id="cb152-50"><a href="#cb152-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-51"><a href="#cb152-51" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How many full groups of **10 cells** can you make after first division? How many left over?</span>
+<span id="cb152-52"><a href="#cb152-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-55"><a href="#cb152-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-56"><a href="#cb152-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve here</span></span>
+<span id="cb152-57"><a href="#cb152-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb152-58"><a href="#cb152-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-59"><a href="#cb152-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-59"><a href="#cb152-59" aria-hidden="true" tabindex="-1"></a><span class="fu"># R objects</span></span>
 <span id="cb152-60"><a href="#cb152-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-61"><a href="#cb152-61" aria-hidden="true" tabindex="-1"></a><span class="fu"># R objects</span></span>
+<span id="cb152-61"><a href="#cb152-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## Variable</span></span>
 <span id="cb152-62"><a href="#cb152-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-63"><a href="#cb152-63" aria-hidden="true" tabindex="-1"></a><span class="fu">## Variable</span></span>
+<span id="cb152-63"><a href="#cb152-63" aria-hidden="true" tabindex="-1"></a><span class="fu">### Creating a variable</span></span>
 <span id="cb152-64"><a href="#cb152-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-65"><a href="#cb152-65" aria-hidden="true" tabindex="-1"></a><span class="fu">### Creating a variable</span></span>
+<span id="cb152-65"><a href="#cb152-65" aria-hidden="true" tabindex="-1"></a>To create a certain object, you need to give it a name followed by the assignment operator **\&lt;-** and the value you want to store it. To see the stored value in a variable, you can call it using *parentheses* or *by typing the object name*.</span>
 <span id="cb152-66"><a href="#cb152-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-67"><a href="#cb152-67" aria-hidden="true" tabindex="-1"></a>To create a certain object, you need to give it a name followed by the assignment operator **\&lt;-** and the value you want to store it. To see the stored value in a variable, you can call it using *parentheses* or *by typing the object name*.</span>
-<span id="cb152-68"><a href="#cb152-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-71"><a href="#cb152-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-72"><a href="#cb152-72" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb152-69"><a href="#cb152-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-70"><a href="#cb152-70" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb152-71"><a href="#cb152-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
+<span id="cb152-72"><a href="#cb152-72" aria-hidden="true" tabindex="-1"></a><span class="co">#vec</span></span>
 <span id="cb152-73"><a href="#cb152-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
-<span id="cb152-74"><a href="#cb152-74" aria-hidden="true" tabindex="-1"></a><span class="co">#vec</span></span>
-<span id="cb152-75"><a href="#cb152-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
-<span id="cb152-76"><a href="#cb152-76" aria-hidden="true" tabindex="-1"></a>(vec2 <span class="ot">&lt;-</span> <span class="dv">10</span>)</span>
-<span id="cb152-77"><a href="#cb152-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-74"><a href="#cb152-74" aria-hidden="true" tabindex="-1"></a>(vec2 <span class="ot">&lt;-</span> <span class="dv">10</span>)</span>
+<span id="cb152-75"><a href="#cb152-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-76"><a href="#cb152-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-77"><a href="#cb152-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### Naming a variable</span></span>
 <span id="cb152-78"><a href="#cb152-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-79"><a href="#cb152-79" aria-hidden="true" tabindex="-1"></a><span class="fu">### Naming a variable</span></span>
+<span id="cb152-79"><a href="#cb152-79" aria-hidden="true" tabindex="-1"></a>When naming the variables, they mustn&#39;t be too short or too long. Avoid meaningless variable names and name them logically ( example: **`mRNA_human`** ) R is case sensitive ( example: **`vec`** is different to **`Vec`** ). Some names cannot be used because they are the names of fundamental functions in R (e.g., **`if`**, **`else`**, **`for`**...). In general, even if it&#39;s allowed, it&#39;s best to not use other function names (e.g., **`c`**, **`t`**, **`mean`**, **`data`**, **`df`**). Furthermore, avoid using dots (**`.`**) within a variable name, such as in <span class="in">`my.mRNA`</span>. A lot of functions in R have dots in their name for historical reasons and dots have special meaning in R so it is best to avoid them.</span>
 <span id="cb152-80"><a href="#cb152-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-81"><a href="#cb152-81" aria-hidden="true" tabindex="-1"></a>When naming the variables, they mustn&#39;t be too short or too long. Avoid meaningless variable names and name them logically ( example: **`mRNA_human`** ) R is case sensitive ( example: **`vec`** is different to **`Vec`** ). Some names cannot be used because they are the names of fundamental functions in R (e.g., **`if`**, **`else`**, **`for`**...). In general, even if it&#39;s allowed, it&#39;s best to not use other function names (e.g., **`c`**, **`t`**, **`mean`**, **`data`**, **`df`**). Furthermore, avoid using dots (**`.`**) within a variable name, such as in <span class="in">`my.mRNA`</span>. A lot of functions in R have dots in their name for historical reasons and dots have special meaning in R so it is best to avoid them.</span>
+<span id="cb152-81"><a href="#cb152-81" aria-hidden="true" tabindex="-1"></a><span class="fu">## Functions and useful tricks</span></span>
 <span id="cb152-82"><a href="#cb152-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-83"><a href="#cb152-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## Functions and useful tricks</span></span>
+<span id="cb152-83"><a href="#cb152-83" aria-hidden="true" tabindex="-1"></a>Functions are &quot;conserved scripts&quot; that automate more complicated sets of commands including operations assignments, etc. Many functions are predefined, or can be made available by importing R packages (more on that later). A function usually gets one or more inputs called arguments. Functions often (but not always) return a value. Adding <span class="in">`?`</span> in front of any function opens a help, description and usage of the function. A typical example function is <span class="in">`typeof`</span>.</span>
 <span id="cb152-84"><a href="#cb152-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-85"><a href="#cb152-85" aria-hidden="true" tabindex="-1"></a>Functions are &quot;conserved scripts&quot; that automate more complicated sets of commands including operations assignments, etc. Many functions are predefined, or can be made available by importing R packages (more on that later). A function usually gets one or more inputs called arguments. Functions often (but not always) return a value. Adding <span class="in">`?`</span> in front of any function opens a help, description and usage of the function. A typical example function is <span class="in">`typeof`</span>.</span>
-<span id="cb152-86"><a href="#cb152-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-87"><a href="#cb152-87" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb152-88"><a href="#cb152-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## Help with functions</span></span>
+<span id="cb152-85"><a href="#cb152-85" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb152-86"><a href="#cb152-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Help with functions</span></span>
+<span id="cb152-87"><a href="#cb152-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-88"><a href="#cb152-88" aria-hidden="true" tabindex="-1"></a>What does the function type do?</span>
 <span id="cb152-89"><a href="#cb152-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-90"><a href="#cb152-90" aria-hidden="true" tabindex="-1"></a>What does the function type do?</span>
-<span id="cb152-91"><a href="#cb152-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-92"><a href="#cb152-92" aria-hidden="true" tabindex="-1"></a>(Hint: ?typeof)</span>
-<span id="cb152-93"><a href="#cb152-93" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb152-94"><a href="#cb152-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-95"><a href="#cb152-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb152-96"><a href="#cb152-96" aria-hidden="true" tabindex="-1"></a>?typeof</span>
-<span id="cb152-97"><a href="#cb152-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-98"><a href="#cb152-98" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">2</span>)</span>
-<span id="cb152-99"><a href="#cb152-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-90"><a href="#cb152-90" aria-hidden="true" tabindex="-1"></a>(Hint: ?typeof)</span>
+<span id="cb152-91"><a href="#cb152-91" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-92"><a href="#cb152-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-93"><a href="#cb152-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb152-94"><a href="#cb152-94" aria-hidden="true" tabindex="-1"></a>?typeof</span>
+<span id="cb152-95"><a href="#cb152-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-96"><a href="#cb152-96" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">2</span>)</span>
+<span id="cb152-97"><a href="#cb152-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-98"><a href="#cb152-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-99"><a href="#cb152-99" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vectors</span></span>
 <span id="cb152-100"><a href="#cb152-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-101"><a href="#cb152-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vectors</span></span>
+<span id="cb152-101"><a href="#cb152-101" aria-hidden="true" tabindex="-1"></a>A vector is the most common and basic data type in R. A vector is composed by a series of values. V ectors can be composed of integer/numeric, logical or character values. Using the **`c()`**function you can assign a series of values to a vector. The simplest way to create a sequence of numbers in R is by using the **`:`** operator.</span>
 <span id="cb152-102"><a href="#cb152-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-103"><a href="#cb152-103" aria-hidden="true" tabindex="-1"></a>A vector is the most common and basic data type in R. A vector is composed by a series of values. V ectors can be composed of integer/numeric, logical or character values. Using the **`c()`**function you can assign a series of values to a vector. The simplest way to create a sequence of numbers in R is by using the **`:`** operator.</span>
+<span id="cb152-103"><a href="#cb152-103" aria-hidden="true" tabindex="-1"></a>Examples of defining vectors</span>
 <span id="cb152-104"><a href="#cb152-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-105"><a href="#cb152-105" aria-hidden="true" tabindex="-1"></a>Examples of defining vectors</span>
-<span id="cb152-106"><a href="#cb152-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-109"><a href="#cb152-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-110"><a href="#cb152-110" aria-hidden="true" tabindex="-1"></a>( first_vec_num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>) )</span>
-<span id="cb152-111"><a href="#cb152-111" aria-hidden="true" tabindex="-1"></a><span class="co">#The simplest way to create a sequence of numbers in R is by using the : operator. </span></span>
-<span id="cb152-112"><a href="#cb152-112" aria-hidden="true" tabindex="-1"></a>( second_vec_num <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> )</span>
-<span id="cb152-113"><a href="#cb152-113" aria-hidden="true" tabindex="-1"></a>( first_vec_character <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;human&quot;</span>, <span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>) )</span>
-<span id="cb152-114"><a href="#cb152-114" aria-hidden="true" tabindex="-1"></a>( first_vec_logic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>) )</span>
-<span id="cb152-115"><a href="#cb152-115" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector containing different types</span></span>
-<span id="cb152-116"><a href="#cb152-116" aria-hidden="true" tabindex="-1"></a>( mix_vec <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;sea&quot;</span>, <span class="cn">TRUE</span>) )</span>
-<span id="cb152-117"><a href="#cb152-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-107"><a href="#cb152-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-108"><a href="#cb152-108" aria-hidden="true" tabindex="-1"></a>( first_vec_num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>) )</span>
+<span id="cb152-109"><a href="#cb152-109" aria-hidden="true" tabindex="-1"></a><span class="co">#The simplest way to create a sequence of numbers in R is by using the : operator. </span></span>
+<span id="cb152-110"><a href="#cb152-110" aria-hidden="true" tabindex="-1"></a>( second_vec_num <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> )</span>
+<span id="cb152-111"><a href="#cb152-111" aria-hidden="true" tabindex="-1"></a>( first_vec_character <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;human&quot;</span>, <span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>) )</span>
+<span id="cb152-112"><a href="#cb152-112" aria-hidden="true" tabindex="-1"></a>( first_vec_logic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>) )</span>
+<span id="cb152-113"><a href="#cb152-113" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector containing different types</span></span>
+<span id="cb152-114"><a href="#cb152-114" aria-hidden="true" tabindex="-1"></a>( mix_vec <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;sea&quot;</span>, <span class="cn">TRUE</span>) )</span>
+<span id="cb152-115"><a href="#cb152-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-116"><a href="#cb152-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-117"><a href="#cb152-117" aria-hidden="true" tabindex="-1"></a><span class="fu">### Different types and classes</span></span>
 <span id="cb152-118"><a href="#cb152-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-119"><a href="#cb152-119" aria-hidden="true" tabindex="-1"></a><span class="fu">### Different types and classes</span></span>
+<span id="cb152-119"><a href="#cb152-119" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Types</span></span>
 <span id="cb152-120"><a href="#cb152-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-121"><a href="#cb152-121" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Types</span></span>
+<span id="cb152-121"><a href="#cb152-121" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>character</span>
 <span id="cb152-122"><a href="#cb152-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-123"><a href="#cb152-123" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>character</span>
+<span id="cb152-123"><a href="#cb152-123" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>double (for double precision floating point numbers)</span>
 <span id="cb152-124"><a href="#cb152-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-125"><a href="#cb152-125" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>double (for double precision floating point numbers)</span>
+<span id="cb152-125"><a href="#cb152-125" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>integer</span>
 <span id="cb152-126"><a href="#cb152-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-127"><a href="#cb152-127" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>integer</span>
-<span id="cb152-128"><a href="#cb152-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-129"><a href="#cb152-129" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb152-130"><a href="#cb152-130" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Useful functions for determining types**</span></span>
-<span id="cb152-131"><a href="#cb152-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-132"><a href="#cb152-132" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`class()`**\</span>
-<span id="cb152-133"><a href="#cb152-133" aria-hidden="true" tabindex="-1"></a>    Returns the class of an object (e.g., <span class="in">`&quot;numeric&quot;`</span>, <span class="in">`&quot;character&quot;`</span>, <span class="in">`&quot;data.frame&quot;`</span>), giving a general idea of its structure.</span>
-<span id="cb152-134"><a href="#cb152-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-135"><a href="#cb152-135" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`typeof()`**\</span>
-<span id="cb152-136"><a href="#cb152-136" aria-hidden="true" tabindex="-1"></a>    Provides the low-level internal storage type of an object (e.g., <span class="in">`&quot;double&quot;`</span>, <span class="in">`&quot;integer&quot;`</span>, <span class="in">`&quot;list&quot;`</span>), which can be more specific than <span class="in">`class()`</span>.</span>
-<span id="cb152-137"><a href="#cb152-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-138"><a href="#cb152-138" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`is.numeric()`**, **`is.character()`**, **`is.logical()`**, etc.\</span>
-<span id="cb152-139"><a href="#cb152-139" aria-hidden="true" tabindex="-1"></a>    Return <span class="in">`TRUE`</span> or <span class="in">`FALSE`</span> depending on whether the object is of the specified type. These are useful for checking expected input types in functions.</span>
-<span id="cb152-140"><a href="#cb152-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-141"><a href="#cb152-141" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`as.numeric()`**, **`as.character()`**, **`as.logical()`**, etc.\</span>
-<span id="cb152-142"><a href="#cb152-142" aria-hidden="true" tabindex="-1"></a>    Coerce (convert) an object to the specified type, if possible. These are helpful when transforming data types explicitly.</span>
-<span id="cb152-143"><a href="#cb152-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-144"><a href="#cb152-144" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`str()`**\</span>
-<span id="cb152-145"><a href="#cb152-145" aria-hidden="true" tabindex="-1"></a>    Provides a compact, readable summary of the structure of an R object, including its type, dimensions, and content preview.</span>
-<span id="cb152-146"><a href="#cb152-146" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-127"><a href="#cb152-127" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb152-128"><a href="#cb152-128" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Useful functions for determining types**</span></span>
+<span id="cb152-129"><a href="#cb152-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-130"><a href="#cb152-130" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`class()`**\</span>
+<span id="cb152-131"><a href="#cb152-131" aria-hidden="true" tabindex="-1"></a>    Returns the class of an object (e.g., <span class="in">`&quot;numeric&quot;`</span>, <span class="in">`&quot;character&quot;`</span>, <span class="in">`&quot;data.frame&quot;`</span>), giving a general idea of its structure.</span>
+<span id="cb152-132"><a href="#cb152-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-133"><a href="#cb152-133" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`typeof()`**\</span>
+<span id="cb152-134"><a href="#cb152-134" aria-hidden="true" tabindex="-1"></a>    Provides the low-level internal storage type of an object (e.g., <span class="in">`&quot;double&quot;`</span>, <span class="in">`&quot;integer&quot;`</span>, <span class="in">`&quot;list&quot;`</span>), which can be more specific than <span class="in">`class()`</span>.</span>
+<span id="cb152-135"><a href="#cb152-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-136"><a href="#cb152-136" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`is.numeric()`**, **`is.character()`**, **`is.logical()`**, etc.\</span>
+<span id="cb152-137"><a href="#cb152-137" aria-hidden="true" tabindex="-1"></a>    Return <span class="in">`TRUE`</span> or <span class="in">`FALSE`</span> depending on whether the object is of the specified type. These are useful for checking expected input types in functions.</span>
+<span id="cb152-138"><a href="#cb152-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-139"><a href="#cb152-139" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`as.numeric()`**, **`as.character()`**, **`as.logical()`**, etc.\</span>
+<span id="cb152-140"><a href="#cb152-140" aria-hidden="true" tabindex="-1"></a>    Coerce (convert) an object to the specified type, if possible. These are helpful when transforming data types explicitly.</span>
+<span id="cb152-141"><a href="#cb152-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-142"><a href="#cb152-142" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`str()`**\</span>
+<span id="cb152-143"><a href="#cb152-143" aria-hidden="true" tabindex="-1"></a>    Provides a compact, readable summary of the structure of an R object, including its type, dimensions, and content preview.</span>
+<span id="cb152-144"><a href="#cb152-144" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-145"><a href="#cb152-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-146"><a href="#cb152-146" aria-hidden="true" tabindex="-1"></a>What are the types of our objects?</span>
 <span id="cb152-147"><a href="#cb152-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-148"><a href="#cb152-148" aria-hidden="true" tabindex="-1"></a>What are the types of our objects?</span>
-<span id="cb152-149"><a href="#cb152-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-152"><a href="#cb152-152" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-153"><a href="#cb152-153" aria-hidden="true" tabindex="-1"></a><span class="co"># double/numeric</span></span>
-<span id="cb152-154"><a href="#cb152-154" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(first_vec_num)</span>
-<span id="cb152-155"><a href="#cb152-155" aria-hidden="true" tabindex="-1"></a><span class="co"># character</span></span>
-<span id="cb152-156"><a href="#cb152-156" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(first_vec_character)</span>
-<span id="cb152-157"><a href="#cb152-157" aria-hidden="true" tabindex="-1"></a><span class="co"># logical</span></span>
-<span id="cb152-158"><a href="#cb152-158" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(first_vec_logic)</span>
-<span id="cb152-159"><a href="#cb152-159" aria-hidden="true" tabindex="-1"></a><span class="co"># character</span></span>
-<span id="cb152-160"><a href="#cb152-160" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(mix_vec)</span>
-<span id="cb152-161"><a href="#cb152-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-162"><a href="#cb152-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-163"><a href="#cb152-163" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
-<span id="cb152-164"><a href="#cb152-164" aria-hidden="true" tabindex="-1"></a><span class="fu">## Converting types from one to another</span></span>
+<span id="cb152-150"><a href="#cb152-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-151"><a href="#cb152-151" aria-hidden="true" tabindex="-1"></a><span class="co"># double/numeric</span></span>
+<span id="cb152-152"><a href="#cb152-152" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(first_vec_num)</span>
+<span id="cb152-153"><a href="#cb152-153" aria-hidden="true" tabindex="-1"></a><span class="co"># character</span></span>
+<span id="cb152-154"><a href="#cb152-154" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(first_vec_character)</span>
+<span id="cb152-155"><a href="#cb152-155" aria-hidden="true" tabindex="-1"></a><span class="co"># logical</span></span>
+<span id="cb152-156"><a href="#cb152-156" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(first_vec_logic)</span>
+<span id="cb152-157"><a href="#cb152-157" aria-hidden="true" tabindex="-1"></a><span class="co"># character</span></span>
+<span id="cb152-158"><a href="#cb152-158" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(mix_vec)</span>
+<span id="cb152-159"><a href="#cb152-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-160"><a href="#cb152-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-161"><a href="#cb152-161" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
+<span id="cb152-162"><a href="#cb152-162" aria-hidden="true" tabindex="-1"></a><span class="fu">## Converting types from one to another</span></span>
+<span id="cb152-163"><a href="#cb152-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-164"><a href="#cb152-164" aria-hidden="true" tabindex="-1"></a>Numerical can be converted to character,</span>
 <span id="cb152-165"><a href="#cb152-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-166"><a href="#cb152-166" aria-hidden="true" tabindex="-1"></a>Numerical can be converted to character,</span>
-<span id="cb152-167"><a href="#cb152-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-170"><a href="#cb152-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-171"><a href="#cb152-171" aria-hidden="true" tabindex="-1"></a><span class="co"># To character</span></span>
-<span id="cb152-172"><a href="#cb152-172" aria-hidden="true" tabindex="-1"></a>first_vec_num</span>
-<span id="cb152-173"><a href="#cb152-173" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(first_vec_num)</span>
+<span id="cb152-168"><a href="#cb152-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-169"><a href="#cb152-169" aria-hidden="true" tabindex="-1"></a><span class="co"># To character</span></span>
+<span id="cb152-170"><a href="#cb152-170" aria-hidden="true" tabindex="-1"></a>first_vec_num</span>
+<span id="cb152-171"><a href="#cb152-171" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(first_vec_num)</span>
+<span id="cb152-172"><a href="#cb152-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-173"><a href="#cb152-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb152-174"><a href="#cb152-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-175"><a href="#cb152-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-175"><a href="#cb152-175" aria-hidden="true" tabindex="-1"></a>while **not** all characters can be converted to numerical:</span>
 <span id="cb152-176"><a href="#cb152-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-177"><a href="#cb152-177" aria-hidden="true" tabindex="-1"></a>while **not** all characters can be converted to numerical:</span>
-<span id="cb152-178"><a href="#cb152-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-181"><a href="#cb152-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-182"><a href="#cb152-182" aria-hidden="true" tabindex="-1"></a><span class="co"># To numeric</span></span>
-<span id="cb152-183"><a href="#cb152-183" aria-hidden="true" tabindex="-1"></a>first_vec_character</span>
-<span id="cb152-184"><a href="#cb152-184" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(first_vec_character)</span>
-<span id="cb152-185"><a href="#cb152-185" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(mix_vec)</span>
-<span id="cb152-186"><a href="#cb152-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-187"><a href="#cb152-187" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-179"><a href="#cb152-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-180"><a href="#cb152-180" aria-hidden="true" tabindex="-1"></a><span class="co"># To numeric</span></span>
+<span id="cb152-181"><a href="#cb152-181" aria-hidden="true" tabindex="-1"></a>first_vec_character</span>
+<span id="cb152-182"><a href="#cb152-182" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(first_vec_character)</span>
+<span id="cb152-183"><a href="#cb152-183" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(mix_vec)</span>
+<span id="cb152-184"><a href="#cb152-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-185"><a href="#cb152-185" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-186"><a href="#cb152-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-187"><a href="#cb152-187" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Calculation with vectors</span></span>
 <span id="cb152-188"><a href="#cb152-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-189"><a href="#cb152-189" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Calculation with vectors</span></span>
+<span id="cb152-189"><a href="#cb152-189" aria-hidden="true" tabindex="-1"></a>R performs **element-wise operations** on vectors by default.</span>
 <span id="cb152-190"><a href="#cb152-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-191"><a href="#cb152-191" aria-hidden="true" tabindex="-1"></a>R performs **element-wise operations** on vectors by default.</span>
+<span id="cb152-191"><a href="#cb152-191" aria-hidden="true" tabindex="-1"></a>Example: <span class="in">`c(1, 2, 3) + c(10, 20, 30)`</span> returns <span class="in">`11 22 33`</span></span>
 <span id="cb152-192"><a href="#cb152-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-193"><a href="#cb152-193" aria-hidden="true" tabindex="-1"></a>Example: <span class="in">`c(1, 2, 3) + c(10, 20, 30)`</span> returns <span class="in">`11 22 33`</span></span>
-<span id="cb152-194"><a href="#cb152-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-197"><a href="#cb152-197" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-198"><a href="#cb152-198" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
-<span id="cb152-199"><a href="#cb152-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-200"><a href="#cb152-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-201"><a href="#cb152-201" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb152-202"><a href="#cb152-202" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vectorization</span></span>
+<span id="cb152-195"><a href="#cb152-195" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-196"><a href="#cb152-196" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
+<span id="cb152-197"><a href="#cb152-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-198"><a href="#cb152-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-199"><a href="#cb152-199" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb152-200"><a href="#cb152-200" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vectorization</span></span>
+<span id="cb152-201"><a href="#cb152-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-202"><a href="#cb152-202" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Vectorization** means operations are applied to **all elements at once**, without loops.</span>
 <span id="cb152-203"><a href="#cb152-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-204"><a href="#cb152-204" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Vectorization** means operations are applied to **all elements at once**, without loops.</span>
+<span id="cb152-204"><a href="#cb152-204" aria-hidden="true" tabindex="-1"></a>It&#39;s efficient and concise.</span>
 <span id="cb152-205"><a href="#cb152-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-206"><a href="#cb152-206" aria-hidden="true" tabindex="-1"></a>It&#39;s efficient and concise.</span>
+<span id="cb152-206"><a href="#cb152-206" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Arithmetic operators (<span class="in">`+`</span>, <span class="in">`-`</span>, <span class="in">`*`</span>, <span class="in">`/`</span>, <span class="in">`^`</span>) are **vectorized**.</span>
 <span id="cb152-207"><a href="#cb152-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-208"><a href="#cb152-208" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Arithmetic operators (<span class="in">`+`</span>, <span class="in">`-`</span>, <span class="in">`*`</span>, <span class="in">`/`</span>, <span class="in">`^`</span>) are **vectorized**.</span>
+<span id="cb152-208"><a href="#cb152-208" aria-hidden="true" tabindex="-1"></a>Example: <span class="in">`c(2, 4, 6) * 2`</span> returns <span class="in">`4 8 12`</span></span>
 <span id="cb152-209"><a href="#cb152-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-210"><a href="#cb152-210" aria-hidden="true" tabindex="-1"></a>Example: <span class="in">`c(2, 4, 6) * 2`</span> returns <span class="in">`4 8 12`</span></span>
+<span id="cb152-210"><a href="#cb152-210" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Functions like <span class="in">`log()`</span>, <span class="in">`sqrt()`</span>, <span class="in">`exp()`</span> are also **vectorized**.</span>
 <span id="cb152-211"><a href="#cb152-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-212"><a href="#cb152-212" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Functions like <span class="in">`log()`</span>, <span class="in">`sqrt()`</span>, <span class="in">`exp()`</span> are also **vectorized**.</span>
+<span id="cb152-212"><a href="#cb152-212" aria-hidden="true" tabindex="-1"></a>Example: <span class="in">`sqrt(c(4, 9, 16))`</span> returns <span class="in">`2 3 4`</span></span>
 <span id="cb152-213"><a href="#cb152-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-214"><a href="#cb152-214" aria-hidden="true" tabindex="-1"></a>Example: <span class="in">`sqrt(c(4, 9, 16))`</span> returns <span class="in">`2 3 4`</span></span>
+<span id="cb152-214"><a href="#cb152-214" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>When vectors are of **different lengths**, R **recycles** the shorter one (with a warning if not a multiple).</span>
 <span id="cb152-215"><a href="#cb152-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-216"><a href="#cb152-216" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>When vectors are of **different lengths**, R **recycles** the shorter one (with a warning if not a multiple).</span>
-<span id="cb152-217"><a href="#cb152-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-218"><a href="#cb152-218" aria-hidden="true" tabindex="-1"></a>Example: <span class="in">`c(1, 2, 3) + 1`</span> returns <span class="in">`2 3 4`</span></span>
-<span id="cb152-219"><a href="#cb152-219" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-216"><a href="#cb152-216" aria-hidden="true" tabindex="-1"></a>Example: <span class="in">`c(1, 2, 3) + 1`</span> returns <span class="in">`2 3 4`</span></span>
+<span id="cb152-217"><a href="#cb152-217" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-218"><a href="#cb152-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-219"><a href="#cb152-219" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
 <span id="cb152-220"><a href="#cb152-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-221"><a href="#cb152-221" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
+<span id="cb152-221"><a href="#cb152-221" aria-hidden="true" tabindex="-1"></a>Let&#39;s go back and see what our variables are holding:</span>
 <span id="cb152-222"><a href="#cb152-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-223"><a href="#cb152-223" aria-hidden="true" tabindex="-1"></a>Let&#39;s go back and see what our variables are holding:</span>
-<span id="cb152-224"><a href="#cb152-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-227"><a href="#cb152-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-228"><a href="#cb152-228" aria-hidden="true" tabindex="-1"></a><span class="co"># short vector</span></span>
-<span id="cb152-229"><a href="#cb152-229" aria-hidden="true" tabindex="-1"></a>vec</span>
-<span id="cb152-230"><a href="#cb152-230" aria-hidden="true" tabindex="-1"></a><span class="co"># first vector</span></span>
-<span id="cb152-231"><a href="#cb152-231" aria-hidden="true" tabindex="-1"></a>first_vec_num</span>
-<span id="cb152-232"><a href="#cb152-232" aria-hidden="true" tabindex="-1"></a><span class="co">#second vector</span></span>
-<span id="cb152-233"><a href="#cb152-233" aria-hidden="true" tabindex="-1"></a>second_vec_num</span>
-<span id="cb152-234"><a href="#cb152-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-225"><a href="#cb152-225" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-226"><a href="#cb152-226" aria-hidden="true" tabindex="-1"></a><span class="co"># short vector</span></span>
+<span id="cb152-227"><a href="#cb152-227" aria-hidden="true" tabindex="-1"></a>vec</span>
+<span id="cb152-228"><a href="#cb152-228" aria-hidden="true" tabindex="-1"></a><span class="co"># first vector</span></span>
+<span id="cb152-229"><a href="#cb152-229" aria-hidden="true" tabindex="-1"></a>first_vec_num</span>
+<span id="cb152-230"><a href="#cb152-230" aria-hidden="true" tabindex="-1"></a><span class="co">#second vector</span></span>
+<span id="cb152-231"><a href="#cb152-231" aria-hidden="true" tabindex="-1"></a>second_vec_num</span>
+<span id="cb152-232"><a href="#cb152-232" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-233"><a href="#cb152-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-234"><a href="#cb152-234" aria-hidden="true" tabindex="-1"></a>**What will be the outcome of these operations? Explain it with comment in the following code chunk!**</span>
 <span id="cb152-235"><a href="#cb152-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-236"><a href="#cb152-236" aria-hidden="true" tabindex="-1"></a>**What will be the outcome of these operations? Explain it with comment in the following code chunk!**</span>
-<span id="cb152-237"><a href="#cb152-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-238"><a href="#cb152-238" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
-<span id="cb152-239"><a href="#cb152-239" aria-hidden="true" tabindex="-1"></a><span class="co"># vectorization: all elements in longer first vector were increased by 5</span></span>
-<span id="cb152-240"><a href="#cb152-240" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">+</span> vec </span>
-<span id="cb152-241"><a href="#cb152-241" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-242"><a href="#cb152-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-245"><a href="#cb152-245" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-246"><a href="#cb152-246" aria-hidden="true" tabindex="-1"></a>first_vec_num</span>
-<span id="cb152-247"><a href="#cb152-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-248"><a href="#cb152-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-251"><a href="#cb152-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-252"><a href="#cb152-252" aria-hidden="true" tabindex="-1"></a>second_vec_num</span>
-<span id="cb152-253"><a href="#cb152-253" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-254"><a href="#cb152-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-257"><a href="#cb152-257" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-258"><a href="#cb152-258" aria-hidden="true" tabindex="-1"></a><span class="co"># What happened here?</span></span>
-<span id="cb152-259"><a href="#cb152-259" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">+</span> second_vec_num</span>
-<span id="cb152-260"><a href="#cb152-260" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-261"><a href="#cb152-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-262"><a href="#cb152-262" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
-<span id="cb152-263"><a href="#cb152-263" aria-hidden="true" tabindex="-1"></a><span class="co"># And what happened here?</span></span>
-<span id="cb152-264"><a href="#cb152-264" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">*</span> second_vec_num</span>
-<span id="cb152-265"><a href="#cb152-265" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-236"><a href="#cb152-236" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
+<span id="cb152-237"><a href="#cb152-237" aria-hidden="true" tabindex="-1"></a><span class="co"># vectorization: all elements in longer first vector were increased by 5</span></span>
+<span id="cb152-238"><a href="#cb152-238" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">+</span> vec </span>
+<span id="cb152-239"><a href="#cb152-239" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-240"><a href="#cb152-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-243"><a href="#cb152-243" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-244"><a href="#cb152-244" aria-hidden="true" tabindex="-1"></a>first_vec_num</span>
+<span id="cb152-245"><a href="#cb152-245" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-246"><a href="#cb152-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-249"><a href="#cb152-249" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-250"><a href="#cb152-250" aria-hidden="true" tabindex="-1"></a>second_vec_num</span>
+<span id="cb152-251"><a href="#cb152-251" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-252"><a href="#cb152-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-255"><a href="#cb152-255" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-256"><a href="#cb152-256" aria-hidden="true" tabindex="-1"></a><span class="co"># What happened here?</span></span>
+<span id="cb152-257"><a href="#cb152-257" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">+</span> second_vec_num</span>
+<span id="cb152-258"><a href="#cb152-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-259"><a href="#cb152-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-260"><a href="#cb152-260" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
+<span id="cb152-261"><a href="#cb152-261" aria-hidden="true" tabindex="-1"></a><span class="co"># And what happened here?</span></span>
+<span id="cb152-262"><a href="#cb152-262" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">*</span> second_vec_num</span>
+<span id="cb152-263"><a href="#cb152-263" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-264"><a href="#cb152-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-265"><a href="#cb152-265" aria-hidden="true" tabindex="-1"></a><span class="fu">### Subsetting vectors</span></span>
 <span id="cb152-266"><a href="#cb152-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-267"><a href="#cb152-267" aria-hidden="true" tabindex="-1"></a><span class="fu">### Subsetting vectors</span></span>
-<span id="cb152-268"><a href="#cb152-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-269"><a href="#cb152-269" aria-hidden="true" tabindex="-1"></a>Subsetting is a way to access specific elements of a vector using **indexing**.\</span>
-<span id="cb152-270"><a href="#cb152-270" aria-hidden="true" tabindex="-1"></a>To extract one or more values, provide the corresponding indices inside **square brackets** (<span class="in">`[]`</span>).</span>
-<span id="cb152-271"><a href="#cb152-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-272"><a href="#cb152-272" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb152-273"><a href="#cb152-273" aria-hidden="true" tabindex="-1"></a><span class="fu">## Examples</span></span>
+<span id="cb152-267"><a href="#cb152-267" aria-hidden="true" tabindex="-1"></a>Subsetting is a way to access specific elements of a vector using **indexing**.\</span>
+<span id="cb152-268"><a href="#cb152-268" aria-hidden="true" tabindex="-1"></a>To extract one or more values, provide the corresponding indices inside **square brackets** (<span class="in">`[]`</span>).</span>
+<span id="cb152-269"><a href="#cb152-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-270"><a href="#cb152-270" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb152-271"><a href="#cb152-271" aria-hidden="true" tabindex="-1"></a><span class="fu">## Examples</span></span>
+<span id="cb152-272"><a href="#cb152-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-273"><a href="#cb152-273" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Selecting the second element</span>
 <span id="cb152-274"><a href="#cb152-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-275"><a href="#cb152-275" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Selecting the second element</span>
-<span id="cb152-276"><a href="#cb152-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-279"><a href="#cb152-279" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-280"><a href="#cb152-280" aria-hidden="true" tabindex="-1"></a>first_vec_num[<span class="dv">2</span>]</span>
-<span id="cb152-281"><a href="#cb152-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-277"><a href="#cb152-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-278"><a href="#cb152-278" aria-hidden="true" tabindex="-1"></a>first_vec_num[<span class="dv">2</span>]</span>
+<span id="cb152-279"><a href="#cb152-279" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-280"><a href="#cb152-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-281"><a href="#cb152-281" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Negative subsetting- meaning not selecting the second element</span>
 <span id="cb152-282"><a href="#cb152-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-283"><a href="#cb152-283" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Negative subsetting- meaning not selecting the second element</span>
-<span id="cb152-284"><a href="#cb152-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-287"><a href="#cb152-287" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-288"><a href="#cb152-288" aria-hidden="true" tabindex="-1"></a>first_vec_num[<span class="sc">-</span><span class="dv">2</span>]</span>
-<span id="cb152-289"><a href="#cb152-289" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-285"><a href="#cb152-285" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-286"><a href="#cb152-286" aria-hidden="true" tabindex="-1"></a>first_vec_num[<span class="sc">-</span><span class="dv">2</span>]</span>
+<span id="cb152-287"><a href="#cb152-287" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-288"><a href="#cb152-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-289"><a href="#cb152-289" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Selecting first and third elements</span>
 <span id="cb152-290"><a href="#cb152-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-291"><a href="#cb152-291" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Selecting first and third elements</span>
-<span id="cb152-292"><a href="#cb152-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-295"><a href="#cb152-295" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-296"><a href="#cb152-296" aria-hidden="true" tabindex="-1"></a>first_vec_num[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span>
-<span id="cb152-297"><a href="#cb152-297" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-298"><a href="#cb152-298" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-293"><a href="#cb152-293" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-294"><a href="#cb152-294" aria-hidden="true" tabindex="-1"></a>first_vec_num[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span>
+<span id="cb152-295"><a href="#cb152-295" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-296"><a href="#cb152-296" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-297"><a href="#cb152-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-298"><a href="#cb152-298" aria-hidden="true" tabindex="-1"></a>Moreover, selection can be done using other vectors, such as logical and numeric.</span>
 <span id="cb152-299"><a href="#cb152-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-300"><a href="#cb152-300" aria-hidden="true" tabindex="-1"></a>Moreover, selection can be done using other vectors, such as logical and numeric.</span>
+<span id="cb152-300"><a href="#cb152-300" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
 <span id="cb152-301"><a href="#cb152-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-302"><a href="#cb152-302" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
+<span id="cb152-302"><a href="#cb152-302" aria-hidden="true" tabindex="-1"></a>**What happened when you used a logical vector for subsetting?**</span>
 <span id="cb152-303"><a href="#cb152-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-304"><a href="#cb152-304" aria-hidden="true" tabindex="-1"></a>**What happened when you used a logical vector for subsetting?**</span>
-<span id="cb152-305"><a href="#cb152-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-308"><a href="#cb152-308" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-309"><a href="#cb152-309" aria-hidden="true" tabindex="-1"></a>first_vec_num</span>
-<span id="cb152-310"><a href="#cb152-310" aria-hidden="true" tabindex="-1"></a>first_vec_logic</span>
-<span id="cb152-311"><a href="#cb152-311" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-312"><a href="#cb152-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-313"><a href="#cb152-313" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb152-314"><a href="#cb152-314" aria-hidden="true" tabindex="-1"></a>first_vec_num[first_vec_logic]</span>
-<span id="cb152-315"><a href="#cb152-315" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-316"><a href="#cb152-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-319"><a href="#cb152-319" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-320"><a href="#cb152-320" aria-hidden="true" tabindex="-1"></a>first_vec_num</span>
-<span id="cb152-321"><a href="#cb152-321" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-322"><a href="#cb152-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-323"><a href="#cb152-323" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb152-324"><a href="#cb152-324" aria-hidden="true" tabindex="-1"></a>first_vec_num[first_vec_num]</span>
-<span id="cb152-325"><a href="#cb152-325" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-306"><a href="#cb152-306" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-307"><a href="#cb152-307" aria-hidden="true" tabindex="-1"></a>first_vec_num</span>
+<span id="cb152-308"><a href="#cb152-308" aria-hidden="true" tabindex="-1"></a>first_vec_logic</span>
+<span id="cb152-309"><a href="#cb152-309" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-310"><a href="#cb152-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-311"><a href="#cb152-311" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb152-312"><a href="#cb152-312" aria-hidden="true" tabindex="-1"></a>first_vec_num[first_vec_logic]</span>
+<span id="cb152-313"><a href="#cb152-313" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-314"><a href="#cb152-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-317"><a href="#cb152-317" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-318"><a href="#cb152-318" aria-hidden="true" tabindex="-1"></a>first_vec_num</span>
+<span id="cb152-319"><a href="#cb152-319" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-320"><a href="#cb152-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-321"><a href="#cb152-321" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb152-322"><a href="#cb152-322" aria-hidden="true" tabindex="-1"></a>first_vec_num[first_vec_num]</span>
+<span id="cb152-323"><a href="#cb152-323" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-324"><a href="#cb152-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-325"><a href="#cb152-325" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Adding and replacing elements</span></span>
 <span id="cb152-326"><a href="#cb152-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-327"><a href="#cb152-327" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Adding and replacing elements</span></span>
+<span id="cb152-327"><a href="#cb152-327" aria-hidden="true" tabindex="-1"></a>In R, you can modify vectors by **adding** new elements or **replacing** existing ones using indexing.</span>
 <span id="cb152-328"><a href="#cb152-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-329"><a href="#cb152-329" aria-hidden="true" tabindex="-1"></a>In R, you can modify vectors by **adding** new elements or **replacing** existing ones using indexing.</span>
-<span id="cb152-330"><a href="#cb152-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-331"><a href="#cb152-331" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>To **add elements**, simply use the <span class="in">`c()`</span> function to concatenate new values to the existing vector.</span>
-<span id="cb152-332"><a href="#cb152-332" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>To **replace elements**, use square bracket indexing and assign a new value to a specific position.</span>
-<span id="cb152-333"><a href="#cb152-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-336"><a href="#cb152-336" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-337"><a href="#cb152-337" aria-hidden="true" tabindex="-1"></a><span class="co"># Add new values to the end of the vector</span></span>
-<span id="cb152-338"><a href="#cb152-338" aria-hidden="true" tabindex="-1"></a>second_vec_num <span class="ot">&lt;-</span> <span class="fu">c</span>(second_vec_num, <span class="dv">1</span>, <span class="dv">30</span>, <span class="dv">30</span>, <span class="dv">30</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb152-339"><a href="#cb152-339" aria-hidden="true" tabindex="-1"></a>second_vec_num</span>
-<span id="cb152-340"><a href="#cb152-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-341"><a href="#cb152-341" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the first element with a new value</span></span>
-<span id="cb152-342"><a href="#cb152-342" aria-hidden="true" tabindex="-1"></a>second_vec_num[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb152-343"><a href="#cb152-343" aria-hidden="true" tabindex="-1"></a>second_vec_num</span>
-<span id="cb152-344"><a href="#cb152-344" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-329"><a href="#cb152-329" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>To **add elements**, simply use the <span class="in">`c()`</span> function to concatenate new values to the existing vector.</span>
+<span id="cb152-330"><a href="#cb152-330" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>To **replace elements**, use square bracket indexing and assign a new value to a specific position.</span>
+<span id="cb152-331"><a href="#cb152-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-334"><a href="#cb152-334" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-335"><a href="#cb152-335" aria-hidden="true" tabindex="-1"></a><span class="co"># Add new values to the end of the vector</span></span>
+<span id="cb152-336"><a href="#cb152-336" aria-hidden="true" tabindex="-1"></a>second_vec_num <span class="ot">&lt;-</span> <span class="fu">c</span>(second_vec_num, <span class="dv">1</span>, <span class="dv">30</span>, <span class="dv">30</span>, <span class="dv">30</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb152-337"><a href="#cb152-337" aria-hidden="true" tabindex="-1"></a>second_vec_num</span>
+<span id="cb152-338"><a href="#cb152-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-339"><a href="#cb152-339" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the first element with a new value</span></span>
+<span id="cb152-340"><a href="#cb152-340" aria-hidden="true" tabindex="-1"></a>second_vec_num[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb152-341"><a href="#cb152-341" aria-hidden="true" tabindex="-1"></a>second_vec_num</span>
+<span id="cb152-342"><a href="#cb152-342" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-343"><a href="#cb152-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-344"><a href="#cb152-344" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Boolean Operators</span></span>
 <span id="cb152-345"><a href="#cb152-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-346"><a href="#cb152-346" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Boolean Operators</span></span>
+<span id="cb152-346"><a href="#cb152-346" aria-hidden="true" tabindex="-1"></a>Boolean operators in R (and other programming languages) are used to perform logical comparisons. They return <span class="in">`TRUE`</span> or <span class="in">`FALSE`</span> values based on whether a condition is met.</span>
 <span id="cb152-347"><a href="#cb152-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-348"><a href="#cb152-348" aria-hidden="true" tabindex="-1"></a>Boolean operators in R (and other programming languages) are used to perform logical comparisons. They return <span class="in">`TRUE`</span> or <span class="in">`FALSE`</span> values based on whether a condition is met.</span>
-<span id="cb152-349"><a href="#cb152-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-350"><a href="#cb152-350" aria-hidden="true" tabindex="-1"></a>| Operator | Description              | Example    | Result  |</span>
-<span id="cb152-351"><a href="#cb152-351" aria-hidden="true" tabindex="-1"></a>|----------|--------------------------|------------|---------|</span>
-<span id="cb152-352"><a href="#cb152-352" aria-hidden="true" tabindex="-1"></a>| <span class="in">`&gt;`</span>      | Greater than             | <span class="in">`5 &gt; 6`</span>    | <span class="in">`FALSE`</span> |</span>
-<span id="cb152-353"><a href="#cb152-353" aria-hidden="true" tabindex="-1"></a>| <span class="in">`&lt;`</span>      | Less than                | <span class="in">`5 &lt; 6`</span>    | <span class="in">`TRUE`</span>  |</span>
-<span id="cb152-354"><a href="#cb152-354" aria-hidden="true" tabindex="-1"></a>| <span class="in">`==`</span>     | Equals to                | <span class="in">`10 == 10`</span> | <span class="in">`TRUE`</span>  |</span>
-<span id="cb152-355"><a href="#cb152-355" aria-hidden="true" tabindex="-1"></a>| <span class="in">`!=`</span>     | Not equal to             | <span class="in">`10 != 10`</span> | <span class="in">`FALSE`</span> |</span>
-<span id="cb152-356"><a href="#cb152-356" aria-hidden="true" tabindex="-1"></a>| <span class="in">`&gt;=`</span>     | Greater than or equal to | <span class="in">`5 &gt;= 6`</span>   | <span class="in">`FALSE`</span> |</span>
-<span id="cb152-357"><a href="#cb152-357" aria-hidden="true" tabindex="-1"></a>| <span class="in">`&lt;=`</span>     | Less than or equal to    | <span class="in">`6 &lt;= 6`</span>   | <span class="in">`TRUE`</span>  |</span>
-<span id="cb152-358"><a href="#cb152-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-359"><a href="#cb152-359" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb152-360"><a href="#cb152-360" aria-hidden="true" tabindex="-1"></a><span class="fu">## Examples</span></span>
+<span id="cb152-348"><a href="#cb152-348" aria-hidden="true" tabindex="-1"></a>| Operator | Description              | Example    | Result  |</span>
+<span id="cb152-349"><a href="#cb152-349" aria-hidden="true" tabindex="-1"></a>|----------|--------------------------|------------|---------|</span>
+<span id="cb152-350"><a href="#cb152-350" aria-hidden="true" tabindex="-1"></a>| <span class="in">`&gt;`</span>      | Greater than             | <span class="in">`5 &gt; 6`</span>    | <span class="in">`FALSE`</span> |</span>
+<span id="cb152-351"><a href="#cb152-351" aria-hidden="true" tabindex="-1"></a>| <span class="in">`&lt;`</span>      | Less than                | <span class="in">`5 &lt; 6`</span>    | <span class="in">`TRUE`</span>  |</span>
+<span id="cb152-352"><a href="#cb152-352" aria-hidden="true" tabindex="-1"></a>| <span class="in">`==`</span>     | Equals to                | <span class="in">`10 == 10`</span> | <span class="in">`TRUE`</span>  |</span>
+<span id="cb152-353"><a href="#cb152-353" aria-hidden="true" tabindex="-1"></a>| <span class="in">`!=`</span>     | Not equal to             | <span class="in">`10 != 10`</span> | <span class="in">`FALSE`</span> |</span>
+<span id="cb152-354"><a href="#cb152-354" aria-hidden="true" tabindex="-1"></a>| <span class="in">`&gt;=`</span>     | Greater than or equal to | <span class="in">`5 &gt;= 6`</span>   | <span class="in">`FALSE`</span> |</span>
+<span id="cb152-355"><a href="#cb152-355" aria-hidden="true" tabindex="-1"></a>| <span class="in">`&lt;=`</span>     | Less than or equal to    | <span class="in">`6 &lt;= 6`</span>   | <span class="in">`TRUE`</span>  |</span>
+<span id="cb152-356"><a href="#cb152-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-357"><a href="#cb152-357" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb152-358"><a href="#cb152-358" aria-hidden="true" tabindex="-1"></a><span class="fu">## Examples</span></span>
+<span id="cb152-359"><a href="#cb152-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-360"><a href="#cb152-360" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Basic inequality: Is 2 not equal to 2?</span>
 <span id="cb152-361"><a href="#cb152-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-362"><a href="#cb152-362" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Basic inequality: Is 2 not equal to 2?</span>
-<span id="cb152-363"><a href="#cb152-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-366"><a href="#cb152-366" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-367"><a href="#cb152-367" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">!=</span> <span class="dv">2</span></span>
-<span id="cb152-368"><a href="#cb152-368" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-364"><a href="#cb152-364" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-365"><a href="#cb152-365" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">!=</span> <span class="dv">2</span></span>
+<span id="cb152-366"><a href="#cb152-366" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-367"><a href="#cb152-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-368"><a href="#cb152-368" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Compare a numeric vector to a single number (element-wise comparison)</span>
 <span id="cb152-369"><a href="#cb152-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-370"><a href="#cb152-370" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Compare a numeric vector to a single number (element-wise comparison)</span>
-<span id="cb152-371"><a href="#cb152-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-374"><a href="#cb152-374" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-375"><a href="#cb152-375" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> <span class="dv">2</span></span>
-<span id="cb152-376"><a href="#cb152-376" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-372"><a href="#cb152-372" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-373"><a href="#cb152-373" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> <span class="dv">2</span></span>
+<span id="cb152-374"><a href="#cb152-374" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-375"><a href="#cb152-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-376"><a href="#cb152-376" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Compare two vectors of unequal length</span>
 <span id="cb152-377"><a href="#cb152-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-378"><a href="#cb152-378" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Compare two vectors of unequal length</span>
-<span id="cb152-379"><a href="#cb152-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-382"><a href="#cb152-382" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-383"><a href="#cb152-383" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> first_vec_character</span>
-<span id="cb152-384"><a href="#cb152-384" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-385"><a href="#cb152-385" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-380"><a href="#cb152-380" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-381"><a href="#cb152-381" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> first_vec_character</span>
+<span id="cb152-382"><a href="#cb152-382" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-383"><a href="#cb152-383" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-384"><a href="#cb152-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-385"><a href="#cb152-385" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
 <span id="cb152-386"><a href="#cb152-386" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-387"><a href="#cb152-387" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
+<span id="cb152-387"><a href="#cb152-387" aria-hidden="true" tabindex="-1"></a>In the second example, we got a warning message ***longer object length is not a multiple of shorter object length*** and an output **FALSE FALSE FALSE FALSE**. *What happened here?*</span>
 <span id="cb152-388"><a href="#cb152-388" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-389"><a href="#cb152-389" aria-hidden="true" tabindex="-1"></a>In the second example, we got a warning message ***longer object length is not a multiple of shorter object length*** and an output **FALSE FALSE FALSE FALSE**. *What happened here?*</span>
-<span id="cb152-390"><a href="#cb152-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-393"><a href="#cb152-393" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-394"><a href="#cb152-394" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span>
-<span id="cb152-395"><a href="#cb152-395" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-391"><a href="#cb152-391" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-392"><a href="#cb152-392" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here</span></span>
+<span id="cb152-393"><a href="#cb152-393" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-394"><a href="#cb152-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-395"><a href="#cb152-395" aria-hidden="true" tabindex="-1"></a><span class="fu">### Boolean with logical operators</span></span>
 <span id="cb152-396"><a href="#cb152-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-397"><a href="#cb152-397" aria-hidden="true" tabindex="-1"></a><span class="fu">### Boolean with logical operators</span></span>
-<span id="cb152-398"><a href="#cb152-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-399"><a href="#cb152-399" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb152-400"><a href="#cb152-400" aria-hidden="true" tabindex="-1"></a><span class="fu">## There are three types of logical operators in R</span></span>
+<span id="cb152-397"><a href="#cb152-397" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb152-398"><a href="#cb152-398" aria-hidden="true" tabindex="-1"></a><span class="fu">## There are three types of logical operators in R</span></span>
+<span id="cb152-399"><a href="#cb152-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-400"><a href="#cb152-400" aria-hidden="true" tabindex="-1"></a>AND operator **`&amp;`**</span>
 <span id="cb152-401"><a href="#cb152-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-402"><a href="#cb152-402" aria-hidden="true" tabindex="-1"></a>AND operator **`&amp;`**</span>
+<span id="cb152-402"><a href="#cb152-402" aria-hidden="true" tabindex="-1"></a>OR operator **`|`**</span>
 <span id="cb152-403"><a href="#cb152-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-404"><a href="#cb152-404" aria-hidden="true" tabindex="-1"></a>OR operator **`|`**</span>
-<span id="cb152-405"><a href="#cb152-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-406"><a href="#cb152-406" aria-hidden="true" tabindex="-1"></a>NOT operator **`!`**</span>
-<span id="cb152-407"><a href="#cb152-407" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-404"><a href="#cb152-404" aria-hidden="true" tabindex="-1"></a>NOT operator **`!`**</span>
+<span id="cb152-405"><a href="#cb152-405" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-406"><a href="#cb152-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-407"><a href="#cb152-407" aria-hidden="true" tabindex="-1"></a>Explain the examples below:</span>
 <span id="cb152-408"><a href="#cb152-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-409"><a href="#cb152-409" aria-hidden="true" tabindex="-1"></a>Explain the examples below:</span>
-<span id="cb152-410"><a href="#cb152-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-413"><a href="#cb152-413" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-414"><a href="#cb152-414" aria-hidden="true" tabindex="-1"></a>first_vec_num</span>
-<span id="cb152-415"><a href="#cb152-415" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> <span class="dv">5</span></span>
+<span id="cb152-411"><a href="#cb152-411" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-412"><a href="#cb152-412" aria-hidden="true" tabindex="-1"></a>first_vec_num</span>
+<span id="cb152-413"><a href="#cb152-413" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> <span class="dv">5</span></span>
+<span id="cb152-414"><a href="#cb152-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-415"><a href="#cb152-415" aria-hidden="true" tabindex="-1"></a>first_vec_num[first_vec_num <span class="sc">==</span> <span class="dv">5</span>]</span>
 <span id="cb152-416"><a href="#cb152-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-417"><a href="#cb152-417" aria-hidden="true" tabindex="-1"></a>first_vec_num[first_vec_num <span class="sc">==</span> <span class="dv">5</span>]</span>
-<span id="cb152-418"><a href="#cb152-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-419"><a href="#cb152-419" aria-hidden="true" tabindex="-1"></a><span class="do">###</span></span>
-<span id="cb152-420"><a href="#cb152-420" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> <span class="dv">5</span></span>
-<span id="cb152-421"><a href="#cb152-421" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> <span class="dv">2</span></span>
-<span id="cb152-422"><a href="#cb152-422" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> <span class="dv">5</span> <span class="sc">&amp;</span> first_vec_num <span class="sc">==</span> <span class="dv">2</span></span>
-<span id="cb152-423"><a href="#cb152-423" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-424"><a href="#cb152-424" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb152-425"><a href="#cb152-425" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> <span class="dv">5</span> <span class="sc">|</span> first_vec_num <span class="sc">==</span> <span class="dv">2</span></span>
-<span id="cb152-426"><a href="#cb152-426" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-427"><a href="#cb152-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-430"><a href="#cb152-430" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-431"><a href="#cb152-431" aria-hidden="true" tabindex="-1"></a><span class="do">####</span></span>
-<span id="cb152-432"><a href="#cb152-432" aria-hidden="true" tabindex="-1"></a>first_vec_num[first_vec_num <span class="sc">==</span> <span class="dv">5</span> <span class="sc">&amp;</span> first_vec_num <span class="sc">==</span> <span class="dv">2</span>]</span>
-<span id="cb152-433"><a href="#cb152-433" aria-hidden="true" tabindex="-1"></a>first_vec_num[first_vec_num <span class="sc">==</span> <span class="dv">5</span> <span class="sc">|</span> first_vec_num <span class="sc">==</span> <span class="dv">2</span>]</span>
-<span id="cb152-434"><a href="#cb152-434" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-417"><a href="#cb152-417" aria-hidden="true" tabindex="-1"></a><span class="do">###</span></span>
+<span id="cb152-418"><a href="#cb152-418" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> <span class="dv">5</span></span>
+<span id="cb152-419"><a href="#cb152-419" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> <span class="dv">2</span></span>
+<span id="cb152-420"><a href="#cb152-420" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> <span class="dv">5</span> <span class="sc">&amp;</span> first_vec_num <span class="sc">==</span> <span class="dv">2</span></span>
+<span id="cb152-421"><a href="#cb152-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-422"><a href="#cb152-422" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb152-423"><a href="#cb152-423" aria-hidden="true" tabindex="-1"></a>first_vec_num <span class="sc">==</span> <span class="dv">5</span> <span class="sc">|</span> first_vec_num <span class="sc">==</span> <span class="dv">2</span></span>
+<span id="cb152-424"><a href="#cb152-424" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-425"><a href="#cb152-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-428"><a href="#cb152-428" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-429"><a href="#cb152-429" aria-hidden="true" tabindex="-1"></a><span class="do">####</span></span>
+<span id="cb152-430"><a href="#cb152-430" aria-hidden="true" tabindex="-1"></a>first_vec_num[first_vec_num <span class="sc">==</span> <span class="dv">5</span> <span class="sc">&amp;</span> first_vec_num <span class="sc">==</span> <span class="dv">2</span>]</span>
+<span id="cb152-431"><a href="#cb152-431" aria-hidden="true" tabindex="-1"></a>first_vec_num[first_vec_num <span class="sc">==</span> <span class="dv">5</span> <span class="sc">|</span> first_vec_num <span class="sc">==</span> <span class="dv">2</span>]</span>
+<span id="cb152-432"><a href="#cb152-432" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-433"><a href="#cb152-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-434"><a href="#cb152-434" aria-hidden="true" tabindex="-1"></a><span class="fu">### Examples of useful function</span></span>
 <span id="cb152-435"><a href="#cb152-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-436"><a href="#cb152-436" aria-hidden="true" tabindex="-1"></a><span class="fu">### Examples of useful function</span></span>
-<span id="cb152-437"><a href="#cb152-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-438"><a href="#cb152-438" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb152-439"><a href="#cb152-439" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Basic descriptive statistics**</span></span>
-<span id="cb152-440"><a href="#cb152-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-441"><a href="#cb152-441" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`summary()`**\</span>
-<span id="cb152-442"><a href="#cb152-442" aria-hidden="true" tabindex="-1"></a>    Provides a quick overview of an object. For numeric vectors or data frames, it returns the minimum, 1st quartile, median, mean, 3rd quartile, and maximum.</span>
-<span id="cb152-443"><a href="#cb152-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-444"><a href="#cb152-444" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`mean()`**\</span>
-<span id="cb152-445"><a href="#cb152-445" aria-hidden="true" tabindex="-1"></a>    Calculates the arithmetic average of a numeric vector.</span>
-<span id="cb152-446"><a href="#cb152-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-447"><a href="#cb152-447" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`sum()`**\</span>
-<span id="cb152-448"><a href="#cb152-448" aria-hidden="true" tabindex="-1"></a>    Adds all elements of a numeric vector together.</span>
-<span id="cb152-449"><a href="#cb152-449" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-450"><a href="#cb152-450" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`sd()`**\</span>
-<span id="cb152-451"><a href="#cb152-451" aria-hidden="true" tabindex="-1"></a>    Computes the standard deviation, which measures the amount of variation or dispersion in the data.</span>
-<span id="cb152-452"><a href="#cb152-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-453"><a href="#cb152-453" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`table()`**\</span>
-<span id="cb152-454"><a href="#cb152-454" aria-hidden="true" tabindex="-1"></a>    Creates a frequency table showing how often each value appears in a vector or factor.</span>
-<span id="cb152-455"><a href="#cb152-455" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-436"><a href="#cb152-436" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb152-437"><a href="#cb152-437" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Basic descriptive statistics**</span></span>
+<span id="cb152-438"><a href="#cb152-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-439"><a href="#cb152-439" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`summary()`**\</span>
+<span id="cb152-440"><a href="#cb152-440" aria-hidden="true" tabindex="-1"></a>    Provides a quick overview of an object. For numeric vectors or data frames, it returns the minimum, 1st quartile, median, mean, 3rd quartile, and maximum.</span>
+<span id="cb152-441"><a href="#cb152-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-442"><a href="#cb152-442" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`mean()`**\</span>
+<span id="cb152-443"><a href="#cb152-443" aria-hidden="true" tabindex="-1"></a>    Calculates the arithmetic average of a numeric vector.</span>
+<span id="cb152-444"><a href="#cb152-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-445"><a href="#cb152-445" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`sum()`**\</span>
+<span id="cb152-446"><a href="#cb152-446" aria-hidden="true" tabindex="-1"></a>    Adds all elements of a numeric vector together.</span>
+<span id="cb152-447"><a href="#cb152-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-448"><a href="#cb152-448" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`sd()`**\</span>
+<span id="cb152-449"><a href="#cb152-449" aria-hidden="true" tabindex="-1"></a>    Computes the standard deviation, which measures the amount of variation or dispersion in the data.</span>
+<span id="cb152-450"><a href="#cb152-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-451"><a href="#cb152-451" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`table()`**\</span>
+<span id="cb152-452"><a href="#cb152-452" aria-hidden="true" tabindex="-1"></a>    Creates a frequency table showing how often each value appears in a vector or factor.</span>
+<span id="cb152-453"><a href="#cb152-453" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-454"><a href="#cb152-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-455"><a href="#cb152-455" aria-hidden="true" tabindex="-1"></a>Example</span>
 <span id="cb152-456"><a href="#cb152-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-457"><a href="#cb152-457" aria-hidden="true" tabindex="-1"></a>Example</span>
-<span id="cb152-458"><a href="#cb152-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-461"><a href="#cb152-461" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-462"><a href="#cb152-462" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
-<span id="cb152-463"><a href="#cb152-463" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
-<span id="cb152-464"><a href="#cb152-464" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(second_vec_num)</span>
-<span id="cb152-465"><a href="#cb152-465" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(second_vec_num)</span>
-<span id="cb152-466"><a href="#cb152-466" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(second_vec_num)</span>
-<span id="cb152-467"><a href="#cb152-467" aria-hidden="true" tabindex="-1"></a><span class="co"># Count table</span></span>
-<span id="cb152-468"><a href="#cb152-468" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>( second_vec_num )</span>
-<span id="cb152-469"><a href="#cb152-469" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-470"><a href="#cb152-470" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>( <span class="fu">c</span>(<span class="st">&quot;dog&quot;</span>,<span class="st">&quot;dog&quot;</span>,<span class="st">&quot;dog&quot;</span>,<span class="st">&quot;cat&quot;</span>,<span class="st">&quot;cat&quot;</span>) )</span>
-<span id="cb152-471"><a href="#cb152-471" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-472"><a href="#cb152-472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-473"><a href="#cb152-473" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb152-474"><a href="#cb152-474" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Vector inspection**</span></span>
-<span id="cb152-475"><a href="#cb152-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-476"><a href="#cb152-476" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`length()`**\</span>
-<span id="cb152-477"><a href="#cb152-477" aria-hidden="true" tabindex="-1"></a>    Returns the number of elements in a vector.</span>
-<span id="cb152-478"><a href="#cb152-478" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-479"><a href="#cb152-479" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`unique()`**\</span>
-<span id="cb152-480"><a href="#cb152-480" aria-hidden="true" tabindex="-1"></a>    Extracts the distinct (non-duplicate) values from a vector.</span>
-<span id="cb152-481"><a href="#cb152-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-482"><a href="#cb152-482" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`anyNA()`**\</span>
-<span id="cb152-483"><a href="#cb152-483" aria-hidden="true" tabindex="-1"></a>    Checks if there are any missing (<span class="in">`NA`</span>) values in a vector and returns <span class="in">`TRUE`</span> or <span class="in">`FALSE`</span>.</span>
-<span id="cb152-484"><a href="#cb152-484" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-485"><a href="#cb152-485" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`is.na()`**\</span>
-<span id="cb152-486"><a href="#cb152-486" aria-hidden="true" tabindex="-1"></a>    Returns a logical vector indicating which elements are <span class="in">`NA`</span>.</span>
-<span id="cb152-487"><a href="#cb152-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-488"><a href="#cb152-488" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`sort()`**\</span>
-<span id="cb152-489"><a href="#cb152-489" aria-hidden="true" tabindex="-1"></a>    Arranges the elements of a vector in ascending (default) or descending order.</span>
-<span id="cb152-490"><a href="#cb152-490" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb152-491"><a href="#cb152-491" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-494"><a href="#cb152-494" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-495"><a href="#cb152-495" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of elements in vector</span></span>
-<span id="cb152-496"><a href="#cb152-496" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(second_vec_num)</span>
-<span id="cb152-497"><a href="#cb152-497" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-498"><a href="#cb152-498" aria-hidden="true" tabindex="-1"></a><span class="co"># Order a vector</span></span>
-<span id="cb152-499"><a href="#cb152-499" aria-hidden="true" tabindex="-1"></a>sort_second_vec <span class="ot">&lt;-</span> <span class="fu">sort</span>(second_vec_num, </span>
-<span id="cb152-500"><a href="#cb152-500" aria-hidden="true" tabindex="-1"></a>                          <span class="at">decreasing =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb152-501"><a href="#cb152-501" aria-hidden="true" tabindex="-1"></a>second_vec_num; sort_second_vec</span>
-<span id="cb152-502"><a href="#cb152-502" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-503"><a href="#cb152-503" aria-hidden="true" tabindex="-1"></a><span class="co"># Count table</span></span>
-<span id="cb152-504"><a href="#cb152-504" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>( second_vec_num )</span>
-<span id="cb152-505"><a href="#cb152-505" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-506"><a href="#cb152-506" aria-hidden="true" tabindex="-1"></a><span class="co"># is there NA</span></span>
-<span id="cb152-507"><a href="#cb152-507" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>( second_vec_num ) </span>
-<span id="cb152-508"><a href="#cb152-508" aria-hidden="true" tabindex="-1"></a><span class="fu">anyNA</span>( second_vec_num )</span>
-<span id="cb152-509"><a href="#cb152-509" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-459"><a href="#cb152-459" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-460"><a href="#cb152-460" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb152-461"><a href="#cb152-461" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
+<span id="cb152-462"><a href="#cb152-462" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(second_vec_num)</span>
+<span id="cb152-463"><a href="#cb152-463" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(second_vec_num)</span>
+<span id="cb152-464"><a href="#cb152-464" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(second_vec_num)</span>
+<span id="cb152-465"><a href="#cb152-465" aria-hidden="true" tabindex="-1"></a><span class="co"># Count table</span></span>
+<span id="cb152-466"><a href="#cb152-466" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>( second_vec_num )</span>
+<span id="cb152-467"><a href="#cb152-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-468"><a href="#cb152-468" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>( <span class="fu">c</span>(<span class="st">&quot;dog&quot;</span>,<span class="st">&quot;dog&quot;</span>,<span class="st">&quot;dog&quot;</span>,<span class="st">&quot;cat&quot;</span>,<span class="st">&quot;cat&quot;</span>) )</span>
+<span id="cb152-469"><a href="#cb152-469" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-470"><a href="#cb152-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-471"><a href="#cb152-471" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb152-472"><a href="#cb152-472" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Vector inspection**</span></span>
+<span id="cb152-473"><a href="#cb152-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-474"><a href="#cb152-474" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`length()`**\</span>
+<span id="cb152-475"><a href="#cb152-475" aria-hidden="true" tabindex="-1"></a>    Returns the number of elements in a vector.</span>
+<span id="cb152-476"><a href="#cb152-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-477"><a href="#cb152-477" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`unique()`**\</span>
+<span id="cb152-478"><a href="#cb152-478" aria-hidden="true" tabindex="-1"></a>    Extracts the distinct (non-duplicate) values from a vector.</span>
+<span id="cb152-479"><a href="#cb152-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-480"><a href="#cb152-480" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`anyNA()`**\</span>
+<span id="cb152-481"><a href="#cb152-481" aria-hidden="true" tabindex="-1"></a>    Checks if there are any missing (<span class="in">`NA`</span>) values in a vector and returns <span class="in">`TRUE`</span> or <span class="in">`FALSE`</span>.</span>
+<span id="cb152-482"><a href="#cb152-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-483"><a href="#cb152-483" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`is.na()`**\</span>
+<span id="cb152-484"><a href="#cb152-484" aria-hidden="true" tabindex="-1"></a>    Returns a logical vector indicating which elements are <span class="in">`NA`</span>.</span>
+<span id="cb152-485"><a href="#cb152-485" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-486"><a href="#cb152-486" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`sort()`**\</span>
+<span id="cb152-487"><a href="#cb152-487" aria-hidden="true" tabindex="-1"></a>    Arranges the elements of a vector in ascending (default) or descending order.</span>
+<span id="cb152-488"><a href="#cb152-488" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-489"><a href="#cb152-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-492"><a href="#cb152-492" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-493"><a href="#cb152-493" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of elements in vector</span></span>
+<span id="cb152-494"><a href="#cb152-494" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(second_vec_num)</span>
+<span id="cb152-495"><a href="#cb152-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-496"><a href="#cb152-496" aria-hidden="true" tabindex="-1"></a><span class="co"># Order a vector</span></span>
+<span id="cb152-497"><a href="#cb152-497" aria-hidden="true" tabindex="-1"></a>sort_second_vec <span class="ot">&lt;-</span> <span class="fu">sort</span>(second_vec_num, </span>
+<span id="cb152-498"><a href="#cb152-498" aria-hidden="true" tabindex="-1"></a>                          <span class="at">decreasing =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb152-499"><a href="#cb152-499" aria-hidden="true" tabindex="-1"></a>second_vec_num; sort_second_vec</span>
+<span id="cb152-500"><a href="#cb152-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-501"><a href="#cb152-501" aria-hidden="true" tabindex="-1"></a><span class="co"># Count table</span></span>
+<span id="cb152-502"><a href="#cb152-502" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>( second_vec_num )</span>
+<span id="cb152-503"><a href="#cb152-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-504"><a href="#cb152-504" aria-hidden="true" tabindex="-1"></a><span class="co"># is there NA</span></span>
+<span id="cb152-505"><a href="#cb152-505" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>( second_vec_num ) </span>
+<span id="cb152-506"><a href="#cb152-506" aria-hidden="true" tabindex="-1"></a><span class="fu">anyNA</span>( second_vec_num )</span>
+<span id="cb152-507"><a href="#cb152-507" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-508"><a href="#cb152-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-509"><a href="#cb152-509" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
 <span id="cb152-510"><a href="#cb152-510" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-511"><a href="#cb152-511" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
+<span id="cb152-511"><a href="#cb152-511" aria-hidden="true" tabindex="-1"></a>**What is the mean of every second element in the vector `second_vec_num`?**</span>
 <span id="cb152-512"><a href="#cb152-512" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-513"><a href="#cb152-513" aria-hidden="true" tabindex="-1"></a>**What is the mean of every second element in the vector `second_vec_num`?**</span>
+<span id="cb152-513"><a href="#cb152-513" aria-hidden="true" tabindex="-1"></a>*Hard mode: Solve it in two different ways?*</span>
 <span id="cb152-514"><a href="#cb152-514" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-515"><a href="#cb152-515" aria-hidden="true" tabindex="-1"></a>*Hard mode: Solve it in two different ways?*</span>
-<span id="cb152-516"><a href="#cb152-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-519"><a href="#cb152-519" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-520"><a href="#cb152-520" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
-<span id="cb152-521"><a href="#cb152-521" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-517"><a href="#cb152-517" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-518"><a href="#cb152-518" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
+<span id="cb152-519"><a href="#cb152-519" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-520"><a href="#cb152-520" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-521"><a href="#cb152-521" aria-hidden="true" tabindex="-1"></a><span class="fu">## Matrix</span></span>
 <span id="cb152-522"><a href="#cb152-522" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-523"><a href="#cb152-523" aria-hidden="true" tabindex="-1"></a><span class="fu">## Matrix</span></span>
+<span id="cb152-523"><a href="#cb152-523" aria-hidden="true" tabindex="-1"></a>Matrix is a two dimensional data structure in R programming. It is similar to vector but additionally contains the dimension attribute.</span>
 <span id="cb152-524"><a href="#cb152-524" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-525"><a href="#cb152-525" aria-hidden="true" tabindex="-1"></a>Matrix is a two dimensional data structure in R programming. It is similar to vector but additionally contains the dimension attribute.</span>
-<span id="cb152-526"><a href="#cb152-526" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-527"><a href="#cb152-527" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb152-528"><a href="#cb152-528" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Defining a matrix**</span></span>
+<span id="cb152-525"><a href="#cb152-525" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb152-526"><a href="#cb152-526" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Defining a matrix**</span></span>
+<span id="cb152-527"><a href="#cb152-527" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-528"><a href="#cb152-528" aria-hidden="true" tabindex="-1"></a>You define a matrix using the <span class="in">`matrix`</span> function which takes data as vector, number of columns and/or rows to create a matrix. Argument <span class="in">`byrow`</span> when FALSE is filling the matrix by columns</span>
 <span id="cb152-529"><a href="#cb152-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-530"><a href="#cb152-530" aria-hidden="true" tabindex="-1"></a>You define a matrix using the <span class="in">`matrix`</span> function which takes data as vector, number of columns and/or rows to create a matrix. Argument <span class="in">`byrow`</span> when FALSE is filling the matrix by columns</span>
-<span id="cb152-531"><a href="#cb152-531" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-534"><a href="#cb152-534" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-535"><a href="#cb152-535" aria-hidden="true" tabindex="-1"></a><span class="co"># filling by rows</span></span>
-<span id="cb152-536"><a href="#cb152-536" aria-hidden="true" tabindex="-1"></a>first_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow=</span><span class="dv">5</span>)</span>
-<span id="cb152-537"><a href="#cb152-537" aria-hidden="true" tabindex="-1"></a>first_mat</span>
-<span id="cb152-538"><a href="#cb152-538" aria-hidden="true" tabindex="-1"></a><span class="co"># filling by columns</span></span>
-<span id="cb152-539"><a href="#cb152-539" aria-hidden="true" tabindex="-1"></a>second_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow=</span><span class="dv">5</span>,</span>
-<span id="cb152-540"><a href="#cb152-540" aria-hidden="true" tabindex="-1"></a>                        <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
-<span id="cb152-541"><a href="#cb152-541" aria-hidden="true" tabindex="-1"></a>second_mat</span>
-<span id="cb152-542"><a href="#cb152-542" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-543"><a href="#cb152-543" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-532"><a href="#cb152-532" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-533"><a href="#cb152-533" aria-hidden="true" tabindex="-1"></a><span class="co"># filling by rows</span></span>
+<span id="cb152-534"><a href="#cb152-534" aria-hidden="true" tabindex="-1"></a>first_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow=</span><span class="dv">5</span>)</span>
+<span id="cb152-535"><a href="#cb152-535" aria-hidden="true" tabindex="-1"></a>first_mat</span>
+<span id="cb152-536"><a href="#cb152-536" aria-hidden="true" tabindex="-1"></a><span class="co"># filling by columns</span></span>
+<span id="cb152-537"><a href="#cb152-537" aria-hidden="true" tabindex="-1"></a>second_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow=</span><span class="dv">5</span>,</span>
+<span id="cb152-538"><a href="#cb152-538" aria-hidden="true" tabindex="-1"></a>                        <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
+<span id="cb152-539"><a href="#cb152-539" aria-hidden="true" tabindex="-1"></a>second_mat</span>
+<span id="cb152-540"><a href="#cb152-540" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-541"><a href="#cb152-541" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-542"><a href="#cb152-542" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-543"><a href="#cb152-543" aria-hidden="true" tabindex="-1"></a><span class="fu">### Subsetting a matrix</span></span>
 <span id="cb152-544"><a href="#cb152-544" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-545"><a href="#cb152-545" aria-hidden="true" tabindex="-1"></a><span class="fu">### Subsetting a matrix</span></span>
+<span id="cb152-545"><a href="#cb152-545" aria-hidden="true" tabindex="-1"></a>Since matrices are two dimensional, you have to subset in **both** dimensions. **Subsetting is done by opening square brackets with supplied index for each dimension separated by a comma**. Blank subsetting is useful because you keep all rows or all columns.</span>
 <span id="cb152-546"><a href="#cb152-546" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-547"><a href="#cb152-547" aria-hidden="true" tabindex="-1"></a>Since matrices are two dimensional, you have to subset in **both** dimensions. **Subsetting is done by opening square brackets with supplied index for each dimension separated by a comma**. Blank subsetting is useful because you keep all rows or all columns.</span>
-<span id="cb152-548"><a href="#cb152-548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-551"><a href="#cb152-551" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-552"><a href="#cb152-552" aria-hidden="true" tabindex="-1"></a>first_mat</span>
-<span id="cb152-553"><a href="#cb152-553" aria-hidden="true" tabindex="-1"></a>first_mat[<span class="dv">1</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]</span>
-<span id="cb152-554"><a href="#cb152-554" aria-hidden="true" tabindex="-1"></a>first_mat[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]</span>
-<span id="cb152-555"><a href="#cb152-555" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-549"><a href="#cb152-549" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-550"><a href="#cb152-550" aria-hidden="true" tabindex="-1"></a>first_mat</span>
+<span id="cb152-551"><a href="#cb152-551" aria-hidden="true" tabindex="-1"></a>first_mat[<span class="dv">1</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb152-552"><a href="#cb152-552" aria-hidden="true" tabindex="-1"></a>first_mat[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb152-553"><a href="#cb152-553" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-554"><a href="#cb152-554" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-555"><a href="#cb152-555" aria-hidden="true" tabindex="-1"></a><span class="fu">### Replacing elements in a matrix</span></span>
 <span id="cb152-556"><a href="#cb152-556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-557"><a href="#cb152-557" aria-hidden="true" tabindex="-1"></a><span class="fu">### Replacing elements in a matrix</span></span>
+<span id="cb152-557"><a href="#cb152-557" aria-hidden="true" tabindex="-1"></a>You can replace individual elements in a matrix using **indexing**. Here&#39;s an example:</span>
 <span id="cb152-558"><a href="#cb152-558" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-559"><a href="#cb152-559" aria-hidden="true" tabindex="-1"></a>You can replace individual elements in a matrix using **indexing**. Here&#39;s an example:</span>
-<span id="cb152-560"><a href="#cb152-560" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-563"><a href="#cb152-563" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-564"><a href="#cb152-564" aria-hidden="true" tabindex="-1"></a><span class="co"># Access the element in the first row, first column</span></span>
-<span id="cb152-565"><a href="#cb152-565" aria-hidden="true" tabindex="-1"></a>first_mat[<span class="dv">1</span>,<span class="dv">1</span>]</span>
-<span id="cb152-566"><a href="#cb152-566" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace that element with the character &quot;a&quot;</span></span>
-<span id="cb152-567"><a href="#cb152-567" aria-hidden="true" tabindex="-1"></a>first_mat[<span class="dv">1</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;a&quot;</span></span>
-<span id="cb152-568"><a href="#cb152-568" aria-hidden="true" tabindex="-1"></a><span class="co"># View the matrix</span></span>
-<span id="cb152-569"><a href="#cb152-569" aria-hidden="true" tabindex="-1"></a>first_mat</span>
-<span id="cb152-570"><a href="#cb152-570" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-571"><a href="#cb152-571" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-572"><a href="#cb152-572" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb152-573"><a href="#cb152-573" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Useful functions for matrices**</span></span>
-<span id="cb152-574"><a href="#cb152-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-575"><a href="#cb152-575" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`dim()`** -- Returns or sets the dimensions of a matrix (rows, columns).</span>
-<span id="cb152-576"><a href="#cb152-576" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`nrow()`**, **`ncol()`** -- Get the number of rows or columns.</span>
-<span id="cb152-577"><a href="#cb152-577" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`t()`** -- Transposes the matrix (swaps rows and columns).</span>
-<span id="cb152-578"><a href="#cb152-578" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`rowSums()`**, **`colSums()`** -- Calculate row-wise or column-wise sums.</span>
-<span id="cb152-579"><a href="#cb152-579" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`rowMeans()`**, **`colMeans()`** -- Calculate means for each row or column.</span>
-<span id="cb152-580"><a href="#cb152-580" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-561"><a href="#cb152-561" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-562"><a href="#cb152-562" aria-hidden="true" tabindex="-1"></a><span class="co"># Access the element in the first row, first column</span></span>
+<span id="cb152-563"><a href="#cb152-563" aria-hidden="true" tabindex="-1"></a>first_mat[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb152-564"><a href="#cb152-564" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace that element with the character &quot;a&quot;</span></span>
+<span id="cb152-565"><a href="#cb152-565" aria-hidden="true" tabindex="-1"></a>first_mat[<span class="dv">1</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;a&quot;</span></span>
+<span id="cb152-566"><a href="#cb152-566" aria-hidden="true" tabindex="-1"></a><span class="co"># View the matrix</span></span>
+<span id="cb152-567"><a href="#cb152-567" aria-hidden="true" tabindex="-1"></a>first_mat</span>
+<span id="cb152-568"><a href="#cb152-568" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-569"><a href="#cb152-569" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-570"><a href="#cb152-570" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb152-571"><a href="#cb152-571" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Useful functions for matrices**</span></span>
+<span id="cb152-572"><a href="#cb152-572" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-573"><a href="#cb152-573" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`dim()`** -- Returns or sets the dimensions of a matrix (rows, columns).</span>
+<span id="cb152-574"><a href="#cb152-574" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`nrow()`**, **`ncol()`** -- Get the number of rows or columns.</span>
+<span id="cb152-575"><a href="#cb152-575" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`t()`** -- Transposes the matrix (swaps rows and columns).</span>
+<span id="cb152-576"><a href="#cb152-576" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`rowSums()`**, **`colSums()`** -- Calculate row-wise or column-wise sums.</span>
+<span id="cb152-577"><a href="#cb152-577" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`rowMeans()`**, **`colMeans()`** -- Calculate means for each row or column.</span>
+<span id="cb152-578"><a href="#cb152-578" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-579"><a href="#cb152-579" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-580"><a href="#cb152-580" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
 <span id="cb152-581"><a href="#cb152-581" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-582"><a href="#cb152-582" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
-<span id="cb152-583"><a href="#cb152-583" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-584"><a href="#cb152-584" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Create a matrix called <span class="in">`second_matrix`</span> using the vector <span class="in">`second_vec_num`</span>.</span>
-<span id="cb152-585"><a href="#cb152-585" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Fill the matrix **by columns** and dimension of 5x5.</span>
-<span id="cb152-586"><a href="#cb152-586" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Determine the **dimensions** of the matrix.</span>
-<span id="cb152-587"><a href="#cb152-587" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Calculate the **sum of each row**.</span>
-<span id="cb152-588"><a href="#cb152-588" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Calculate the **sum of each column**.</span>
-<span id="cb152-589"><a href="#cb152-589" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-592"><a href="#cb152-592" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-593"><a href="#cb152-593" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
-<span id="cb152-594"><a href="#cb152-594" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-582"><a href="#cb152-582" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Create a matrix called <span class="in">`second_matrix`</span> using the vector <span class="in">`second_vec_num`</span>.</span>
+<span id="cb152-583"><a href="#cb152-583" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Fill the matrix **by columns** and dimension of 5x5.</span>
+<span id="cb152-584"><a href="#cb152-584" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Determine the **dimensions** of the matrix.</span>
+<span id="cb152-585"><a href="#cb152-585" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Calculate the **sum of each row**.</span>
+<span id="cb152-586"><a href="#cb152-586" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Calculate the **sum of each column**.</span>
+<span id="cb152-587"><a href="#cb152-587" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-590"><a href="#cb152-590" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-591"><a href="#cb152-591" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the solution here</span></span>
+<span id="cb152-592"><a href="#cb152-592" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-593"><a href="#cb152-593" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-594"><a href="#cb152-594" aria-hidden="true" tabindex="-1"></a><span class="fu">## List</span></span>
 <span id="cb152-595"><a href="#cb152-595" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-596"><a href="#cb152-596" aria-hidden="true" tabindex="-1"></a><span class="fu">## List</span></span>
+<span id="cb152-596"><a href="#cb152-596" aria-hidden="true" tabindex="-1"></a>List is an object containing elements of various types -- like strings, numbers, matrices, vectors, functions and another list inside it. The list is created using the <span class="in">`list()`</span> function in R.</span>
 <span id="cb152-597"><a href="#cb152-597" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-598"><a href="#cb152-598" aria-hidden="true" tabindex="-1"></a>List is an object containing elements of various types -- like strings, numbers, matrices, vectors, functions and another list inside it. The list is created using the <span class="in">`list()`</span> function in R.</span>
-<span id="cb152-599"><a href="#cb152-599" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-602"><a href="#cb152-602" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-603"><a href="#cb152-603" aria-hidden="true" tabindex="-1"></a>first_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">first =</span> <span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">5</span>,<span class="dv">24</span>,<span class="dv">88</span>),</span>
-<span id="cb152-604"><a href="#cb152-604" aria-hidden="true" tabindex="-1"></a>                   <span class="at">second =</span> <span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="dv">3</span>))</span>
-<span id="cb152-605"><a href="#cb152-605" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-606"><a href="#cb152-606" aria-hidden="true" tabindex="-1"></a>first_list</span>
-<span id="cb152-607"><a href="#cb152-607" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-600"><a href="#cb152-600" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-601"><a href="#cb152-601" aria-hidden="true" tabindex="-1"></a>first_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">first =</span> <span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">5</span>,<span class="dv">24</span>,<span class="dv">88</span>),</span>
+<span id="cb152-602"><a href="#cb152-602" aria-hidden="true" tabindex="-1"></a>                   <span class="at">second =</span> <span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="dv">3</span>))</span>
+<span id="cb152-603"><a href="#cb152-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-604"><a href="#cb152-604" aria-hidden="true" tabindex="-1"></a>first_list</span>
+<span id="cb152-605"><a href="#cb152-605" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-606"><a href="#cb152-606" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-607"><a href="#cb152-607" aria-hidden="true" tabindex="-1"></a><span class="fu">### Accessing elements of a list</span></span>
 <span id="cb152-608"><a href="#cb152-608" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-609"><a href="#cb152-609" aria-hidden="true" tabindex="-1"></a><span class="fu">### Accessing elements of a list</span></span>
+<span id="cb152-609"><a href="#cb152-609" aria-hidden="true" tabindex="-1"></a>You can access elements of a list in several ways depending on whether you want:</span>
 <span id="cb152-610"><a href="#cb152-610" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-611"><a href="#cb152-611" aria-hidden="true" tabindex="-1"></a>You can access elements of a list in several ways depending on whether you want:</span>
+<span id="cb152-611"><a href="#cb152-611" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>the actual value inside the list, or</span>
 <span id="cb152-612"><a href="#cb152-612" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-613"><a href="#cb152-613" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>the actual value inside the list, or</span>
+<span id="cb152-613"><a href="#cb152-613" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>a sublist containing the element.</span>
 <span id="cb152-614"><a href="#cb152-614" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-615"><a href="#cb152-615" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>a sublist containing the element.</span>
-<span id="cb152-616"><a href="#cb152-616" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-617"><a href="#cb152-617" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb152-618"><a href="#cb152-618" aria-hidden="true" tabindex="-1"></a><span class="fu">## Different subseting results in different object</span></span>
+<span id="cb152-615"><a href="#cb152-615" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb152-616"><a href="#cb152-616" aria-hidden="true" tabindex="-1"></a><span class="fu">## Different subseting results in different object</span></span>
+<span id="cb152-617"><a href="#cb152-617" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-618"><a href="#cb152-618" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>If elements have names, you can access them with <span class="in">`$`</span>. Here we have names the first stored element as first &quot;first&quot; and therefore we can call it.</span>
 <span id="cb152-619"><a href="#cb152-619" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-620"><a href="#cb152-620" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>If elements have names, you can access them with <span class="in">`$`</span>. Here we have names the first stored element as first &quot;first&quot; and therefore we can call it.</span>
-<span id="cb152-621"><a href="#cb152-621" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-624"><a href="#cb152-624" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-625"><a href="#cb152-625" aria-hidden="true" tabindex="-1"></a>first_list<span class="sc">$</span>first</span>
-<span id="cb152-626"><a href="#cb152-626" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-622"><a href="#cb152-622" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-623"><a href="#cb152-623" aria-hidden="true" tabindex="-1"></a>first_list<span class="sc">$</span>first</span>
+<span id="cb152-624"><a href="#cb152-624" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-625"><a href="#cb152-625" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-626"><a href="#cb152-626" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Using single brackets **`[]`**, we get a list</span>
 <span id="cb152-627"><a href="#cb152-627" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-628"><a href="#cb152-628" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Using single brackets **`[]`**, we get a list</span>
-<span id="cb152-629"><a href="#cb152-629" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-632"><a href="#cb152-632" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-633"><a href="#cb152-633" aria-hidden="true" tabindex="-1"></a>first_list[<span class="dv">1</span>]</span>
-<span id="cb152-634"><a href="#cb152-634" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-630"><a href="#cb152-630" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-631"><a href="#cb152-631" aria-hidden="true" tabindex="-1"></a>first_list[<span class="dv">1</span>]</span>
+<span id="cb152-632"><a href="#cb152-632" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-633"><a href="#cb152-633" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-634"><a href="#cb152-634" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Using double brackets **`[[]]`**, we get a stored element</span>
 <span id="cb152-635"><a href="#cb152-635" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-636"><a href="#cb152-636" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Using double brackets **`[[]]`**, we get a stored element</span>
-<span id="cb152-637"><a href="#cb152-637" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-640"><a href="#cb152-640" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-641"><a href="#cb152-641" aria-hidden="true" tabindex="-1"></a>first_list[[<span class="dv">1</span>]]</span>
-<span id="cb152-642"><a href="#cb152-642" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-638"><a href="#cb152-638" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-639"><a href="#cb152-639" aria-hidden="true" tabindex="-1"></a>first_list[[<span class="dv">1</span>]]</span>
+<span id="cb152-640"><a href="#cb152-640" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-641"><a href="#cb152-641" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-642"><a href="#cb152-642" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Using double brackets **`[[ ]]`**, we access the actual stored element, and then we can subset it further if it&#39;s a vector.</span>
 <span id="cb152-643"><a href="#cb152-643" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-644"><a href="#cb152-644" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Using double brackets **`[[ ]]`**, we access the actual stored element, and then we can subset it further if it&#39;s a vector.</span>
-<span id="cb152-645"><a href="#cb152-645" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-648"><a href="#cb152-648" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-649"><a href="#cb152-649" aria-hidden="true" tabindex="-1"></a>first_list[[<span class="dv">1</span>]][<span class="dv">2</span>]</span>
-<span id="cb152-650"><a href="#cb152-650" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb152-651"><a href="#cb152-651" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-646"><a href="#cb152-646" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-647"><a href="#cb152-647" aria-hidden="true" tabindex="-1"></a>first_list[[<span class="dv">1</span>]][<span class="dv">2</span>]</span>
+<span id="cb152-648"><a href="#cb152-648" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-649"><a href="#cb152-649" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb152-650"><a href="#cb152-650" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-651"><a href="#cb152-651" aria-hidden="true" tabindex="-1"></a><span class="fu">### Replacing and adding elements</span></span>
 <span id="cb152-652"><a href="#cb152-652" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-653"><a href="#cb152-653" aria-hidden="true" tabindex="-1"></a><span class="fu">### Replacing and adding elements</span></span>
+<span id="cb152-653"><a href="#cb152-653" aria-hidden="true" tabindex="-1"></a>You can both replace and add values within elements of a list using double brackets **`[[ ]]`** and indexing.</span>
 <span id="cb152-654"><a href="#cb152-654" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-655"><a href="#cb152-655" aria-hidden="true" tabindex="-1"></a>You can both replace and add values within elements of a list using double brackets **`[[ ]]`** and indexing.</span>
-<span id="cb152-656"><a href="#cb152-656" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-659"><a href="#cb152-659" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-660"><a href="#cb152-660" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the first value in the first element of the list</span></span>
-<span id="cb152-661"><a href="#cb152-661" aria-hidden="true" tabindex="-1"></a>first_list[[<span class="dv">1</span>]][<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;A&quot;</span></span>
-<span id="cb152-662"><a href="#cb152-662" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-657"><a href="#cb152-657" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-658"><a href="#cb152-658" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the first value in the first element of the list</span></span>
+<span id="cb152-659"><a href="#cb152-659" aria-hidden="true" tabindex="-1"></a>first_list[[<span class="dv">1</span>]][<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;A&quot;</span></span>
+<span id="cb152-660"><a href="#cb152-660" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-661"><a href="#cb152-661" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-662"><a href="#cb152-662" aria-hidden="true" tabindex="-1"></a>Add a new value to a list element</span>
 <span id="cb152-663"><a href="#cb152-663" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-664"><a href="#cb152-664" aria-hidden="true" tabindex="-1"></a>Add a new value to a list element</span>
-<span id="cb152-665"><a href="#cb152-665" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-668"><a href="#cb152-668" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-669"><a href="#cb152-669" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new (5th) value to the first element of the list</span></span>
-<span id="cb152-670"><a href="#cb152-670" aria-hidden="true" tabindex="-1"></a>first_list[[<span class="dv">1</span>]][<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="st">&quot;x&quot;</span> </span>
-<span id="cb152-671"><a href="#cb152-671" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-666"><a href="#cb152-666" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-667"><a href="#cb152-667" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new (5th) value to the first element of the list</span></span>
+<span id="cb152-668"><a href="#cb152-668" aria-hidden="true" tabindex="-1"></a>first_list[[<span class="dv">1</span>]][<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="st">&quot;x&quot;</span> </span>
+<span id="cb152-669"><a href="#cb152-669" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-670"><a href="#cb152-670" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-671"><a href="#cb152-671" aria-hidden="true" tabindex="-1"></a>View the result</span>
 <span id="cb152-672"><a href="#cb152-672" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-673"><a href="#cb152-673" aria-hidden="true" tabindex="-1"></a>View the result</span>
-<span id="cb152-674"><a href="#cb152-674" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-677"><a href="#cb152-677" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-678"><a href="#cb152-678" aria-hidden="true" tabindex="-1"></a>first_list</span>
-<span id="cb152-679"><a href="#cb152-679" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-675"><a href="#cb152-675" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-676"><a href="#cb152-676" aria-hidden="true" tabindex="-1"></a>first_list</span>
+<span id="cb152-677"><a href="#cb152-677" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-678"><a href="#cb152-678" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-679"><a href="#cb152-679" aria-hidden="true" tabindex="-1"></a><span class="fu">### List to vector</span></span>
 <span id="cb152-680"><a href="#cb152-680" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-681"><a href="#cb152-681" aria-hidden="true" tabindex="-1"></a><span class="fu">### List to vector</span></span>
-<span id="cb152-682"><a href="#cb152-682" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-683"><a href="#cb152-683" aria-hidden="true" tabindex="-1"></a>If you want to convert a list into a single atomic vector, you can use the <span class="in">`unlist()`</span> function.\</span>
-<span id="cb152-684"><a href="#cb152-684" aria-hidden="true" tabindex="-1"></a>This flattens all elements of the list into a **single vector**, as long as the contents are compatible (e.g., numeric and character can both be coerced into character).</span>
-<span id="cb152-685"><a href="#cb152-685" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-688"><a href="#cb152-688" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-689"><a href="#cb152-689" aria-hidden="true" tabindex="-1"></a><span class="fu">unlist</span>(first_list)</span>
-<span id="cb152-690"><a href="#cb152-690" aria-hidden="true" tabindex="-1"></a>first_list</span>
-<span id="cb152-691"><a href="#cb152-691" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-681"><a href="#cb152-681" aria-hidden="true" tabindex="-1"></a>If you want to convert a list into a single atomic vector, you can use the <span class="in">`unlist()`</span> function.\</span>
+<span id="cb152-682"><a href="#cb152-682" aria-hidden="true" tabindex="-1"></a>This flattens all elements of the list into a **single vector**, as long as the contents are compatible (e.g., numeric and character can both be coerced into character).</span>
+<span id="cb152-683"><a href="#cb152-683" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-686"><a href="#cb152-686" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-687"><a href="#cb152-687" aria-hidden="true" tabindex="-1"></a><span class="fu">unlist</span>(first_list)</span>
+<span id="cb152-688"><a href="#cb152-688" aria-hidden="true" tabindex="-1"></a>first_list</span>
+<span id="cb152-689"><a href="#cb152-689" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-690"><a href="#cb152-690" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-691"><a href="#cb152-691" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
 <span id="cb152-692"><a href="#cb152-692" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-693"><a href="#cb152-693" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Task</span></span>
+<span id="cb152-693"><a href="#cb152-693" aria-hidden="true" tabindex="-1"></a>The **names** created when unlisting a list are automatically generated by R and reflect the structure of the original list.</span>
 <span id="cb152-694"><a href="#cb152-694" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-695"><a href="#cb152-695" aria-hidden="true" tabindex="-1"></a>The **names** created when unlisting a list are automatically generated by R and reflect the structure of the original list.</span>
-<span id="cb152-696"><a href="#cb152-696" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-697"><a href="#cb152-697" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>First, save the result of <span class="in">`unlist`</span> into a new vector called <span class="in">`unlist_first`</span>.</span>
-<span id="cb152-698"><a href="#cb152-698" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Then, use the function <span class="in">`unname`</span>.\</span>
-<span id="cb152-699"><a href="#cb152-699" aria-hidden="true" tabindex="-1"></a>    What does this do?</span>
-<span id="cb152-700"><a href="#cb152-700" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-703"><a href="#cb152-703" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb152-704"><a href="#cb152-704" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb152-695"><a href="#cb152-695" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>First, save the result of <span class="in">`unlist`</span> into a new vector called <span class="in">`unlist_first`</span>.</span>
+<span id="cb152-696"><a href="#cb152-696" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Then, use the function <span class="in">`unname`</span>.\</span>
+<span id="cb152-697"><a href="#cb152-697" aria-hidden="true" tabindex="-1"></a>    What does this do?</span>
+<span id="cb152-698"><a href="#cb152-698" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-701"><a href="#cb152-701" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb152-702"><a href="#cb152-702" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
