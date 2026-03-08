@@ -78,7 +78,6 @@ heart_disease <- fread("")
 # Hint: Use subsetting by sex and then find the row(s) with the maximum value of MaximumHR OR use by argument to get answer in one code.
 ```
 
-
 7.  Calculate the mean value of all numeric columns.
 
 ```{r}

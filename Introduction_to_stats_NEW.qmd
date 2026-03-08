@@ -277,7 +277,8 @@ Two variables can have **low pairwise correlation**, but still cause multicollin
 To investigate if there is any statistical difference between the groups we use chi-square test for categorical data.
 
 ```{r}
-chisq.test(table(heart_disease$BloodSugar, heart_disease$HeartDisease))
+chisq.test(table(heart_disease$BloodSugar,
+                 heart_disease$HeartDisease))
 ```
 
 #### Question:
@@ -305,7 +306,8 @@ Perform statistical test to check data normality and visualize it.
 Let's run some statistical tests - two groups comparison:
 
 ```{r}
-t.test(Cholesterol ~ BloodSugar, data = heart_disease)
+t.test(Cholesterol ~ BloodSugar, 
+       data = heart_disease)
 ```
 
 ::: callout-important
@@ -325,21 +327,34 @@ var.test(Cholesterol \~ BloodSugar, data = heart_disease)
 :::
 
 ```{r}
-t.test(Cholesterol ~ BloodSugar, data = heart_disease, var.equal = TRUE)
-wilcox.test(Cholesterol ~ BloodSugar, data = heart_disease)
+t.test(Cholesterol ~ BloodSugar, 
+       data = heart_disease, var.equal = TRUE)
+wilcox.test(Cholesterol ~ BloodSugar, 
+            data = heart_disease)
 
-ggboxplot(heart_disease, x = "BloodSugar", y = "Cholesterol", fill = "BloodSugar")
+ggboxplot(heart_disease, 
+          x = "BloodSugar", 
+          y = "Cholesterol", 
+          fill = "BloodSugar")
 ```
 
 And now for some 2+ groups:
 
 ```{r}
-summary(aov(Cholesterol ~ ChestPain, data = heart_disease))
-kruskal.test(Cholesterol ~ ChestPain, data = heart_disease)
+summary(aov(Cholesterol ~ ChestPain, 
+            data = heart_disease))
+kruskal.test(Cholesterol ~ ChestPain, 
+             data = heart_disease)
 
-ggboxplot(heart_disease, x = "ChestPain", y = "Cholesterol", fill = "ChestPain")
+ggboxplot(heart_disease, 
+          x = "ChestPain", 
+          y = "Cholesterol", 
+          fill = "ChestPain")
 
-ggboxplot(heart_disease, x = "ChestPain", y = "Cholesterol", fill = "ChestPain") + 
+ggboxplot(heart_disease, 
+          x = "ChestPain", 
+          y = "Cholesterol", 
+          fill = "ChestPain") + 
   stat_compare_means()
 ```
 
@@ -348,7 +363,8 @@ ggboxplot(heart_disease, x = "ChestPain", y = "Cholesterol", fill = "ChestPain")
 What is mandatory next step after anova?
 
 ```{r}
-TukeyHSD(aov(Cholesterol ~ ChestPain, data = heart_disease))
+TukeyHSD(aov(Cholesterol ~ ChestPain, 
+             data = heart_disease))
 ```
 
 ### Correlation analysis
@@ -379,7 +395,9 @@ We use linear regression models when our dependent variable is numerical, and lo
 # Logistic regression
 #heart_disease[, BloodSugar := ifelse(BloodSugar == "Yes", 1, 0)]
 
-model1 <- glm(BloodSugar ~ HeartDisease, data = heart_disease, family = "binomial")
+model1 <- glm(BloodSugar ~ HeartDisease, 
+              data = heart_disease,
+              family = "binomial")
 summary(model1)
 ```
 
@@ -389,7 +407,8 @@ If we **did not manually create a binary variable** `BloodSugar`, and we used th
 
 ```{r}
 # Linear regression
-model2 <- lm(Cholesterol ~ HeartDisease, data = heart_disease)
+model2 <- lm(Cholesterol ~ HeartDisease,
+             data = heart_disease)
 summary(model2)
 ```
 
@@ -405,7 +424,8 @@ To properly assess multicollinearity, we need to check the Variance Inflation Fa
 
 ```{r}
 # Multivariable linear regression
-model_multi <- lm(Cholesterol ~ BP + MaximumHR, data = heart_disease)
+model_multi <- lm(Cholesterol ~ BP + MaximumHR,
+                  data = heart_disease)
 summary(model_multi)
 
 # Calculate VIF

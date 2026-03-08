@@ -16,7 +16,6 @@ format:
     code-summary: "Show code"
     code-line-numbers: false
     code-tools: true
-    
 execute:
   echo: true
   message: false
@@ -53,7 +52,9 @@ A scientist has **48** stem cells. Each one divides into **2** daughter cells.
 
 ```{r}
 # Solve here
-
+n_cells <- 48*2
+n_cells
+n_cells %/% 10
 ```
 
 # R objects
@@ -466,6 +467,10 @@ anyNA( second_vec_num )
 
 ```{r}
 # Write the solution here
+first_vec_num[c(F,T)]
+second_vec_num[c(F,T)]
+
+second_vec_num[1:length(second_vec_num) %% 2 == 0]
 ```
 
 ## Matrix

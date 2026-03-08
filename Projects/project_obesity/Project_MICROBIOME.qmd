@@ -61,6 +61,39 @@ library(Hmisc)         # rcorr
 # Variance Inflation Factor (VIF) to check multicollinearity
 library(car)          # vif
 (microbiome <- fread("gut_obesity_subset.csv"))
+
+whole_micro <- fread("abundance.txt.zip")
+whole_micro[,1:10]
+
+dt_k_bact <- whole_micro[,,c(1:2, 40:317)] %>% 
+  .[grepl("k__", dataset_name)]
+
+bla <- dt_k_bact %>% 
+  .[,-c("dataset_name")] %>% 
+  .[,lapply(.SD, as.numeric)] %>% 
+  rowSums()
+names(bla) <- dt_k_bact$dataset_name
+
+vec_bacteria_keep <- names( bla[bla > 0] )
+
+###
+genus_strain_micro <- whole_micro[,,c(1:2, 40:317)] %>% 
+  .[dataset_name %in% c(vec_bacteria_keep %>% 
+                          .[grepl("s__", .)] %>% 
+                          .[!grepl("t_", .)], 
+                        "sampleID", "bodysite", "bmi")]
+
+genus_strain_micro[1:3]
+
+transpose(genus_strain_micro[1:20], make.names = "dataset_name")
+### ----------
+microbiome %>% 
+  ggplot(., aes(x=disease, y=bmi)) +
+  geom_point()
+
+whole_micro[1:3,c(1:2, 40:317)]
+names(whole_micro)
+names(whole_micro[,,c(1:2, 40:317)][,1:20])
 ```
 
 ## Exploratory analysis
@@ -100,7 +133,6 @@ ggqqplot(microbiome, x = "bmi",
 
 
 ###
-
 ggplot(microbiome, aes(x=disease, y=bmi)) +
   geom_violin() +
   geom_boxplot() +
@@ -419,6 +451,9 @@ roc_test <- roc(test_labels, test_probs)
 # Plot ROC
 plot(roc_test, col = "darkgreen", lwd = 2, main = "ROC Curve - Test Set")
 text(0.6, 0.2, paste("AUC =", round(auc(roc_test), 3)), col = "black")
+
+## N dataset -----
+microbiome[disease == "n",.(disease,bmi)][, ifelse(bmi <=26, "leaness", "obesity")] 
 ```
 
 #### What is your overall conclusion?

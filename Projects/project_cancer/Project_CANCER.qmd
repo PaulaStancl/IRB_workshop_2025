@@ -39,6 +39,9 @@ Import your downloaded data into R using `fread()`
 
 ```{r, eval=FALSE}
 (cancer <- data.table::fread("lung_cancer_subset_data.csv"))
+whole_cancer <- data.table::fread("lung_cancer_data.csv.zip")
+
+whole_cancer[Stage %in% c("Stage I", "Stage II")]
 ```
 
 ## Exploratory analysis

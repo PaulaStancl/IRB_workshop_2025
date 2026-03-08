@@ -118,12 +118,12 @@ You should add an additional argument called `n_cycles`, which:
 ```{r}
 # Write the solution here
 cell_division_summary <- function(initial_cells, 
-                                  group_size = 10,
-                                  n_cycles = 1
+                                  group_size = 10
+                                  # TODO
                                   ) {
   
   # total number of cells after 1 division
-  total_cells <- initial_cells * 2^n_cycles
+  total_cells <- initial_cells * 2 # TODO
   # how many groups of cells are after 1 division
   full_groups <- total_cells %/% group_size
   # how many are leftover
@@ -226,7 +226,7 @@ ifelse(temps >= 20, "Warm", "Cool")
 ### Summary of conditional statements
 
 | Syntax                | Description                                                | Example                          |
-|-------------------|---------------------------------|---------------------|
+|-------------------|--------------------------------|---------------------|
 | `if (condition)`      | Executes code only if the condition is `TRUE`              | `if (x > 0) print("Positive")`   |
 | `else`                | Executes code if the previous `if` was `FALSE`             | `else print("Not positive")`     |
 | `else if (condition)` | Checks another condition if the first `if` fails           | `else if (x == 0) print("Zero")` |
@@ -250,14 +250,6 @@ Write an `if`/`else if`/`else` statement to classify the growth.
 vec <- 600
 
 # TODO: Add your conditional statements and print the growth classification
-
-if (vec > 1000) {
-  print("Rapid growth")
-} else if (vec > 500 & vec <= 1000) {
-  print("Medium")
-} else {
-  print("Slow")
-}
 ```
 
 ##### Taks : Add growth classification to a `cell_division_summary` function
@@ -358,7 +350,7 @@ The `apply` family of functions (`apply`, `lapply`, `sapply`, `tapply`, `mapply`
 ### Summary of the `apply` Family
 
 | Function   | Input Type         | Output Type     | Description                                 |
-|-----------------|-----------------|-----------------|----------------------|
+|-----------------|-----------------|-----------------|---------------------|
 | `apply()`  | matrix, data.frame | vector, array   | Apply a function over rows or columns       |
 | `lapply()` | list, vector       | list            | Apply a function to each element            |
 | `sapply()` | list, vector       | simplified list | Like `lapply()`, but returns vector/matrix  |
