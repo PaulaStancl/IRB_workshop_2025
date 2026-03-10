@@ -43,16 +43,25 @@ Let's examine the first six rows of the table!
 head(iris)
 ```
 
++----------------+--------------------------------+-------------------------------------+
 | Feature        | `data.frame`                   | `data.table`                        |
-|----------------|--------------------------------|-------------------------------------|
++================+================================+=====================================+
 | Base structure | Base R object                  | Extension of `data.frame`           |
++----------------+--------------------------------+-------------------------------------+
 | Speed          | Moderate                       | Very fast, optimized for large data |
++----------------+--------------------------------+-------------------------------------+
 | Syntax         | Verbose                        | Concise and powerful                |
++----------------+--------------------------------+-------------------------------------+
 | Rownames       | Supported                      | Discouraged / ignored               |
++----------------+--------------------------------+-------------------------------------+
 | Memory usage   | Standard                       | More memory-efficient               |
++----------------+--------------------------------+-------------------------------------+
 | Grouping       | Uses `aggregate()` or `dplyr`  | Built-in with `by=`                 |
++----------------+--------------------------------+-------------------------------------+
 | Joining        | Uses `merge()`                 | Fast joins with keys (`setkey()`)   |
++----------------+--------------------------------+-------------------------------------+
 | Learning curve | Low (familiar to most R users) | Medium (different syntax)           |
++----------------+--------------------------------+-------------------------------------+
 
 ### Import different type of data
 
@@ -149,29 +158,28 @@ Example:
 #### Task example: Convert ***iris*** to data table using as.data.table
 
 Create a variable **iris_dt** that contains iris data set as data.table object. In this tutorial we are going to compare and analyze the default data set ***iris*** as data frame and data table objects.
+```{r, include=FALSE}
+iris_dt <- as.data.table(iris)
+```
+
 
 ```{r}
-iris_dt <- as.data.table(iris)
-
-
-iris
-rownames(iris)
-rownames(iris_dt)
+# Write solution here
 ```
 
 ## Row subsetting
 
 ### Syntax comparison
 
-+----------------------------------+-------------------+--------------+
-| Operation                        | *data.frame*      | ```          |
-|                                  |                   | _data.table_ |
-|                                  |                   | ```          |
-+==================================+===================+==============+
-| Subseting rows                   | `df[1:20, ]`      | `df[1:20]`   |
-+----------------------------------+-------------------+--------------+
-| Subseting rows based on criteria | `df[df$id < 4, ]` | `df[id < 4]` |
-+----------------------------------+-------------------+--------------+
++----------------------------------+-------------------+---------------+
+| Operation                        | *data.frame*      | ```           |
+|                                  |                   | _data.table_  |
+|                                  |                   | ```           |
++==================================+===================+===============+
+| Subseting rows                   | `df[1:20, ]`      | `df[1:20]`    |
++----------------------------------+-------------------+---------------+
+| Subseting rows based on criteria | `df[df$id < 4, ]` | `df[id < 4]`  |
++----------------------------------+-------------------+---------------+
 
 ##### Task
 
@@ -179,25 +187,13 @@ Select all rows in **iris_dt** with Sepal.Length less than 6.7 and Petal.Length 
 
 ```{r}
 # Write the solution here
-iris_dt[Sepal.Length < 6.7 & Petal.Length < 1.2 & Species != "setosa"]
+
 ```
 
 Select only setosa species with more than 0.3 Petal.Width.
 
 ```{r}
 # Write the solution here
-iris_dt[Species == "setosa" & Petal.Width < 0.3]
-
-str(iris_dt)
-
-unique(iris_dt$Species)
-
-iris_dt[Species == "setosa" | Species == "versicolor"]
-
-iris_dt[Species %in% c("versicolor", "setosa")]
-
-###
-iris_dt$Species %in% c("versicolor", "setosa")
 ```
 
 ## Column subsetting
@@ -272,22 +268,21 @@ Select all rows in **iris_dt** with Sepal.Width equal to **3.0**, but show only 
 
 ```{r}
 # Write the solution here
-iris_dt[Sepal.Width == 3, .(Species, Sepal.Width)]
-
-#
-vec_col <- c("Species", "Sepal.Width")
-iris_dt[Sepal.Width == 3, ..vec_col]
 ```
 
 ## Operation on columns
 
 ### Syntax comparison
 
++--------------------------------+--------------------------------+---------------------------+
 | Operation                      | *data.frame*                   | *data.table*              |
-|--------------------------------|--------------------------------|---------------------------|
++================================+================================+===========================+
 | Calculate sum                  | `sum(df$id)`                   | `df[, sum(id)]`           |
++--------------------------------+--------------------------------+---------------------------+
 | Calculate sum by group         | `by(df$id,` `df$group,` `sum)` | `df[, sum(id), by=group]` |
++--------------------------------+--------------------------------+---------------------------+
 | Calling column out as a vector | `df$id`                        | `df[, id]`                |
++--------------------------------+--------------------------------+---------------------------+
 
 Calculate mean of Sepal.Width for all species.
 
@@ -346,21 +341,19 @@ iris_dt[ ,
 
 Select all rows where Sepal.Length \< 6.7 and flower species **virginica** and calculate mean Petal.Width in **iris_dt.** Do it with and without chaining.
 
-*No chaining*
-
-```{r}
-# Write the solution here
-
-iris_dt[Sepal.Length < 6.7 & Species == "virginica" , mean(Petal.Width)]
-```
-
 *With chaining*
 
 ```{r}
 # Write the solution here
-
-iris_dt[Sepal.Length < 6.7 & Species == "virginica"][, mean(Petal.Width)]
 ```
+
+*No chaining*
+
+```{r}
+# Write the solution here
+```
+
+
 
 ### Adding new permanent columns
 
