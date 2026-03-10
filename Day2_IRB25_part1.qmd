@@ -187,7 +187,6 @@ Select all rows in **iris_dt** with Sepal.Length less than 6.7 and Petal.Length 
 
 ```{r}
 # Write the solution here
-
 ```
 
 Select only setosa species with more than 0.3 Petal.Width.
@@ -222,10 +221,6 @@ Select columns Petal.Length and Petal.Width and first 3 rows
 
 ```{r}
 # Write the solution here
-
-iris_dt[ 1:3, .(Petal.Length, Petal.Width) ]
-
-iris_dt[Petal.Width > 0.9]
 ```
 
 ### Additional methods of subsetting columns in data.table
