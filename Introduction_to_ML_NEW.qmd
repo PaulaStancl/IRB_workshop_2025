@@ -328,7 +328,7 @@ getSelectedAttributes(final_boruta)
 **QUESTION:** Visualize the data with PCA on the full dataset (before splitting the data) using only the most significant features selected from backward selection.
 
 ```{r}
-# Selelct only the best features and standardize
+# Select only the best features and standardize
 var_new <- intersect(selected_vars_back, names(heart_disease))
 top_vars <- heart_disease[, var_new]
 top_vars <- scale(top_vars)
@@ -436,9 +436,9 @@ A confusion matrix is a table that is often used to describe the performance of 
 
 ```{r}
 # Visualizing the logistic regression coefficients
-coef_df <- as.data.frame(coef(summary(glm_model$finalModel)))
-coef_df$Variable <- rownames(coef_df)
-names(coef_df)[1] <- "Estimate"
+coef_df <- as.data.table(coef(summary(glm_model$finalModel)),
+                         keep.rownames = "Variable")
+
 
 scatter_plot <- ggplot(coef_df, aes(x = reorder(Variable, Estimate), y = Estimate)) +
   geom_bar(stat = 'identity') +
@@ -487,7 +487,8 @@ summary(glm_model_2)
 predictions_2 <- predict(glm_model_2, testData)
 
 # Evaluating the model
-confusion_2 <- confusionMatrix(predictions_2, testData$HeartDisease)
+confusion_2 <- confusionMatrix(predictions_2,
+                               testData$HeartDisease)
 print(confusion_2)
 ```
 
@@ -524,7 +525,9 @@ Find out how to plot AUC (Area Under the Curve) for your test data. AUC represen
 
 ```{r}
 # Get predicted probabilities for the positive class (e.g. "Yes")
-test_probs <- predict(glm_model_back, newdata = testData, type = "prob")[, "Yes"]
+test_probs <- predict(glm_model_back,
+                      newdata = testData,
+                      type = "prob")[, "Yes"]
 test_labels <- testData$HeartDisease
 
 # Compute ROC

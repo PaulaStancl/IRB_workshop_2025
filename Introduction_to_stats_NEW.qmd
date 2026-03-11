@@ -192,7 +192,8 @@ heart_disease[Cholesterol < mean_Cholesterol - 2 * sd_Cholesterol | Cholesterol 
 
 ```{r}
 # IQR method - those that are 1.5 x IQR away from 1st or 3rd quartile
-identify_outliers(data = heart_disease, variable = "Cholesterol")
+identify_outliers(data = heart_disease, 
+                  variable = "Cholesterol")
 ```
 
 ```{r}
@@ -257,7 +258,11 @@ What if you want to do correlation analysis for all available numeric variables?
 ```{r}
 cor_data <- heart_disease[, .SD, .SDcols = is.numeric]
 cor_matrix <- cor(cor_data)
-corrplot(cor_matrix, method = 'square', type = 'upper', diag = FALSE, tl.col = "black")
+corrplot(cor_matrix, 
+         method = 'square',
+         type = 'upper', 
+         diag = FALSE, 
+         tl.col = "black")
 ```
 
 ::: callout-important
